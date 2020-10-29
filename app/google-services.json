@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "387282827587",
+    "firebase_url": "https://reylla-a624a.firebaseio.com",
+    "project_id": "reylla-a624a",
+    "storage_bucket": "reylla-a624a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387282827587:android:fe77a2341fa375cbea57f6",
+        "android_client_info": {
+          "package_name": "com.sklagat46.reylla"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "387282827587-i4k6hmklstfthdlinbipe44lt8fg51n9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApmayiVEYETgnKjAY8R_2oUA1dFH2XI_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "387282827587-i4k6hmklstfthdlinbipe44lt8fg51n9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

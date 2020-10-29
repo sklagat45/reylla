@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.IntroActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="background image"
+        android:alpha="0.06"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/splash_img_backg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/tv_app_name_intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/let_s_get_started"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:lineSpacingExtra="5dp"
+            android:text="@string/intro_description"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="50dp"
+            android:gravity="center_horizontal">
+
+            <EditText
+                android:id="@+id/btn_sign_in_intro"
+                android:layout_width="117dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:focusable="false"
+                android:clickable="true"
+                android:focusableInTouchMode="false"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:text="Sign In"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/btn_sign_up_intro"
+                style="text-decoration: underline;"
+                android:layout_width="95dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="Sign Up"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="60dp"
+                android:visibility="visible"
+                android:layout_marginEnd="25dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/et_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Email"
+                            android:inputType="textEmailAddress"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="16dp">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/et_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Password"
+                            android:inputType="textPassword"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btn_sign_in"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/shape_button_rounded"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="Sign In"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/register_as_layout"
+                android:elevation="10dp"
+                android:visibility="gone"
+                app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/register_as"
+                    android:textStyle="bold"
+                    android:textSize="26sp"
+                    android:layout_gravity="center_horizontal"/>
+
+                <Button
+                    android:id="@+id/btn_book_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/shape_button_rounded"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="I want to book services"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btn_offer_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/shape_button_rounded"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="I want to offer services"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
