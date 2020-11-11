@@ -72,7 +72,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:focusable="false"
+                android:focusable="true"
                 android:clickable="true"
                 android:focusableInTouchMode="false"
                 android:foreground="?attr/selectableItemBackground"
@@ -107,71 +107,82 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_horizontal">
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="60dp"
-                android:visibility="visible"
-                android:layout_marginEnd="25dp"
-                android:elevation="10dp"
-                app:cardCornerRadius="10dp">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="25dp"-->
+<!--                android:layout_marginTop="60dp"-->
+<!--                android:visibility="visible"-->
+<!--                android:layout_marginEnd="25dp"-->
+<!--                android:elevation="10dp"-->
+<!--                app:cardCornerRadius="10dp">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="16dp">-->
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginEnd="25dp">
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="25dp"-->
+<!--                        android:layout_marginEnd="25dp">-->
 
-                        <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/et_email"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Email"
-                            android:inputType="textEmailAddress"
-                            android:textSize="16sp" />
-                    </com.google.android.material.textfield.TextInputLayout>
+<!--                        <androidx.appcompat.widget.AppCompatEditText-->
+<!--                            android:id="@+id/et_email"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:hint="Email"-->
+<!--                            android:inputType="textEmailAddress"-->
+<!--                            android:textSize="16sp" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="16dp">
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:layout_marginEnd="16dp">-->
 
-                        <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/et_password"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Password"
-                            android:inputType="textPassword"
-                            android:textSize="16sp" />
-                    </com.google.android.material.textfield.TextInputLayout>
+<!--                        <androidx.appcompat.widget.AppCompatEditText-->
+<!--                            android:id="@+id/et_password"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:hint="Password"-->
+<!--                            android:inputType="textPassword"-->
+<!--                            android:textSize="16sp" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
-                    <Button
-                        android:id="@+id/btn_sign_in"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="20dp"
-                        android:background="@drawable/shape_button_rounded"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:gravity="center"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:text="Sign In"
-                        android:textColor="@android:color/white"
-                        android:textSize="18sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+<!--                    <Button-->
+<!--                        android:id="@+id/btn_sign_in"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_marginStart="20dp"-->
+<!--                        android:layout_marginTop="30dp"-->
+<!--                        android:layout_marginEnd="20dp"-->
+<!--                        android:background="@drawable/shape_button_rounded"-->
+<!--                        android:foreground="?attr/selectableItemBackground"-->
+<!--                        android:gravity="center"-->
+<!--                        android:paddingTop="8dp"-->
+<!--                        android:paddingBottom="8dp"-->
+<!--                        android:text="Sign In"-->
+<!--                        android:textColor="@android:color/white"-->
+<!--                        android:textSize="18sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:id="@+id/forgotpass"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_marginStart="20dp"-->
+<!--                        android:clickable="true"-->
+<!--                        android:text="@string/forgot_password"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:focusable="true" />-->
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -181,7 +192,7 @@
                 android:layout_marginTop="15dp"
                 android:id="@+id/register_as_layout"
                 android:elevation="10dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -211,7 +222,7 @@
                     android:gravity="center"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
-                    android:text="I want to book services"
+                    android:text="@string/book_services"
                     android:textColor="@android:color/white"
                     android:textSize="16sp" />
 

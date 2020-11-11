@@ -56,14 +56,12 @@ open class BaseActivity : AppCompatActivity() {
             super.onBackPressed()
             return
         }
-
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(
                 this,
                 resources.getString(R.string.please_click_back_again_to_exit),
                 Toast.LENGTH_SHORT
         ).show()
-
         Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }
 
