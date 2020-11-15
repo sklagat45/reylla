@@ -5,4 +5,5 @@
     <color name="colorAccent">#753551</color>
 
     <color name="snackbar_error_color">#F72400</color>
+    <color name="trans">#80000000 </color>
 </resources>

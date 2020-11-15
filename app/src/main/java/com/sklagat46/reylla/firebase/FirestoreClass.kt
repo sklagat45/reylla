@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.sklagat46.reylla.activities.IntroActivity
 import com.sklagat46.reylla.activities.SignInActivity
 import com.sklagat46.reylla.activities.SignUpActivity
 import com.sklagat46.reylla.model.User
@@ -44,7 +45,7 @@ class FirestoreClass {
     /**
      * A function to SignIn using firebase and get the user details from Firestore Database.
      */
-    fun signInUser(activity: SignInActivity) {
+    fun signInUser(activity: IntroActivity) {
 
         // Here we pass the collection name from which we wants the data.
         mFireStore.collection(Constants.USERS)
