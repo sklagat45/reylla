@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.IndividualRegister"></activity>
+        <activity android:name=".activities.ForgotPassword"></activity>
+        <activity android:name=".activities.IndividualRegister" />
         <activity android:name=".activities.ServiceProvidersReg" /> <!-- [START fcm_default_icon] -->
         <!--
  Set custom default icon. This is used when no icon is set for incoming notification messages.

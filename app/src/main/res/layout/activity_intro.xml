@@ -62,19 +62,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/btn_sign_in_intro"
+                android:id="@+id/et_sign_in_intro"
                 android:layout_width="117dp"
                 android:layout_height="45dp"
+                android:onClick="btnSignIn"
                 android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:clickable="true"
-                android:focusable="true"
+                android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
@@ -84,7 +85,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/btn_sign_up_intro"
+                android:id="@+id/et_sign_up_intro"
                 style="text-decoration: underline;"
                 android:layout_width="95dp"
                 android:layout_height="45dp"
@@ -93,6 +94,7 @@
                 android:layout_marginEnd="20dp"
                 android:clickable="true"
                 android:focusable="false"
+                android:onClick="btnSignUp"
                 android:focusableInTouchMode="false"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
@@ -109,11 +111,13 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/cardSignIn"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="50dp"
                 android:visibility="visible"
                 android:layout_marginEnd="25dp"
                 android:elevation="10dp"
@@ -128,11 +132,11 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginEnd="25dp">
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/et_email"
+                            android:id="@+id/et_intro_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Email"
@@ -144,11 +148,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginEnd="16dp">
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/et_password"
+                            android:id="@+id/et_intro_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Password"
@@ -157,12 +161,12 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
-                        android:id="@+id/btn_sign_in"
+                        android:id="@+id/btn_intro_sign_in"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:layout_gravity="center"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginEnd="20dp"
                         android:background="@drawable/shape_button_rounded"
                         android:foreground="?attr/selectableItemBackground"
@@ -176,19 +180,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/forgotpass"
+                        android:id="@+id/intro_forgotpass"
                         android:layout_gravity="center"
                         android:layout_marginStart="20dp"
                         android:clickable="true"
                         android:text="@string/forgot_password"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="15dp"
                         android:focusable="true"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/register_as_layout"
+                android:id="@+id/cardSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -209,7 +213,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/register_as"
-                        android:textSize="26sp"
+                        android:textSize="22sp"
                         android:textStyle="bold" />
 
                     <Button

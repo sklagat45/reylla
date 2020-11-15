@@ -3,12 +3,19 @@ package com.sklagat46.reylla.activities
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
+import android.text.TextUtils
+import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.sklagat46.reylla.R
+import com.sklagat46.reylla.firebase.FirestoreClass
+import com.sklagat46.reylla.model.User
 import kotlinx.android.synthetic.main.activity_intro.*
 
-class IntroActivity : AppCompatActivity() {
+class IntroActivity : BaseActivity() {
 
     /**
      * This function is auto created by Android when the Activity Class is created.
@@ -26,20 +33,89 @@ class IntroActivity : AppCompatActivity() {
         )
 
         // This is used to get the file from the assets folder and set it to the title textView.
-        val typeface: Typeface =
-            Typeface.createFromAsset(assets, "carbon bl.ttf")
-        tv_app_name_intro.typeface = typeface
+//        val typeface: Typeface =
+//            Typeface.createFromAsset(assets, "carbon bl.ttf")
+//        tv_app_name_intro.typeface = typeface
 
-        btn_sign_in_intro.setOnClickListener {
+        signInRegisteredUser()
 
-            // Launch the sign in screen.
-            startActivity(Intent(this@IntroActivity, SignInActivity::class.java))
-        }
+//        btn_intro_sign_in.setOnClickListener {
+//
+//            // Launch the sign in screen.
+//            startActivity(Intent(this@IntroActivity, SignInActivity::class.java))
+//        }
+//
+//        btn_sign_up_intro.setOnClickListener {
+//
+//            // Launch the sign up screen.
+//            startActivity(Intent(this@IntroActivity, SignUpActivity::class.java))
+//        }
 
-        btn_sign_up_intro.setOnClickListener {
+        intro_forgotpass.setOnClickListener {
 
-            // Launch the sign up screen.
+            // Launch the lounge forgot password screen.
             startActivity(Intent(this@IntroActivity, SignUpActivity::class.java))
         }
     }
+
+    private fun signInRegisteredUser() {
+        // Here we get the text from editText and trim the space
+        val email: String = et_intro_email.text.toString().trim { it <= ' ' }
+        val password: String = et_intro_password.text.toString().trim { it <= ' ' }
+
+        if (validateForm(email, password)) {
+            // Show the progress dialog.
+            showProgressDialog(resources.getString(R.string.please_wait))
+
+            // Sign-In using FirebaseAuth
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        // Calling the FirestoreClass signInUser function to get the data of user from database.
+                        FirestoreClass().signInUser(this@IntroActivity)
+                    } else {
+                        Toast.makeText(
+                            this@IntroActivity,
+                            task.exception!!.message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+        }
+    }
+    /**
+     * A function to validate the entries of a user.
+     */
+    private fun validateForm(email: String, password: String): Boolean {
+        return if (TextUtils.isEmpty(email)) {
+            showErrorSnackBar("Please enter email.")
+            false
+        } else if (TextUtils.isEmpty(password)) {
+            showErrorSnackBar("Please enter password.")
+            false
+        } else {
+            true
+        }
+    }
+
+    /**
+     * A function to get the user details from the firestore database after authentication.
+     */
+    fun signInSuccess(user: User) {
+        hideProgressDialog()
+        startActivity(Intent(this@IntroActivity, MainActivity::class.java))
+        this.finish()
+    }
+
+
+    fun btnSignUp(view: View) {
+        cardSignIn.visibility = GONE
+        cardSignUp.visibility = VISIBLE
+    }
+    fun btnSignIn(view: View) {
+        cardSignUp.visibility = GONE
+        cardSignIn.visibility = VISIBLE
+    }
+
+
 }
