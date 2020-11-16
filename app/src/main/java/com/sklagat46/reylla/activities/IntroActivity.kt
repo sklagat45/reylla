@@ -32,29 +32,25 @@ class IntroActivity : BaseActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        // This is used to get the file from the assets folder and set it to the title textView.
-//        val typeface: Typeface =
-//            Typeface.createFromAsset(assets, "carbon bl.ttf")
-//        tv_app_name_intro.typeface = typeface
 
         signInRegisteredUser()
 
-//        btn_intro_sign_in.setOnClickListener {
-//
-//            // Launch the sign in screen.
-//            startActivity(Intent(this@IntroActivity, SignInActivity::class.java))
-//        }
-//
-//        btn_sign_up_intro.setOnClickListener {
-//
-//            // Launch the sign up screen.
-//            startActivity(Intent(this@IntroActivity, SignUpActivity::class.java))
-//        }
+        btn_offer_service.setOnClickListener {
+
+            // Launch the service provider screen.
+            startActivity(Intent(this@IntroActivity, ServiceProvidersReg::class.java))
+        }
+
+        btn_book_service.setOnClickListener {
+
+            // Launch the register customer screen.
+            startActivity(Intent(this@IntroActivity, RegisterCustomer::class.java))
+        }
 
         intro_forgotpass.setOnClickListener {
 
             // Launch the lounge forgot password screen.
-            startActivity(Intent(this@IntroActivity, SignUpActivity::class.java))
+            startActivity(Intent(this@IntroActivity, ForgotPassword::class.java))
         }
     }
 
