@@ -11,6 +11,7 @@ object Constants {
     // Firebase Constants
     // This  is used for the collection name for USERS.
     const val USERS: String = "users"
+    const val CUSTOMERS: String = "customers"
 
     // Firebase database field names
     const val IMAGE: String = "image"
