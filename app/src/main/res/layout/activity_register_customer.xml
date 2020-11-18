@@ -110,6 +110,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
                             android:paddingStart="6dp"
+                            android:inputType="textPersonName"
                             android:background="@drawable/gray_border_shape_rounded"
                             android:hint="First Name"
                             android:textSize="18sp" />
@@ -126,6 +127,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
                             android:paddingStart="5dp"
+                            android:inputType="textPersonName"
                             android:layout_marginEnd="2dp"
                             android:background="@drawable/gray_border_shape_rounded"
                             android:hint="Last Name"
@@ -143,6 +145,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:paddingStart="10dp"
+                        android:inputType="date"
                         android:background="@drawable/gray_border_shape_rounded"
                         android:hint="Birth Date"
                         android:textSize="18sp" />
@@ -165,6 +168,7 @@
                             android:layout_marginStart="2dp"
                             android:background="@drawable/gray_border_shape_rounded"
                             android:hint="Address"
+                            android:inputType="text"
                             android:paddingStart="10dp"
                             android:textSize="18sp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -192,6 +196,7 @@
                         android:paddingStart="10dp"
                         android:background="@drawable/gray_border_shape_rounded"
                         android:hint="Phone Number"
+                        android:inputType="phone"
                         android:textSize="18sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -205,6 +210,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:paddingStart="10dp"
+                        android:inputType="textEmailAddress"
                         android:background="@drawable/gray_border_shape_rounded"
                         android:hint="Email"
                         android:textSize="18sp" />
@@ -221,6 +227,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:paddingStart="10dp"
+                        android:inputType="text"
                         android:background="@drawable/gray_border_shape_rounded"
                         android:hint="Gender"
                         android:textSize="18sp" />
@@ -231,13 +238,14 @@
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/et_customer_aboutself"
+                        android:id="@+id/et_customer_password"
                         android:layout_marginStart="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:paddingStart="10dp"
-                        android:inputType="textMultiLine"                        android:background="@drawable/gray_border_shape_rounded"
-                        android:hint="About Yourself"
+                        android:inputType="textPassword"
+                        android:background="@drawable/gray_border_shape_rounded"
+                        android:hint="Password"
                         android:textSize="18sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 

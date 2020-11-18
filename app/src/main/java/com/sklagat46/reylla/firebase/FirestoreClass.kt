@@ -5,8 +5,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.sklagat46.reylla.activities.IntroActivity
+import com.sklagat46.reylla.activities.RegisterCustomer
 import com.sklagat46.reylla.activities.SignInActivity
 import com.sklagat46.reylla.activities.SignUpActivity
+import com.sklagat46.reylla.model.Customer
 import com.sklagat46.reylla.model.User
 import com.sklagat46.reylla.utils.Constants
 
@@ -32,6 +34,30 @@ class FirestoreClass {
 
                 // Here call a function of base activity for transferring the result to it.
                 activity.userRegisteredSuccess()
+            }
+            .addOnFailureListener { e ->
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error writing document",
+                    e
+                )
+            }
+    }
+
+    /**
+     * A function to make an entry of the registered customer in the firestore database.
+     */
+    fun registerCustomer(activity: RegisterCustomer, customerInfor: Customer) {
+
+        mFireStore.collection(Constants.CUSTOMERS)
+            // Document ID for users fields. Here the document it is the User ID.
+            .document(getCurrentUserID())
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(customerInfor, SetOptions.merge())
+            .addOnSuccessListener {
+
+                // Here call a function of base activity for transferring the result to it.
+                activity.customerRegisteredSuccess()
             }
             .addOnFailureListener { e ->
                 Log.e(
