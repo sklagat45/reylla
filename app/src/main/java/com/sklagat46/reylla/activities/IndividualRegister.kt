@@ -1,6 +1,8 @@
 package com.sklagat46.reylla.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
@@ -10,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.sklagat46.reylla.R
 import com.sklagat46.reylla.firebase.FirestoreClass
-import com.sklagat46.reylla.model.User
+import com.sklagat46.reylla.model.IndividualProviders
 import kotlinx.android.synthetic.main.activity_individual_register.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
@@ -23,15 +25,12 @@ class IndividualRegister : BaseActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-
         setupActionBar()
 
         // Click event for sign-up button.
         btn_indi_register.setOnClickListener {
             registerUser()
         }
-
-
     }
 
     /**
@@ -67,35 +66,87 @@ class IndividualRegister : BaseActivity() {
         val IndividualGender: String = et_indiv_gender.text.toString().trim { it <= ' ' }
         val IndividaulPassword: String = et_indiv_password.text.toString().trim { it <= ' ' }
 
-        if (validateForm(name, email, password)) {
+        if (validateForm(IndividualFirstName, IndividualLastName, IndividualDOB, IndividualEddress, IndividualPhoneNum, IndividualEmail, IndividualGender, IndividaulPassword)) {
             // Show the progress dialog.
             showProgressDialog(resources.getString(R.string.please_wait))
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(IndividualEmail, IndividaulPassword)
                 .addOnCompleteListener(
                     OnCompleteListener<AuthResult> { task ->
 
                         // If the registration is successfully done
                         if (task.isSuccessful) {
 
-                            // Firebase registered user
+                            // Firebase registered customer
                             val firebaseUser: FirebaseUser = task.result!!.user!!
                             // Registered Email
                             val registeredEmail = firebaseUser.email!!
 
-                            val user = User(
-                                firebaseUser.uid, name, registeredEmail
+                            val individualProvider = IndividualProviders(
+                                firebaseUser.uid, IndividualLastName, registeredEmail
                             )
 
-                            // call the registerUser function of FirestoreClass to make an entry in the database.
-                            FirestoreClass().registerUser(this@SignUpActivity, user)
+                            // call the registerCustomer function of FirestoreClass to make an entry in the database.
+                            FirestoreClass().registerIndividualProvider(this@IndividualRegister, individualProvider)
                         } else {
                             Toast.makeText(
-                                this@SignUpActivity,
+                                this@IndividualRegister,
                                 task.exception!!.message,
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     })
         }
+    }
+
+    /**
+     * A function to validate the entries of a new user.
+     */
+    private fun validateForm(IndividualFirstName: String, IndividualLastName: String,
+                             IndividualDOB: String, IndividualEddress: String, IndividualPhoneNum: String,
+                             IndividualEmail: String, IndividualGender: String, IndividaulPassword: String): Boolean {
+        return when {
+            TextUtils.isEmpty(IndividualFirstName) or TextUtils.isEmpty(IndividualLastName)  or
+                    TextUtils.isEmpty(IndividualDOB)  or TextUtils.isEmpty(IndividualEddress)  or
+                    TextUtils.isEmpty(IndividualPhoneNum)  or TextUtils.isEmpty(IndividualGender)  or
+                    TextUtils.isEmpty(IndividaulPassword) -> {
+                showErrorSnackBar("Please enter all details.")
+                false
+            }
+            TextUtils.isEmpty(IndividualEmail) -> {
+                showErrorSnackBar("Please enter email.")
+                false
+            }
+            TextUtils.isEmpty(IndividaulPassword) -> {
+                showErrorSnackBar("Please enter password.")
+                false
+            }
+            else -> {
+                true
+            }
+        }
+    }
+
+    /**
+     * A function to be called the customer is registered successfully and entry is made in the firestore database.
+     */
+    fun individualRegisteredSuccess() {
+
+        Toast.makeText(
+            this@IndividualRegister,
+            "You have successfully registered.",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        // Hide the progress dialog
+        hideProgressDialog()
+        /**
+         * Here the new user registered is automatically signed-in so we just sign-out the user from firebase
+         * and send him to Intro Screen for Sign-In
+         */
+
+        // Launch the register customer screen.
+        startActivity(Intent(this@IndividualRegister, MainActivity::class.java))
+        // Finish the Sign-Up Screen
+        finish()
     }
 }

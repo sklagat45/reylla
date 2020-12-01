@@ -250,7 +250,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/btn_customer_next_page"
+                    android:id="@+id/btn_customer_register"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
@@ -259,7 +259,7 @@
                     android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Next"
+                    android:text="Register"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
             </LinearLayout>
