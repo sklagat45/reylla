@@ -53,7 +53,7 @@
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_profile_user_image"
+                    android:id="@+id/iv_indiv_profile_image"
                     android:layout_width="@dimen/my_profile_user_image_size"
                     android:layout_height="@dimen/my_profile_user_image_size"
                     android:contentDescription="Individual Image"
@@ -64,7 +64,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/tv_add_photo"
+                    android:id="@+id/tv_indiv_add_photo"
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/colorPrimary"
                     android:text="ADD PHOTO"
@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content">
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/et_first_name"
+                            android:id="@+id/et_indiv_first_name"
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
                             android:paddingStart="6dp"
@@ -98,7 +98,7 @@
                         android:layout_height="wrap_content">
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/et_last_name"
+                            android:id="@+id/et_indiv_last_name"
                             android:layout_marginStart="2dp"
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/et_birth_date"
+                        android:id="@+id/et_indiv_birth_date"
                         android:layout_marginStart="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
@@ -135,7 +135,7 @@
                         app:layout_constraintStart_toStartOf="parent">
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/et_address"
+                            android:id="@+id/et_indiv_address"
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
                             android:layout_marginStart="2dp"
@@ -161,7 +161,7 @@
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/et_phonenumber"
+                        android:id="@+id/et_indiv_phonenumber"
                         android:layout_marginStart="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/et_email"
+                        android:id="@+id/et_indiv_email"
                         android:layout_marginStart="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
@@ -192,7 +192,7 @@
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/et_gender"
+                        android:id="@+id/et_indiv_gender"
                         android:layout_marginStart="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
@@ -207,18 +207,19 @@
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/et_aboutself"
+                        android:id="@+id/et_indiv_password"
                         android:layout_marginStart="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:paddingStart="10dp"
-                        android:inputType="textMultiLine"                        android:background="@drawable/gray_border_shape_rounded"
-                        android:hint="About Yourself"
+                        android:inputType="textPassword"
+                        android:background="@drawable/gray_border_shape_rounded"
+                        android:hint="Password"
                         android:textSize="18sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/btn_sign_in"
+                    android:id="@+id/btn_indi_register"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
@@ -227,7 +228,7 @@
                     android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Next"
+                    android:text="Register"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
             </LinearLayout>

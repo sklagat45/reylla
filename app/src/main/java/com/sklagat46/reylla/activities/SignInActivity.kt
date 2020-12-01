@@ -6,9 +6,8 @@ import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.sklagat46.reylla.firebase.FirestoreClass
-import com.sklagat46.reylla.model.User
 import com.sklagat46.reylla.R
+import com.sklagat46.reylla.model.User
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class SignInActivity : BaseActivity() {
@@ -53,6 +52,7 @@ class SignInActivity : BaseActivity() {
     /**
      * A function for Sign-In using the registered user using the email and password.
      */
+
     private fun signInRegisteredUser() {
         // Here we get the text from editText and trim the space
         val email: String = et_email.text.toString().trim { it <= ' ' }
