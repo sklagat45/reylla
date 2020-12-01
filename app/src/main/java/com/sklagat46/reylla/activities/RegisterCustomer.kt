@@ -1,5 +1,6 @@
 package com.sklagat46.reylla.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
@@ -25,11 +26,10 @@ class RegisterCustomer : BaseActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-
         setUpActionBar()
 
         // Click event for sign-up button.
-        btn_sign_up.setOnClickListener {
+        btn_customer_register.setOnClickListener {
             registerCustomer()
         }
     }
@@ -37,7 +37,6 @@ class RegisterCustomer : BaseActivity() {
     private fun setUpActionBar() {
 
         setSupportActionBar(toolbar_sign_up_activity)
-
         val actionBar = supportActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
@@ -137,11 +136,16 @@ class RegisterCustomer : BaseActivity() {
         // Hide the progress dialog
         hideProgressDialog()
 
-        /**
-         * Here the new user registered is automatically signed-in so we just sign-out the user from firebase
-         * and send him to Intro Screen for Sign-In
-         */
-        FirebaseAuth.getInstance().signOut()
+
+
+        // Launch the register customer screen.
+        startActivity(Intent(this@RegisterCustomer, MainActivity::class.java))
+
+//        /**
+//         * Here the new user registered is automatically signed-in so we just sign-out the user from firebase
+//         * and send him to Intro Screen for Sign-In
+//         */
+//        FirebaseAuth.getInstance().signOut()
         // Finish the Sign-Up Screen
         finish()
     }

@@ -1,7 +1,6 @@
 package com.sklagat46.reylla.activities
 
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -33,7 +32,11 @@ class IntroActivity : BaseActivity() {
         )
 
 
-        signInRegisteredUser()
+        btn_intro_sign_in.setOnClickListener {
+            signInRegisteredUser()
+        }
+
+//        signInRegisteredUser()
 
         btn_offer_service.setOnClickListener {
 
