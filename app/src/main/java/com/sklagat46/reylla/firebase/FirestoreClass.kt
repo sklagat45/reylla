@@ -4,8 +4,12 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.sklagat46.reylla.activities.SignInActivity
+import com.sklagat46.reylla.activities.IndividualRegister
+import com.sklagat46.reylla.activities.IntroActivity
+import com.sklagat46.reylla.activities.RegisterCustomer
 import com.sklagat46.reylla.activities.SignUpActivity
+import com.sklagat46.reylla.model.Customer
+import com.sklagat46.reylla.model.IndividualProviders
 import com.sklagat46.reylla.model.User
 import com.sklagat46.reylla.utils.Constants
 
@@ -42,9 +46,56 @@ class FirestoreClass {
     }
 
     /**
+     * A function to make an entry of the registered Individual service provider in the firestore database.
+     */
+    fun registerIndividualProvider(activity: IndividualRegister, individualInfo: IndividualProviders) {
+        mFireStore.collection(Constants.INDIVIDUALPROVIDERS)
+            // Document ID for users fields. Here the document it is the User ID.
+            .document(getCurrentUserID())
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(individualInfo, SetOptions.merge())
+            .addOnSuccessListener {
+
+                // Here call a function of base activity for transferring the result to it.
+                activity.individualRegisteredSuccess()
+            }
+            .addOnFailureListener { e ->
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error writing document",
+                    e
+                )
+            }
+    }
+
+    /**
+     * A function to make an entry of the registered customer in the firestore database.
+     */
+    fun registerCustomer(activity: RegisterCustomer, customerInfor: Customer) {
+
+        mFireStore.collection(Constants.CUSTOMERS)
+            // Document ID for users fields. Here the document it is the User ID.
+            .document(getCurrentUserID())
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(customerInfor, SetOptions.merge())
+            .addOnSuccessListener {
+
+                // Here call a function of base activity for transferring the result to it.
+                activity.customerRegisteredSuccess()
+            }
+            .addOnFailureListener { e ->
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error writing document",
+                    e
+                )
+            }
+    }
+
+    /**
      * A function to SignIn using firebase and get the user details from Firestore Database.
      */
-    fun signInUser(activity: SignInActivity) {
+    fun signInUser(activity: IntroActivity) {
 
         // Here we pass the collection name from which we wants the data.
         mFireStore.collection(Constants.USERS)
