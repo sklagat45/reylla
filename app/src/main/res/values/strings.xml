@@ -9,4 +9,19 @@
     <string name="register_as">REGISTER AS</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="book_services">I want to book services</string>
+    <string name="first_name">First Name</string>
+    <string name="add_photo">ADD PHOTO</string>
+    <string name="register_as_customer">Register as customer</string>
+    <string name="register_as_a_customer">Register as a customer</string>
+    <string name="your_image">Your Image</string>
+    <string name="register">Register</string>
+    <string name="password">password</string>
+    <string name="date_of_birth">date of birth</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="background_image">background image</string>
+    <string name="register_as_individual">register as individual</string>
+    <string name="register_as_company">register as company</string>
+    <string name="already_have_an_account">Already have an account??</string>
+    <string name="sign_in">Sign In</string>
+    <string name="welcome_to_reylla">welcome to reylla</string>
 </resources>
