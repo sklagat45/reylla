@@ -12,6 +12,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
+        android:forceDarkAllowed="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -106,6 +107,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="180dp"
                         android:textColorHint="#000000"
+                        android:focusable="true"
                         android:layout_height="wrap_content">
 
                         <androidx.appcompat.widget.AppCompatEditText
@@ -123,6 +125,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputLayout"
                         android:layout_width="185dp"
+                        android:focusable="true"
                         android:textColorHint="#000000"
                         android:layout_height="wrap_content">
 
@@ -144,6 +147,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:textColorHint="#000000"
+                    android:focusable="true"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -167,6 +171,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="#000000"
+                        android:focusable="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent">
 
@@ -197,6 +202,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:textColorHint="#000000"
+                    android:focusable="true"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -215,6 +221,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:textColorHint="#000000"
+                    android:focusable="true"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -234,6 +241,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:textColorHint="#000000"
+                    android:focusable="true"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
