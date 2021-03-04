@@ -13,11 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.RegisterCustomer"
+        <activity android:name=".activities.CompanyRegister"></activity>
+        <activity
+            android:name=".activities.RegisterCustomer"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".activities.ForgotPassword" />
         <activity android:name=".activities.IndividualRegister" />
         <activity android:name=".activities.ServiceProvidersReg" /> <!-- [START fcm_default_icon] -->
