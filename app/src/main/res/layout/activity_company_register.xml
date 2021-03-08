@@ -226,7 +226,7 @@ tools:context=".activities.CompanyRegister">
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btn_company_register"
+                android:id="@+id/btn_comp_register"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
