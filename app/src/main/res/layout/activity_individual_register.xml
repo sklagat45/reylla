@@ -5,6 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.IndividualRegister">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_individual_sign_up_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="SIGN UP"
+            android:textColor="@color/primary_text_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +40,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="55dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,10 +52,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:elevation="10dp"
             app:cardCornerRadius="5dp">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,6 +70,7 @@
                     android:layout_gravity="center_horizontal"
                     android:text="REGISTER AS INDIVIDUAL"
                     android:layout_marginTop="2dp"
+                    android:textColor="#000000"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -66,8 +89,8 @@
                     android:layout_height="match_parent"
                     android:id="@+id/tv_indiv_add_photo"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/colorPrimary"
-                    android:text="ADD PHOTO"
+                    android:text="@string/add_photo"
+                    android:textColor="#792C58"
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_marginTop="2dp"
@@ -80,6 +103,8 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="190dp"
+                        android:textColorHint="#000000"
+                        android:focusable="true"
                         android:layout_height="wrap_content">
 
                         <androidx.appcompat.widget.AppCompatEditText
@@ -87,6 +112,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
                             android:paddingStart="6dp"
+                            android:contentDescription="@string/first_name"
                             android:background="@drawable/gray_border_shape_rounded"
                             android:hint="First Name"
                             android:textSize="18sp" />
@@ -95,6 +121,8 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputLayout"
                         android:layout_width="185dp"
+                        android:textColorHint="#000000"
+                        android:focusable="true"
                         android:layout_height="wrap_content">
 
                         <androidx.appcompat.widget.AppCompatEditText
@@ -103,6 +131,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
                             android:paddingStart="6dp"
+                            android:contentDescription="@string/last_name"
                             android:background="@drawable/gray_border_shape_rounded"
                             android:hint="Last Name"
                             android:textSize="18sp" />
@@ -111,6 +140,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
+                    android:textColorHint="#000000"
+                    android:focusable="true"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -119,6 +150,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:paddingStart="10dp"
+                        android:contentDescription="@string/date_of_birth"
                         android:background="@drawable/gray_border_shape_rounded"
                         android:hint="Birth Date"
                         android:textSize="18sp" />
@@ -131,12 +163,15 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColorHint="#000000"
+                        android:focusable="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent">
 
                         <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/et_indiv_address"
                             android:layout_width="match_parent"
+                            android:contentDescription="@string/address"
                             android:layout_height="35dp"
                             android:layout_marginStart="2dp"
                             android:background="@drawable/gray_border_shape_rounded"
@@ -158,6 +193,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
+                    android:textColorHint="#000000"
+                    android:focusable="true"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -166,6 +203,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:paddingStart="10dp"
+                        android:contentDescription="phone number"
                         android:background="@drawable/gray_border_shape_rounded"
                         android:hint="Phone Number"
                         android:textSize="18sp" />
@@ -173,6 +211,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
+                    android:textColorHint="#000000"
+                    android:focusable="true"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -181,6 +221,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:paddingStart="10dp"
+                        android:contentDescription="Email"
                         android:background="@drawable/gray_border_shape_rounded"
                         android:hint="Email"
                         android:textSize="18sp" />
@@ -189,6 +230,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
+                    android:textColorHint="#000000"
+                    android:focusable="true"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -197,6 +240,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:paddingStart="10dp"
+                        android:contentDescription="gender"
                         android:background="@drawable/gray_border_shape_rounded"
                         android:hint="Gender"
                         android:textSize="18sp" />
@@ -204,6 +248,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
+                    android:focusable="true"
+                    android:textColorHint="#000000"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -212,6 +258,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:paddingStart="10dp"
+                        android:contentDescription="@string/password"
                         android:inputType="textPassword"
                         android:background="@drawable/gray_border_shape_rounded"
                         android:hint="Password"
@@ -227,6 +274,8 @@
                     android:background="@drawable/shape_button_rounded"
                     android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
+                    android:layout_weight="@integer/google_play_services_version"
+                    android:contentDescription="@string/register"
                     android:padding="5dp"
                     android:text="Register"
                     android:textColor="@android:color/white"

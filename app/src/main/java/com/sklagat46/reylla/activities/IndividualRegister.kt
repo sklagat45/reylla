@@ -38,7 +38,7 @@ class IndividualRegister : BaseActivity() {
      */
     private fun setupActionBar() {
 
-        setSupportActionBar(toolbar_sign_up_activity)
+        setSupportActionBar(toolbar_individual_sign_up_activity)
 
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -46,7 +46,7 @@ class IndividualRegister : BaseActivity() {
             actionBar.setHomeAsUpIndicator(R.drawable.back_btn)
         }
 
-        toolbar_sign_up_activity.setNavigationOnClickListener { onBackPressed() }
+        toolbar_individual_sign_up_activity.setNavigationOnClickListener { onBackPressed() }
     }
 
     /**
