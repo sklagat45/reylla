@@ -4,10 +4,8 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.sklagat46.reylla.activities.IndividualRegister
-import com.sklagat46.reylla.activities.IntroActivity
-import com.sklagat46.reylla.activities.RegisterCustomer
-import com.sklagat46.reylla.activities.SignUpActivity
+import com.sklagat46.reylla.activities.*
+import com.sklagat46.reylla.model.Company
 import com.sklagat46.reylla.model.Customer
 import com.sklagat46.reylla.model.IndividualProviders
 import com.sklagat46.reylla.model.User
@@ -92,6 +90,29 @@ class FirestoreClass {
             }
     }
 
+    /**
+     * A function to make an entry of the registered customer in the firestore database.
+     */
+    fun registerCompany(activity: CompanyRegister, companyInfor: Company) {
+
+        mFireStore.collection(Constants.COMPANY)
+            // Document ID for users fields. Here the document it is the User ID.
+            .document(getCurrentUserID())
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(companyInfor, SetOptions.merge())
+            .addOnSuccessListener {
+
+                // Here call a function of base activity for transferring the result to it.
+                activity.companyRegisteredSuccess()
+            }
+            .addOnFailureListener { e ->
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error writing document",
+                    e
+                )
+            }
+    }
     /**
      * A function to SignIn using firebase and get the user details from Firestore Database.
      */

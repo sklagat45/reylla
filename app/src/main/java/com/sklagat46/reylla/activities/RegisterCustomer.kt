@@ -13,7 +13,6 @@ import com.sklagat46.reylla.R
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.Customer
 import kotlinx.android.synthetic.main.activity_register_customer.*
-import kotlinx.android.synthetic.main.activity_register_customer.toolbar_sign_up_activity
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class RegisterCustomer : BaseActivity() {
@@ -36,13 +35,13 @@ class RegisterCustomer : BaseActivity() {
 
     private fun setUpActionBar() {
 
-        setSupportActionBar(toolbar_sign_up_activity)
+        setSupportActionBar(toolbar_customer_sign_up_activity)
         val actionBar = supportActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.back_btn)
         }
-        toolbar_sign_up_activity.setNavigationOnClickListener {
+        toolbar_customer_sign_up_activity.setNavigationOnClickListener {
             onBackPressed()
         }
     }

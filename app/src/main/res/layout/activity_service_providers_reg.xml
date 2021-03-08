@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="background image"
+        android:contentDescription="@string/background_image"
         android:alpha="0.06"
         android:layout_marginTop="30dp"
         android:background="@drawable/splash_img_backg"
@@ -61,10 +61,12 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/shape_button_rounded"
                 android:foreground="?attr/selectableItemBackground"
+                android:layout_weight="@integer/google_play_services_version"
                 android:gravity="center"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:text="Individual/Freelancer"
+                android:contentDescription="@string/register_as_individual"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
 
@@ -78,6 +80,8 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/shape_button_rounded"
                 android:foreground="?attr/selectableItemBackground"
+                android:contentDescription="@string/register_as_company"
+                android:layout_weight="@integer/google_play_services_version"
                 android:gravity="center"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
@@ -98,9 +102,10 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="20dp"
                     android:gravity="center"
+                    android:contentDescription="@string/already_have_an_account"
                     android:textColor="#000"
                     android:padding="5dp"
-                    android:text="Already have an account??" />
+                    android:text="@string/already_have_an_account" />
 
                 <TextView
                     android:id="@+id/already_hav_acc"
