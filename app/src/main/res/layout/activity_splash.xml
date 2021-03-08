@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/salonist_home"
+    android:background="@drawable/salonist_home_screen"
     tools:context=".activities.SplashActivity">
+
 
     <TextView
         android:id="@+id/tv_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
         android:text="@string/app_name"
-        android:layout_gravity="center_horizontal"
         android:textColor="#a83e54"
-        android:layout_marginTop="10dp"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_app_version"
+        android:layout_width="107dp"
+        android:layout_height="49dp"
+        android:layout_gravity="bottom"
+        android:text="@string/app_version"
+        android:textColor="#a83e54"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="330dp"
-        android:layout_height="316dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:contentDescription="@string/welcome_to_reylla"
-        android:outlineSpotShadowColor="@color/colorAccent"
-        android:src="@drawable/logo_freez" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:contentDescription="@string/welcome_to_reylla"
-        android:outlineSpotShadowColor="@color/colorAccent"
-        android:src="@drawable/face_and_skin_care" />
-
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

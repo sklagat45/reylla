@@ -32,4 +32,5 @@
     <string name="company_address">Company Address</string>
     <string name="select_location_on_google_maps">select location on google maps</string>
     <string name="phone_number">phone number</string>
+    <string name="app_version">v-: 1.0</string>
 </resources>
