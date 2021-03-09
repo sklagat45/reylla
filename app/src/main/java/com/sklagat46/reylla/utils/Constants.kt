@@ -13,7 +13,6 @@ object Constants {
     const val USERS: String = "users"
     const val CUSTOMERS: String = "customers"
     const val COMPANY: String = "company"
-
     const val INDIVIDUALPROVIDERS: String = "individualProviders"
 
     // Firebase database field names

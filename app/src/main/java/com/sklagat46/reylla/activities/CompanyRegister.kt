@@ -86,7 +86,7 @@ class CompanyRegister : BaseActivity() {
                     })
         }
     }
-            private fun validateForm(companyName: String, registrationNumber: String,
+    private fun validateForm(companyName: String, registrationNumber: String,
                                      companyAddress: String, companyPhonenumber: String, companyEmail: String,
                                      companyPassword: String): Boolean {
                 return when {
@@ -138,6 +138,5 @@ class CompanyRegister : BaseActivity() {
     //        FirebaseAuth.getInstance().signOut()
         // Finish the Sign-Up Screen
         finish()
-    }
     }
     }
