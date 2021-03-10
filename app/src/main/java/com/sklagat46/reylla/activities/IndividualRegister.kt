@@ -56,20 +56,20 @@ class IndividualRegister : BaseActivity() {
     private fun registerUser() {
 
         // Here we get the text from editText and trim the space
-        val IndividualProfileImage: ImageView = iv_indiv_profile_image
-        val IndividualFirstName: String = et_indiv_first_name.text.toString().trim { it <= ' ' }
-        val IndividualLastName: String = et_indiv_last_name.text.toString().trim { it <= ' ' }
-        val IndividualDOB: String = et_indiv_birth_date.text.toString().trim { it <= ' ' }
-        val IndividualEddress: String = et_indiv_address.text.toString().trim { it <= ' ' }
-        val IndividualPhoneNum: String = et_indiv_phonenumber.text.toString().trim { it <= ' ' }
-        val IndividualEmail: String = et_indiv_email.text.toString().trim { it <= ' ' }
-        val IndividualGender: String = et_indiv_gender.text.toString().trim { it <= ' ' }
-        val IndividaulPassword: String = et_indiv_password.text.toString().trim { it <= ' ' }
+        val individualProfileImage: ImageView = iv_indiv_profile_image
+        val individualFirstName: String = et_indiv_first_name.text.toString().trim { it <= ' ' }
+        val individualLastName: String = et_indiv_last_name.text.toString().trim { it <= ' ' }
+        val individualDOB: String = et_indiv_birth_date.text.toString().trim { it <= ' ' }
+        val individualAddress: String = et_indiv_address.text.toString().trim { it <= ' ' }
+        val individualPhoneNum: String = et_indiv_phonenumber.text.toString().trim { it <= ' ' }
+        val individualEmail: String = et_indiv_email.text.toString().trim { it <= ' ' }
+        val individualGender: String = et_indiv_gender.text.toString().trim { it <= ' ' }
+        val individualPassword: String = et_indiv_password.text.toString().trim { it <= ' ' }
 
-        if (validateForm(IndividualFirstName, IndividualLastName, IndividualDOB, IndividualEddress, IndividualPhoneNum, IndividualEmail, IndividualGender, IndividaulPassword)) {
+        if (validateForm(individualFirstName, individualLastName, individualDOB, individualAddress, individualPhoneNum, individualEmail, individualGender, individualPassword)) {
             // Show the progress dialog.
             showProgressDialog(resources.getString(R.string.please_wait))
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(IndividualEmail, IndividaulPassword)
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(individualEmail, individualPassword)
                 .addOnCompleteListener(
                     OnCompleteListener<AuthResult> { task ->
 
@@ -82,7 +82,7 @@ class IndividualRegister : BaseActivity() {
                             val registeredEmail = firebaseUser.email!!
 
                             val individualProvider = IndividualProviders(
-                                firebaseUser.uid, IndividualLastName, registeredEmail
+                                firebaseUser.uid, individualLastName, registeredEmail
                             )
 
                             // call the registerCustomer function of FirestoreClass to make an entry in the database.

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_individual_register.*
 import kotlinx.android.synthetic.main.activity_register_customer.*
 
 class CompanyRegister : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_company_register)
@@ -48,6 +50,7 @@ class CompanyRegister : BaseActivity() {
 
     private fun registerCompany() {
         // Here we get the text from editText and trim the space
+        val companyImage: ImageView = iv_company_image
         val companyName: String = et_company_name.text.toString().trim { it <= ' ' }
         val registrationNumber: String = et_registration_number.text.toString().trim { it <= ' ' }
         val companyAddress: String = et_company_address.text.toString().trim { it <= ' ' }
@@ -86,6 +89,7 @@ class CompanyRegister : BaseActivity() {
                     })
         }
     }
+
     private fun validateForm(companyName: String, registrationNumber: String,
                                      companyAddress: String, companyPhonenumber: String, companyEmail: String,
                                      companyPassword: String): Boolean {

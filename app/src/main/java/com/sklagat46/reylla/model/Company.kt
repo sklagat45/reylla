@@ -13,8 +13,8 @@ data class Company(
     val companyAddress: String = "",
     val companyPhonenumber: Long = 0,
     val companyEmail: String = "",
-    val fcmToken: String = "",
-    val companyPassword: String = ""
+    val companyPassword: String = "",
+    val fcmToken: String = ""
 
 ) : Parcelable {
     constructor(source: Parcel) : this(
@@ -26,7 +26,7 @@ data class Company(
         source.readLong(),
         source.readString()!!,
         source.readString()!!,
-        source.readString()!!,
+        source.readString()!!
     )
 
     override fun describeContents() = 0
@@ -35,11 +35,12 @@ data class Company(
         writeString(id)
         writeString(companyImage)
         writeString(companyName)
+        writeString(registrationNumber)
         writeString(companyAddress)
         writeLong(companyPhonenumber)
         writeString(companyEmail)
-        writeString(fcmToken)
         writeString(companyPassword)
+        writeString(fcmToken)
     }
 
     companion object {

@@ -67,7 +67,7 @@ class FirestoreClass {
     }
 
     /**
-     * A function to make an entry of the registered customer in the firestore database.
+     * A function to make an entry of the registered company in the firestore database.
      */
     fun registerCustomer(activity: RegisterCustomer, customerInfor: Customer) {
 

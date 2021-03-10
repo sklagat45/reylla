@@ -7,16 +7,16 @@ import android.os.Parcelable
 data class IndividualProviders(
 
     val id: String = "",
-    val IndividualProfileImage: String = "",
-    val IndividualFirstName: String ="",
-    val IndividualLastName: String = "",
-    val IndividualDOB: String = "",
-    val IndividualEddress: String = "",
-    val IndividualPhoneNum: Long = 0,
-    val IndividualEmail: String = "",
-    val IndividualGender: String = "",
-    val fcmToken: String = "",
-    val IndividaulPassword: String = ""
+    val individualProfileImage: String = "",
+    val individualFirstName: String ="",
+    val individualLastName: String = "",
+    val individualDOB: String = "",
+    val individualAddress: String = "",
+    val individualPhoneNum: Long = 0,
+    val individualEmail: String = "",
+    val individualGender: String = "",
+    val individualPassword: String = "",
+    val fcmToken: String = ""
 
 ) : Parcelable {
     constructor(source: Parcel) : this(
@@ -37,16 +37,16 @@ data class IndividualProviders(
 
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
         writeString(id)
-        writeString(IndividualProfileImage)
-        writeString(IndividualFirstName)
-        writeString(IndividualLastName)
-        writeString(IndividualDOB)
-        writeString(IndividualEddress)
-        writeLong(IndividualPhoneNum)
-        writeString(IndividualEmail)
-        writeString(IndividualGender)
+        writeString(individualProfileImage)
+        writeString(individualFirstName)
+        writeString(individualLastName)
+        writeString(individualDOB)
+        writeString(individualAddress)
+        writeLong(individualPhoneNum)
+        writeString(individualEmail)
+        writeString(individualGender)
+        writeString(individualPassword)
         writeString(fcmToken)
-        writeString(IndividaulPassword)
     }
 
     companion object {
