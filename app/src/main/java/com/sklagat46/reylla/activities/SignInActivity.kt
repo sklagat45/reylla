@@ -1,14 +1,13 @@
 package com.sklagat46.reylla.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.sklagat46.reylla.R
-import com.sklagat46.reylla.model.User
 import kotlinx.android.synthetic.main.activity_sign_in.*
+
 
 class SignInActivity : BaseActivity() {
     /**
@@ -68,6 +67,8 @@ class SignInActivity : BaseActivity() {
                     if (task.isSuccessful) {
                         // Calling the FirestoreClass signInUser function to get the data of user from database.
 //                        FirestoreClass().signInUser(this@IntroActivity)
+
+
                     } else {
                         Toast.makeText(
                             this@SignInActivity,
@@ -97,11 +98,11 @@ class SignInActivity : BaseActivity() {
     /**
      * A function to get the user details from the firestore database after authentication.
      */
-    fun signInSuccess(user: User) {
-
-        hideProgressDialog()
-
-        startActivity(Intent(this@SignInActivity, MainActivity::class.java))
-        this.finish()
-    }
+//    fun signInSuccess(user: User) {
+//
+//        hideProgressDialog()
+//
+//        startActivity(Intent(this@SignInActivity, MainActivity::class.java))
+//        this.finish()
+//    }
 }
