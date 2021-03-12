@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
-import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -56,7 +55,7 @@ class IndividualRegister : BaseActivity() {
     private fun registerUser() {
 
         // Here we get the text from editText and trim the space
-        val individualProfileImage: ImageView = iv_indiv_profile_image
+        val individualProfileImage: String = iv_indiv_profile_image.toString()
         val individualFirstName: String = et_indiv_first_name.text.toString().trim { it <= ' ' }
         val individualLastName: String = et_indiv_last_name.text.toString().trim { it <= ' ' }
         val individualDOB: String = et_indiv_birth_date.text.toString().trim { it <= ' ' }
@@ -82,7 +81,9 @@ class IndividualRegister : BaseActivity() {
                             val registeredEmail = firebaseUser.email!!
 
                             val individualProvider = IndividualProviders(
-                                firebaseUser.uid, individualLastName, registeredEmail
+                                firebaseUser.uid,individualProfileImage,individualFirstName,
+                                individualLastName,individualDOB,individualAddress,
+                                individualPhoneNum,registeredEmail,individualGender,individualPassword
                             )
 
                             // call the registerCustomer function of FirestoreClass to make an entry in the database.

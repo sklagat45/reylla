@@ -11,7 +11,7 @@ data class Company(
     val companyName: String ="",
     val registrationNumber: String = "",
     val companyAddress: String = "",
-    val companyPhonenumber: Long = 0,
+    val companyPhonenumber: String = "0",
     val companyEmail: String = "",
     val companyPassword: String = "",
     val fcmToken: String = ""
@@ -23,7 +23,7 @@ data class Company(
         source.readString()!!,
         source.readString()!!,
         source.readString()!!,
-        source.readLong(),
+        source.readString()!!,
         source.readString()!!,
         source.readString()!!,
         source.readString()!!
@@ -37,7 +37,7 @@ data class Company(
         writeString(companyName)
         writeString(registrationNumber)
         writeString(companyAddress)
-        writeLong(companyPhonenumber)
+        writeString(companyPhonenumber)
         writeString(companyEmail)
         writeString(companyPassword)
         writeString(fcmToken)

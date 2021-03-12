@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
-import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -50,7 +49,7 @@ class CompanyRegister : BaseActivity() {
 
     private fun registerCompany() {
         // Here we get the text from editText and trim the space
-        val companyImage: ImageView = iv_company_image
+        val companyImage: String = iv_company_logo_image.toString()
         val companyName: String = et_company_name.text.toString().trim { it <= ' ' }
         val registrationNumber: String = et_registration_number.text.toString().trim { it <= ' ' }
         val companyAddress: String = et_company_address.text.toString().trim { it <= ' ' }
@@ -74,7 +73,8 @@ class CompanyRegister : BaseActivity() {
                             val registeredEmail = firebaseUser.email!!
 
                             val company = Company(
-                                firebaseUser.uid, companyName, registeredEmail
+                                firebaseUser.uid,companyImage,companyName, registrationNumber,
+                                companyAddress, companyPhonenumber,registeredEmail,companyPassword
                             )
 
                             // call the registerCustomer function of FirestoreClass to make an entry in the database.

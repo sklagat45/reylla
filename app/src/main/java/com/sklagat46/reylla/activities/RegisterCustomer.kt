@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
-import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -54,7 +53,7 @@ class RegisterCustomer : BaseActivity() {
      */
     private fun registerCustomer() {
         // Here we get the text from editText and trim the space
-        val customerProfileImage: ImageView = iv_profile_customer_image
+        val customerProfileImage: String = iv_profile_customer_image.toString()
         val customerFName: String = et_customer_first_name.text.toString().trim { it <= ' ' }
         val customerLName: String = et_customer_last_name.text.toString().trim { it <= ' ' }
         val customerDOB: String = et_customer_birth_date.text.toString().trim { it <= ' ' }
@@ -64,7 +63,7 @@ class RegisterCustomer : BaseActivity() {
         val customerGender: String = et_customer_gender.text.toString().trim { it <= ' ' }
         val customerPassword: String = et_customer_password.text.toString().trim { it <= ' ' }
 
-        if (validateForm(customerFName, customerLName, customerDOB, customerAddress, customerPhoneNumber, customerEmail, customerGender, customerPassword)) {
+        if (validateForm(customerFName , customerLName , customerDOB, customerAddress, customerPhoneNumber, customerEmail, customerGender, customerPassword)) {
             // Show the progress dialog.
             showProgressDialog(resources.getString(R.string.please_wait))
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(customerEmail, customerPassword)
@@ -80,7 +79,9 @@ class RegisterCustomer : BaseActivity() {
                             val registeredEmail = firebaseUser.email!!
 
                             val customer = Customer(
-                                firebaseUser.uid, customerLName, registeredEmail
+                                firebaseUser.uid, customerProfileImage,customerFName,
+                                customerLName,customerDOB,customerAddress,customerPhoneNumber,
+                                registeredEmail,customerGender,customerPassword
                             )
 
                             // call the registerCustomer function of FirestoreClass to make an entry in the database.

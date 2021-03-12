@@ -6,12 +6,12 @@ import android.os.Parcelable
 data class Customer(
 
     val id: String = "",
-    val customerProfileImage: String = "",
+    val customerProfileImage: String = "0",
     val customerFName: String ="",
     val customerLName: String = "",
     val customerDOB: String = "",
     val customerAddress: String = "",
-    val customerPhoneNumber: Long = 0,
+    val customerPhoneNumber: String = "0",
     val customerEmail: String = "",
     val customerGender: String = "",
     val customerPassword: String = "",
@@ -26,7 +26,7 @@ data class Customer(
         source.readString()!!,
         source.readString()!!,
         source.readString()!!,
-        source.readLong(),
+        source.readString()!!,
         source.readString()!!,
         source.readString()!!,
         source.readString()!!,
@@ -42,7 +42,7 @@ data class Customer(
         writeString(customerLName)
         writeString(customerDOB)
         writeString(customerAddress)
-        writeLong(customerPhoneNumber)
+        writeString(customerPhoneNumber)
         writeString(customerEmail)
         writeString(customerGender)
         writeString(customerPassword)

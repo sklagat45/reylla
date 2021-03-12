@@ -12,7 +12,7 @@ data class IndividualProviders(
     val individualLastName: String = "",
     val individualDOB: String = "",
     val individualAddress: String = "",
-    val individualPhoneNum: Long = 0,
+    val individualPhoneNum: String = "0",
     val individualEmail: String = "",
     val individualGender: String = "",
     val individualPassword: String = "",
@@ -26,7 +26,7 @@ data class IndividualProviders(
         source.readString()!!,
         source.readString()!!,
         source.readString()!!,
-        source.readLong(),
+        source.readString()!!,
         source.readString()!!,
         source.readString()!!,
         source.readString()!!,
@@ -42,7 +42,7 @@ data class IndividualProviders(
         writeString(individualLastName)
         writeString(individualDOB)
         writeString(individualAddress)
-        writeLong(individualPhoneNum)
+        writeString(individualPhoneNum)
         writeString(individualEmail)
         writeString(individualGender)
         writeString(individualPassword)
