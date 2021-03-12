@@ -95,7 +95,7 @@ class FirestoreClass {
      */
     fun registerCompany(activity: CompanyRegister, companyInfor: Company) {
 
-        mFireStore.collection(Constants.COMPANY)
+        mFireStore.collection(Constants.COMPANIES)
             // Document ID for users fields. Here the document it is the User ID.
             .document(getCurrentUserID())
             // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
