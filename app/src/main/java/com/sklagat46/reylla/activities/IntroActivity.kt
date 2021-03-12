@@ -17,7 +17,6 @@ import com.sklagat46.reylla.R
 import com.sklagat46.reylla.model.Company
 import com.sklagat46.reylla.model.Customer
 import com.sklagat46.reylla.model.IndividualProviders
-import com.sklagat46.reylla.model.User
 import com.sklagat46.reylla.utils.Constants
 import kotlinx.android.synthetic.main.activity_intro.*
 
@@ -209,11 +208,11 @@ class IntroActivity : BaseActivity() {
     /**
      * A function to get the user details from the firestore database after authentication.
      */
-    fun signInSuccess(user: User) {
-        hideProgressDialog()
-        startActivity(Intent(this@IntroActivity, MainActivity::class.java))
-        this.finish()
-    }
+//    fun signInSuccess(user: User) {
+//        hideProgressDialog()
+//        startActivity(Intent(this@IntroActivity, MainActivity::class.java))
+//        this.finish()
+//    }
 
 
     fun btnSignUp(view: View) {
