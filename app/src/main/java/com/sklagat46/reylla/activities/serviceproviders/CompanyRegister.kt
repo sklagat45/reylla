@@ -1,4 +1,4 @@
-package com.sklagat46.reylla.activities
+package com.sklagat46.reylla.activities.serviceproviders
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,8 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.sklagat46.reylla.R
+import com.sklagat46.reylla.activities.BaseActivity
+import com.sklagat46.reylla.activities.agentclients.MainActivity
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.Company
 import kotlinx.android.synthetic.main.activity_company_register.*
@@ -74,7 +76,7 @@ class CompanyRegister : BaseActivity() {
 
                             val company = Company(
                                 firebaseUser.uid,companyImage,companyName, registrationNumber,
-                                companyAddress, companyPhonenumber,registeredEmail,companyPassword
+                                companyAddress, companyPhonenumber,registeredEmail
                             )
 
                             // call the registerCustomer function of FirestoreClass to make an entry in the database.

@@ -4,7 +4,11 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.sklagat46.reylla.activities.*
+import com.sklagat46.reylla.activities.SignInActivity
+import com.sklagat46.reylla.activities.SignUpActivity
+import com.sklagat46.reylla.activities.agentclients.RegisterCustomer
+import com.sklagat46.reylla.activities.serviceproviders.CompanyRegister
+import com.sklagat46.reylla.activities.serviceproviders.IndividualRegister
 import com.sklagat46.reylla.model.Company
 import com.sklagat46.reylla.model.Customer
 import com.sklagat46.reylla.model.IndividualProviders

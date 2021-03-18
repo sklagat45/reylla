@@ -14,13 +14,11 @@ data class Customer(
     val customerPhoneNumber: String = "0",
     val customerEmail: String = "",
     val customerGender: String = "",
-    val customerPassword: String = "",
     val fcmToken: String = ""
 
 
 ) : Parcelable {
     constructor(source: Parcel) : this(
-        source.readString()!!,
         source.readString()!!,
         source.readString()!!,
         source.readString()!!,
@@ -45,7 +43,6 @@ data class Customer(
         writeString(customerPhoneNumber)
         writeString(customerEmail)
         writeString(customerGender)
-        writeString(customerPassword)
         writeString(fcmToken)
 
     }

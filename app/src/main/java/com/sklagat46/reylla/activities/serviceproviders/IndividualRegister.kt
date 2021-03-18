@@ -1,4 +1,4 @@
-package com.sklagat46.reylla.activities
+package com.sklagat46.reylla.activities.serviceproviders
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,8 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.sklagat46.reylla.R
+import com.sklagat46.reylla.activities.BaseActivity
+import com.sklagat46.reylla.activities.agentclients.MainActivity
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.IndividualProviders
 import kotlinx.android.synthetic.main.activity_individual_register.*
@@ -83,7 +85,7 @@ class IndividualRegister : BaseActivity() {
                             val individualProvider = IndividualProviders(
                                 firebaseUser.uid,individualProfileImage,individualFirstName,
                                 individualLastName,individualDOB,individualAddress,
-                                individualPhoneNum,registeredEmail,individualGender,individualPassword
+                                individualPhoneNum,registeredEmail,individualGender
                             )
 
                             // call the registerCustomer function of FirestoreClass to make an entry in the database.

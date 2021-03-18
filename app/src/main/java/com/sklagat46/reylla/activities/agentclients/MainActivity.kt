@@ -1,7 +1,8 @@
-package com.sklagat46.reylla.activities
+package com.sklagat46.reylla.activities.agentclients
 
 import android.os.Bundle
 import com.sklagat46.reylla.R
+import com.sklagat46.reylla.activities.BaseActivity
 
 class MainActivity : BaseActivity() {
 

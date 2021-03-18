@@ -1,4 +1,4 @@
-package com.sklagat46.reylla.activities
+package com.sklagat46.reylla.activities.agentclients
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,10 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.sklagat46.reylla.R
+import com.sklagat46.reylla.activities.BaseActivity
+import com.sklagat46.reylla.activities.ForgotPassword
+import com.sklagat46.reylla.activities.serviceproviders.ProviderHomeActivity
+import com.sklagat46.reylla.activities.serviceproviders.ServiceProvidersReg
 import com.sklagat46.reylla.model.Company
 import com.sklagat46.reylla.model.Customer
 import com.sklagat46.reylla.model.IndividualProviders

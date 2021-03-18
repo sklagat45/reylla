@@ -13,12 +13,10 @@ data class Company(
     val companyAddress: String = "",
     val companyPhonenumber: String = "0",
     val companyEmail: String = "",
-    val companyPassword: String = "",
     val fcmToken: String = ""
 
 ) : Parcelable {
     constructor(source: Parcel) : this(
-        source.readString()!!,
         source.readString()!!,
         source.readString()!!,
         source.readString()!!,
@@ -39,7 +37,6 @@ data class Company(
         writeString(companyAddress)
         writeString(companyPhonenumber)
         writeString(companyEmail)
-        writeString(companyPassword)
         writeString(fcmToken)
     }
 
