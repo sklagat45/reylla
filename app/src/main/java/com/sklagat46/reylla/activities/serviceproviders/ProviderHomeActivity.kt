@@ -9,5 +9,29 @@ class ProviderHomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_provider_home)
 
+
+//        house_hold.setOnClickListener {
+//            startActivity(Intent(this, HouseHoldActivity::class.java))
+//        }
+//        referral.setOnClickListener {
+//            startActivity(Intent(this, ReferralActivity::class.java))
+//        }
+//        reports.setOnClickListener {
+//            startActivity(Intent(this, ReportsActivity::class.java))
+//        }
+//        e_learning.setOnClickListener {
+//            startActivity(Intent(this, ReferralActivity::class.java))
+//        }
+//        events.setOnClickListener {
+//            startActivity(Intent(this, EventsActivity::class.java))
+//        }
+//
+//        logout!!.setOnClickListener{
+//            FirebaseAuth.getInstance().signOut()
+//            val signin_Intent = Intent(this@MainActivity, LoginActivity::class.java)
+//            startActivity(signin_Intent)
+//            finish()
+//        }
+
     }
 }

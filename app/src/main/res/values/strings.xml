@@ -33,4 +33,10 @@
     <string name="select_location_on_google_maps">select location on google maps</string>
     <string name="phone_number">phone number</string>
     <string name="app_version">v-: 1.0</string>
+    <string name="find_what_you_need">Find What you need.</string>
+    <string name="title_activity_service_providers_main_page">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_gallery">Gallery</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_bookings">Bookings</string>
 </resources>
