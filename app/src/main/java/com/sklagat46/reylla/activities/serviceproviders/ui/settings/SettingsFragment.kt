@@ -22,7 +22,7 @@ class SettingsFragment : Fragment() {
         settingsViewModel =
             ViewModelProvider(this).get(SettingsViewModel::class.java)
         val root = inflater.inflate(R.layout.settings_fragment, container, false)
-        val textView: TextView = root.findViewById(R.id.tv_bookings)
+        val textView: TextView = root.findViewById(R.id.tv_settings)
         settingsViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })

@@ -13,14 +13,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.serviceproviders.ui.settings.SettingsViewModel"></activity>
-        <activity android:name=".activities.serviceproviders.ui.settings.SettingsFragment" />
+        <activity android:name=".activities.serviceproviders.BridalActivity"></activity>
+        <activity android:name=".activities.serviceproviders.TatooAndColorActivity" />
+        <activity android:name=".activities.serviceproviders.MassageActivity" />
         <activity
             android:name=".activities.serviceproviders.ServiceProvidersMainPage"
-            android:label="@string/title_activity_service_providers_main_page" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.serviceproviders.MakeUPActivity" />
         <activity android:name=".activities.serviceproviders.NailCareActivity" />
-        <activity android:name=".activities.serviceproviders.HairCare" />
+        <activity android:name=".activities.serviceproviders.HairCareActivity" />
         <activity android:name=".activities.serviceproviders.ProviderHomeActivity" />
         <activity
             android:name=".activities.serviceproviders.CompanyRegister"
@@ -57,13 +64,7 @@
         <activity
             android:name=".activities.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.agentclients.IntroActivity"
             android:screenOrientation="portrait"

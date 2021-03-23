@@ -9,17 +9,45 @@
         android:id="@+id/navigation_home"
         android:name="com.sklagat46.reylla.activities.serviceproviders.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_gallery"
+            app:destination="@id/navigation_gallery" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_gallery"
         android:name="com.sklagat46.reylla.activities.serviceproviders.ui.gallery.GalleryFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_gallery" />
+        android:label="@string/title_gallery"
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_navigation_gallery_to_navigation_bookings"
+            app:destination="@id/navigation_bookings" />
+        <action
+            android:id="@+id/action_navigation_gallery_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_bookings"
         android:name="com.sklagat46.reylla.activities.serviceproviders.ui.reminders.BookingsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_bookings" />
+        android:label="@string/title_bookings"
+        tools:layout="@layout/fragment_bookings" >
+        <action
+            android:id="@+id/action_navigation_bookings_to_navigation_settings"
+            app:destination="@id/navigation_settings" />
+        <action
+            android:id="@+id/action_navigation_bookings_to_navigation_gallery"
+            app:destination="@id/navigation_gallery" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.sklagat46.reylla.activities.serviceproviders.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/settings_fragment" >
+        <action
+            android:id="@+id/action_navigation_settings_to_navigation_bookings"
+            app:destination="@id/navigation_bookings" />
+    </fragment>
 </navigation>
