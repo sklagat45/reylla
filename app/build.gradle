@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.sklagat46.reylla"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -70,4 +70,10 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //staggered recycler view
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'androidx.recyclerview:recyclerview-selection:1.0.0'
+    implementation 'com.karumi:dexter:6.0.1'
+
 }

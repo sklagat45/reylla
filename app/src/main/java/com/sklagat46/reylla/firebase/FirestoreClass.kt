@@ -9,6 +9,7 @@ import com.sklagat46.reylla.activities.SignUpActivity
 import com.sklagat46.reylla.activities.agentclients.RegisterCustomer
 import com.sklagat46.reylla.activities.serviceproviders.CompanyRegister
 import com.sklagat46.reylla.activities.serviceproviders.IndividualRegister
+import com.sklagat46.reylla.activities.serviceproviders.ui.gallery.AddGalleryImagesActivity
 import com.sklagat46.reylla.model.Company
 import com.sklagat46.reylla.model.Customer
 import com.sklagat46.reylla.model.IndividualProviders
@@ -164,5 +165,9 @@ class FirestoreClass {
 
         return currentUserID
         // END
+    }
+
+    fun loadGalleryData(addGalleryImagesActivity: AddGalleryImagesActivity) {
+        TODO("Not yet implemented")
     }
 }

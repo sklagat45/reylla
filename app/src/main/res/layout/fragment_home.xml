@@ -76,7 +76,7 @@
         android:layout_gravity="start"
         android:text="@string/super_services"
         android:layout_marginStart="10dp"
-        android:textColor="#000"
+        android:textColor="#000000"
         android:textSize="18sp"
         />
 

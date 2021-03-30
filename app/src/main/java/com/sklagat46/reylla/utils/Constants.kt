@@ -30,6 +30,24 @@ object Constants {
     // A unique code of image selection from Phone Storage.
     const val PICK_IMAGE_REQUEST_CODE = 2
 
+    const val REYLLA_PREFERENCES: String = "ReyllaPrefs"
+    const val FCM_TOKEN:String = "fcmToken"
+    const val FCM_TOKEN_UPDATED:String = "fcmTokenUpdated"
+
+    // TODO (Step 1: Add the base url  and key params for sending firebase notification.)
+    // START
+    const val FCM_BASE_URL:String = "https://fcm.googleapis.com/fcm/send"
+    const val FCM_AUTHORIZATION:String = "authorization"
+    const val FCM_KEY:String = "key"
+//    const val FCM_SERVER_KEY:String = "AAAA-oftC-Q:APA91bFbmaYmj3lu_Oy3vwYkqh0tHjFNFanTjYIR-ilKo1SsoQHF8ODMiOzZg3JZAAfYGdOdaM_kBRRyM5IfXbaXq0phVHnUFrG35TWnxfJgK6ysrwqBYdoP-WPWAEjwQn1eeA7Sv1CC"
+    const val FCM_KEY_TITLE:String = "title"
+    const val FCM_KEY_MESSAGE:String = "message"
+    const val FCM_KEY_DATA:String = "data"
+    const val FCM_KEY_TO:String = "to"
+// END
+
+
+
     /**
      * A function for user profile image selection from phone storage.
      */

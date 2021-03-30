@@ -8,9 +8,9 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.sklagat46.reylla.R
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.User
-import com.sklagat46.reylla.R
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : BaseActivity() {
@@ -43,7 +43,7 @@ class SignUpActivity : BaseActivity() {
      */
     private fun setupActionBar() {
 
-        setSupportActionBar(toolbar_sign_up_activity)
+        this.setSupportActionBar(toolbar_sign_up_activity)
 
         val actionBar = supportActionBar
         if (actionBar != null) {

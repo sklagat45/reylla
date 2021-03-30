@@ -1,31 +1,55 @@
 package com.sklagat46.reylla.activities.serviceproviders.ui.gallery
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.sklagat46.reylla.R
+import kotlinx.android.synthetic.main.fragment_gallery.*
 
 class GalleryFragment : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
+//    val GALLERY_REQUEST_CODE:
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        galleryViewModel =
-            ViewModelProvider(this).get(GalleryViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_gallery, container, false)
-        val textView: TextView = root.findViewById(R.id.tv_gallery)
-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        return inflater.inflate(R.layout.fragment_gallery, container, false)
+
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setupActionBar()
+
+        // Click event for adding Image button.
+        add_images.setOnClickListener {
+            val add_image =
+                Intent(requireContext(), AddGalleryImagesActivity::class.java)
+            requireContext().startActivity(add_image)
+        }
+
+    }
+
+
+    private fun setupActionBar() {
+        (activity as AppCompatActivity).setSupportActionBar(toolbar_gallery_fragment_activity)
+
+        val actionBar = (activity as AppCompatActivity).supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.back_btn)
+        }
+
+        toolbar_gallery_fragment_activity.setNavigationOnClickListener {
+            (activity as AppCompatActivity).onBackPressed()
+        }
+    }
+
+
 }
