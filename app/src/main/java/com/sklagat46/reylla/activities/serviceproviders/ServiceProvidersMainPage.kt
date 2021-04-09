@@ -13,7 +13,7 @@ class ServiceProvidersMainPage : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar!!.hide()
+//        supportActionBar!!.hide()
         setContentView(R.layout.activity_service_providers_main_page)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 

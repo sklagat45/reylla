@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.sklagat46.reylla.R
 import kotlinx.android.synthetic.main.fragment_gallery.*
 
+
 class GalleryFragment : Fragment() {
 
 //    val GALLERY_REQUEST_CODE:
@@ -19,16 +20,20 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).supportActionBar!!.hide()
         return inflater.inflate(R.layout.fragment_gallery, container, false)
+
 
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setupActionBar()
+//        (activity as AppCompatActivity).supportActionBar!!.hide()
+
+//        setupActionBar()
 
         // Click event for adding Image button.
-        add_images.setOnClickListener {
+        fab_add_images.setOnClickListener {
             val add_image =
                 Intent(requireContext(), AddGalleryImagesActivity::class.java)
             requireContext().startActivity(add_image)
@@ -37,19 +42,19 @@ class GalleryFragment : Fragment() {
     }
 
 
-    private fun setupActionBar() {
-        (activity as AppCompatActivity).setSupportActionBar(toolbar_gallery_fragment_activity)
-
-        val actionBar = (activity as AppCompatActivity).supportActionBar
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setHomeAsUpIndicator(R.drawable.back_btn)
-        }
-
-        toolbar_gallery_fragment_activity.setNavigationOnClickListener {
-            (activity as AppCompatActivity).onBackPressed()
-        }
-    }
+//    private fun setupActionBar() {
+//        (activity as AppCompatActivity).setSupportActionBar(toolbar_gallery_fragment_activity)
+//
+//        val actionBar = (activity as AppCompatActivity).supportActionBar
+//        if (actionBar != null) {
+//            actionBar.setDisplayHomeAsUpEnabled(true)
+//            actionBar.setHomeAsUpIndicator(R.drawable.back_btn)
+//        }
+//
+//        toolbar_gallery_fragment_activity.setNavigationOnClickListener {
+//            (activity as AppCompatActivity).onBackPressed()
+//        }
+//    }
 
 
 }

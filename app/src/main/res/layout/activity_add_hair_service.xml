@@ -70,7 +70,7 @@ tools:context=".activities.serviceproviders.addingNewService.AddHairServiceActiv
             android:background="@drawable/shape_image_view_border"
             android:padding="@dimen/add_screen_place_image_padding"
             android:scaleType="centerCrop"
-            android:src="@drawable/curly_flaux_locs"/>
+            android:src="@drawable/long_hair_logo"/>
 
             <TextView
                 android:id="@+id/tv_add_service_image"
