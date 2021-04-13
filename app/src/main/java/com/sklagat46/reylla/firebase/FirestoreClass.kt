@@ -9,11 +9,9 @@ import com.sklagat46.reylla.activities.SignUpActivity
 import com.sklagat46.reylla.activities.agentclients.RegisterCustomer
 import com.sklagat46.reylla.activities.serviceproviders.CompanyRegister
 import com.sklagat46.reylla.activities.serviceproviders.IndividualRegister
+import com.sklagat46.reylla.activities.serviceproviders.addingNewService.AddHairServiceActivity
 import com.sklagat46.reylla.activities.serviceproviders.ui.gallery.AddGalleryImagesActivity
-import com.sklagat46.reylla.model.Company
-import com.sklagat46.reylla.model.Customer
-import com.sklagat46.reylla.model.IndividualProviders
-import com.sklagat46.reylla.model.User
+import com.sklagat46.reylla.model.*
 import com.sklagat46.reylla.utils.Constants
 
 /**
@@ -118,6 +116,32 @@ class FirestoreClass {
                 )
             }
     }
+
+    /**
+     * A function to make an entry of the user's product in the cloud firestore database.
+     */
+    fun uploadProductDetails(activity: AddHairServiceActivity, serviceInfor: Service) {
+
+        mFireStore.collection(Constants.HAIR_SERVICES)
+            .document()
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(serviceInfor, SetOptions.merge())
+            .addOnSuccessListener {
+                // Here call a function of base activity for transferring the result to it.
+                activity.serviceUploadSuccess()
+            }
+            .addOnFailureListener { e ->
+
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while uploading the service details.",
+                    e
+                )
+            }
+    }
+
     /**
      * A function to SignIn using firebase and get the user details from Firestore Database.
      */
@@ -147,6 +171,91 @@ class FirestoreClass {
                 )
             }
     }
+
+//    // A function to upload the image to the cloud storage.
+//    fun uploadImageToCloudStorage(activity: Activity, imageFileURI: Uri?, imageType: String) {
+//
+//        //getting the storage reference
+//        val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
+//            imageType + System.currentTimeMillis() + "."
+//                    + Constants.getFileExtension(
+//                activity,
+//                imageFileURI
+//            )
+//        )
+//
+//        //adding the file to reference
+//        sRef.putFile(imageFileURI!!)
+//            .addOnSuccessListener { taskSnapshot ->
+//                // The image upload is success
+//                Log.e(
+//                    "Firebase Image URL",
+//                    taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
+//                )
+//
+//                // Get the downloadable url from the task snapshot
+//                taskSnapshot.metadata!!.reference!!.downloadUrl
+//                    .addOnSuccessListener { uri ->
+//                        Log.e("Downloadable Image URL", uri.toString())
+//
+//                        // Here call a function of base activity for transferring the result to it.
+//                        when (activity) {
+//                            is UserProfileActivity -> {
+//                                activity.imageUploadSuccess(uri.toString())
+//                            }
+//
+//                            is AddProductActivity -> {
+//                                activity.imageUploadSuccess(uri.toString())
+//                            }
+//                        }
+//                    }
+//            }
+//            .addOnFailureListener { exception ->
+//
+//                // Hide the progress dialog if there is any error. And print the error in log.
+//                when (activity) {
+//                    is UserProfileActivity -> {
+//                        activity.hideProgressDialog()
+//                    }
+//
+//                    is AddProductActivity -> {
+//                        activity.hideProgressDialog()
+//                    }
+//                }
+//
+//                Log.e(
+//                    activity.javaClass.simpleName,
+//                    exception.message,
+//                    exception
+//                )
+//            }
+//    }
+
+//    /**
+//     * A function to make an entry of the user's product in the cloud firestore database.
+//     */
+//    fun uploadProductDetails(activity: AddProductActivity, productInfo: Service) {
+//
+//        mFireStore.collection(Constants.PRODUCTS)
+//            .document()
+//            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+//            .set(productInfo, SetOptions.merge())
+//            .addOnSuccessListener {
+//
+//                // Here call a function of base activity for transferring the result to it.
+//                activity.productUploadSuccess()
+//            }
+//            .addOnFailureListener { e ->
+//
+//                activity.hideProgressDialog()
+//
+//                Log.e(
+//                    activity.javaClass.simpleName,
+//                    "Error while uploading the product details.",
+//                    e
+//                )
+//            }
+//    }
 
     /**
      * A function for getting the user id of current logged user.

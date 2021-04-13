@@ -32,7 +32,6 @@ class SplashActivity : AppCompatActivity() {
 //        val typeface: Typeface =
 //            Typeface.createFromAsset(assets, "carbon bl.ttf")
 //        tv_app_name.typeface = typeface
-
         // Adding the handler to after the a task after some delay.
         Handler().postDelayed({
 
@@ -46,17 +45,16 @@ class SplashActivity : AppCompatActivity() {
             val currentUserID = FirestoreClass().getCurrentUserID()
 //             Start the Intro Activity
 
-            if (currentUserID.isNotEmpty()) {
-                // Start the Main Activity
-                startActivity(Intent(this@SplashActivity, ServiceProvidersMainPage::class.java))
-            } else {
+            if (currentUserID.isEmpty()) {
                 // Start the Intro Activity
                 startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
+            } else {
+                // Start the Main Activity
+                startActivity(Intent(this@SplashActivity, ServiceProvidersMainPage::class.java))
             }
-                finish() // Call this when your activity is done and should be closed.
-                // END
-            },2500) // Here we pass the delay time in milliSeconds after which the splash activity will disappear.
+            finish() // Call this when your activity is done and should be closed.
+            // END
+        }, 2500) // Here we pass the delay time in milliSeconds after which the splash activity will disappear.
 
         }
-
 }

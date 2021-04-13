@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.sklagat46.reylla.R
 import kotlinx.android.synthetic.main.fragment_gallery.*
 
@@ -14,6 +17,9 @@ import kotlinx.android.synthetic.main.fragment_gallery.*
 class GalleryFragment : Fragment() {
 
 //    val GALLERY_REQUEST_CODE:
+
+    private val currentUser = FirebaseAuth.getInstance().currentUser!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +44,19 @@ class GalleryFragment : Fragment() {
                 Intent(requireContext(), AddGalleryImagesActivity::class.java)
             requireContext().startActivity(add_image)
         }
+
+        getGalleryImages()
+
+    }
+
+    private fun getGalleryImages() {
+        //getting the storage reference
+
+        var currentUserID = ""
+        currentUserID = currentUser.uid
+        val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(currentUserID)
+            .child("gallery")
+
 
     }
 

@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.serviceproviders.ui.gallery.GalleryFragment">
 
-
-
     <TextView
         android:id="@+id/tv_gallery"
         android:layout_width="0dp"

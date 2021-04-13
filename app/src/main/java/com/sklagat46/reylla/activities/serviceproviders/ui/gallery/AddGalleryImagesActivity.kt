@@ -13,11 +13,11 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.sklagat46.reylla.R
 import com.sklagat46.reylla.activities.BaseActivity
-import com.sklagat46.reylla.firebase.FirestoreClass
 import kotlinx.android.synthetic.main.activity_add_gallery_images.*
 import java.io.IOException
 import java.util.*
@@ -27,6 +27,8 @@ class AddGalleryImagesActivity : BaseActivity() {
 
     // A global variable for URI of a selected image from phone storage.
     private var mSelectedImageFileUri: Uri? = null
+    private val currentUser = FirebaseAuth.getInstance().currentUser!!
+
 
     /**!
      * This function is auto created by Android when the Activity Class is created.
@@ -68,12 +70,15 @@ class AddGalleryImagesActivity : BaseActivity() {
         }
 //        val btnSaveToGallery: Button? = findViewById<Button>(R.id.btn_save);
 
+
         btn_save.setOnClickListener {
             if (mSelectedImageFileUri != null) {
 
                 // Get the current user id
-                val currentUserID = FirestoreClass().getCurrentUserID()
+                var currentUserID = ""
+                currentUserID = currentUser.uid
 
+//                getCurrentProviderID()
                 // Get the image extension.
                 /*MimeTypeMap: Two-way map that maps MIME-types to file extensions and vice versa.
         getSingleton(): Get the singleton instance of MimeTypeMap.
@@ -83,12 +88,13 @@ class AddGalleryImagesActivity : BaseActivity() {
                     .getExtensionFromMimeType(contentResolver.getType(mSelectedImageFileUri!!))
 
                 //getting the storage reference
-                val sRef: StorageReference = FirebaseStorage.getInstance().reference.child("gallery").child(
-//                    currentUserID
-//                ).child(
-                    "Image" + System.currentTimeMillis() + "."
-                            + imageExtension
-                )
+                val sRef: StorageReference =
+                    FirebaseStorage.getInstance().reference.child(currentUserID)
+                        .child("gallery")
+                        .child(
+                            "Image" + System.currentTimeMillis() + "."
+                                    + imageExtension
+                        )
 
                 //adding the file to reference
                 sRef.putFile(mSelectedImageFileUri!!)
@@ -98,7 +104,6 @@ class AddGalleryImagesActivity : BaseActivity() {
                             "Firebase Image URL",
                             taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
                         )
-
                         // Get the downloadable url from the task snapshot
                         taskSnapshot.metadata!!.reference!!.downloadUrl
                             .addOnSuccessListener { url ->
@@ -137,6 +142,7 @@ class AddGalleryImagesActivity : BaseActivity() {
             }
         }
     }
+
 
     /**
      * This function will identify the result of runtime permission after the user allows or deny permission based on the unique code.
