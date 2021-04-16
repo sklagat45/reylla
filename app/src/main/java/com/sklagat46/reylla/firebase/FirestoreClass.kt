@@ -10,9 +10,9 @@ import com.sklagat46.reylla.activities.agentclients.RegisterCustomer
 import com.sklagat46.reylla.activities.serviceproviders.CompanyRegister
 import com.sklagat46.reylla.activities.serviceproviders.IndividualRegister
 import com.sklagat46.reylla.activities.serviceproviders.addingNewService.AddHairServiceActivity
-import com.sklagat46.reylla.activities.serviceproviders.ui.gallery.AddGalleryImagesActivity
 import com.sklagat46.reylla.model.*
 import com.sklagat46.reylla.utils.Constants
+
 
 /**
  * A custom class where we will add the operation performed for the firestore database.
@@ -49,7 +49,10 @@ class FirestoreClass {
     /**
      * A function to make an entry of the registered Individual service provider in the firestore database.
      */
-    fun registerIndividualProvider(activity: IndividualRegister, individualInfo: IndividualProviders) {
+    fun registerIndividualProvider(
+        activity: IndividualRegister,
+        individualInfo: IndividualProviders
+    ) {
         mFireStore.collection(Constants.INDIVIDUALPROVIDERS)
             // Document ID for users fields. Here the document it is the User ID.
             .document(getCurrentUserID())
@@ -122,8 +125,23 @@ class FirestoreClass {
      */
     fun uploadProductDetails(activity: AddHairServiceActivity, serviceInfor: Service) {
 
+
+//        //Check if team with the same name already exists
+//        db.collection("Teams").document(teamNameText).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull (Task<DocumentSnapshot>) task) {
+//                if (task.getResult().exists()) {
+//                    teamName.setError("Team with same name already exists");
+//                    teamName.requestFocus();
+
+//        val query: Query = mFireStore.whereEqualTo("styleName", serviceInfor.styleName)
+//        println("Starting listener")
+//        query.get()
+//            .addOnSuccessListener(OnSuccessListener<QuerySnapshot?> { println("Got data from Firestore") })
+
         mFireStore.collection(Constants.HAIR_SERVICES)
-            .document()
+            .document(getCurrentUserID() + "/" + "hs" + "/" + System.currentTimeMillis())
+//            .whereEqualTo("styleName", serviceInfor.styleName)
             // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(serviceInfor, SetOptions.merge())
             .addOnSuccessListener {
@@ -141,6 +159,7 @@ class FirestoreClass {
                 )
             }
     }
+
 
     /**
      * A function to SignIn using firebase and get the user details from Firestore Database.
@@ -276,7 +295,5 @@ class FirestoreClass {
         // END
     }
 
-    fun loadGalleryData(addGalleryImagesActivity: AddGalleryImagesActivity) {
-        TODO("Not yet implemented")
-    }
+
 }

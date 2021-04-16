@@ -11,7 +11,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.sklagat46.reylla.R
 import com.sklagat46.reylla.activities.BaseActivity
-import com.sklagat46.reylla.activities.agentclients.MainActivity
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.IndividualProviders
 import kotlinx.android.synthetic.main.activity_individual_register.*
@@ -148,7 +147,7 @@ class IndividualRegister : BaseActivity() {
          */
 
         // Launch the register customer screen.
-        startActivity(Intent(this@IndividualRegister, MainActivity::class.java))
+        startActivity(Intent(this@IndividualRegister, ServiceProvidersMainPage::class.java))
         // Finish the Sign-Up Screen
         finish()
     }

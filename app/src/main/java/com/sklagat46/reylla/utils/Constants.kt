@@ -15,6 +15,9 @@ object Constants {
     const val COMPANIES: String = "companies"
     const val INDIVIDUALPROVIDERS: String = "individualProviders"
     const val HAIR_SERVICES: String = "hairServices"
+    const val HAIR_STYLE_NAME: String = "hairStyleName"
+
+
     const val SERVICE_IMAGE: String = "Service_Image"
 
 

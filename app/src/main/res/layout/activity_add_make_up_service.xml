@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="Add Hair Care"
+            android:text="Add Make up Service"
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -70,7 +70,7 @@
                     android:background="@drawable/shape_image_view_border"
                     android:padding="@dimen/add_screen_place_image_padding"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/curly_flaux_locs"/>
+                    android:src="@drawable/makeup_img1" />
 
                 <TextView
                     android:id="@+id/tv_add_service_image"
@@ -94,10 +94,10 @@
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_hair_style_name"
+                    android:id="@+id/et_make_up_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="HairStyle Name"
+                    android:hint="Make up Name"
                     android:inputType="textCapWords"
                     android:textColor="@color/primary_text_color"
                     android:textColorHint="@color/secondary_text_color"
@@ -111,7 +111,7 @@
                 android:layout_marginTop="@dimen/add_screen_til_marginTop">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_hair_service_duration"
+                    android:id="@+id/et_make_up_service_duration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/duration_taken_to_offer_the_service_in_hours"
@@ -122,15 +122,15 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_hair_cost"
+                android:id="@+id/et_make_up_cost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_hair_style_cost"
+                    android:id="@+id/et_make_up_style_cost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Hair Style Cost"
+                    android:hint="Make up Style Cost"
                     android:inputType="number"
                     android:textColor="@color/primary_text_color"
                     android:textColorHint="@color/secondary_text_color"

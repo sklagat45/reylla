@@ -8,7 +8,7 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_add_hair_care_activity"
+        android:id="@+id/toolbar_add_nail_care_activity"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
@@ -49,7 +49,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_add_hair_care_activity">
+        app:layout_constraintTop_toBottomOf="@id/toolbar_add_nail_care_activity">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -64,16 +64,16 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/iv_service_image"
+                    android:id="@+id/iv_nail_service_image"
                     android:layout_width="@dimen/add_screen_place_image_size"
                     android:layout_height="@dimen/add_screen_place_image_size"
                     android:background="@drawable/shape_image_view_border"
                     android:padding="@dimen/add_screen_place_image_padding"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/curly_flaux_locs"/>
+                    android:src="@drawable/nail_care" />
 
                 <TextView
-                    android:id="@+id/tv_add_service_image"
+                    android:id="@+id/tv_add_nail_service_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/add_screen_text_add_image_marginTop"
@@ -94,10 +94,10 @@
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_hair_style_name"
+                    android:id="@+id/et_nail_style_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="HairStyle Name"
+                    android:hint="Nail Style Name"
                     android:inputType="textCapWords"
                     android:textColor="@color/primary_text_color"
                     android:textColorHint="@color/secondary_text_color"
@@ -111,7 +111,7 @@
                 android:layout_marginTop="@dimen/add_screen_til_marginTop">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_hair_service_duration"
+                    android:id="@+id/et_nail_service_duration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/duration_taken_to_offer_the_service_in_hours"
@@ -122,15 +122,15 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_hair_cost"
+                android:id="@+id/et_nail_cost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_hair_style_cost"
+                    android:id="@+id/et_nail_style_cost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Hair Style Cost"
+                    android:hint="Nail Style Cost"
                     android:inputType="number"
                     android:textColor="@color/primary_text_color"
                     android:textColorHint="@color/secondary_text_color"
@@ -139,7 +139,7 @@
 
 
             <Button
-                android:id="@+id/btn_save_hair_service"
+                android:id="@+id/btn_save_nail_service"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

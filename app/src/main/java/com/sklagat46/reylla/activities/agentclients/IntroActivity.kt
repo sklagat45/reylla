@@ -12,14 +12,11 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.sklagat46.reylla.R
 import com.sklagat46.reylla.activities.BaseActivity
 import com.sklagat46.reylla.activities.ForgotPassword
-import com.sklagat46.reylla.activities.serviceproviders.ProviderHomeActivity
+import com.sklagat46.reylla.activities.serviceproviders.ServiceProvidersMainPage
 import com.sklagat46.reylla.activities.serviceproviders.ServiceProvidersReg
-import com.sklagat46.reylla.model.Company
-import com.sklagat46.reylla.model.Customer
 import com.sklagat46.reylla.model.IndividualProviders
 import com.sklagat46.reylla.utils.Constants
 import kotlinx.android.synthetic.main.activity_intro.*
@@ -88,101 +85,103 @@ class IntroActivity : BaseActivity() {
                         val userLoginDatabase = FirebaseFirestore.getInstance()
 //                            .getReference().child("Users").child(RegisteredUserID);
 
-                        val userCompanyRef: CollectionReference = userLoginDatabase.collection("company")
-                        val ComQuery: Query = userCompanyRef.whereEqualTo("id", registeredUserID)
-                        if(ComQuery!=null){
+                        val userCompanyRef: CollectionReference =
+                            userLoginDatabase.collection("company")
+                        userCompanyRef.whereEqualTo("id", registeredUserID)
+                        userLoginDatabase.collection(Constants.COMPANIES)
+                            // The document id to get the Fields of user.
+                            .document(getCurrentUserID())
+                            .get()
+                            .addOnSuccessListener { document ->
+//                                Log.e(
+//                                    javaClass.simpleName, document.toString()
+//                                )
 
-                            // Here we pass the collection name from which we wants the data.
-                            userLoginDatabase.collection(Constants.COMPANIES)
-                                // The document id to get the Fields of user.
-                                .document(getCurrentUserID())
-                                .get()
-                                .addOnSuccessListener { document ->
-                                    Log.e(
-                                        javaClass.simpleName, document.toString()
+                                // Here we have received the document snapshot which is converted into the User Data model object.
+//                                val loggedInUser = document.toObject(Company::class.java)!!
+
+                                // Here call a function of base activity for transferring the result to it.
+                                hideProgressDialog()
+
+                                startActivity(
+                                    Intent(
+                                        this@IntroActivity,
+                                        ServiceProvidersMainPage::class.java
                                     )
+                                )
+                                this.finish()
+                            }
+                            .addOnFailureListener { e ->
+                                Log.e(
+                                    javaClass.simpleName,
+                                    "Error while getting loggedIn user details",
+                                    e
+                                )
+                            }
 
-                                    // Here we have received the document snapshot which is converted into the User Data model object.
-                                    val loggedInUser = document.toObject(Company::class.java)!!
+                        val userIndividualProviderRef: CollectionReference =
+                            userLoginDatabase.collection("company")
+                        userIndividualProviderRef.whereEqualTo("id", registeredUserID)
+                        userLoginDatabase.collection(Constants.INDIVIDUALPROVIDERS)
+                            // The document id to get the Fields of user.
+                            .document(getCurrentUserID())
+                            .get()
+                            .addOnSuccessListener { document ->
+                                Log.e(
+                                    javaClass.simpleName, document.toString()
+                                )
 
-                                    // Here call a function of base activity for transferring the result to it.
-                                    hideProgressDialog()
+                                // Here we have received the document snapshot which is converted into the User Data model object.
+                                val loggedInUser =
+                                    document.toObject(IndividualProviders::class.java)!!
 
-                                    startActivity(Intent(this@IntroActivity, ProviderHomeActivity::class.java))
-                                    this.finish()
-                                }
-                                .addOnFailureListener { e ->
-                                    Log.e(
-                                        javaClass.simpleName,
-                                        "Error while getting loggedIn user details",
-                                        e
+                                // Here call a function of base activity for transferring the result to it.
+                                hideProgressDialog()
+
+                                startActivity(
+                                    Intent(
+                                        this@IntroActivity,
+                                        ServiceProvidersMainPage::class.java
                                     )
-                                }
-                        }
+                                )
+                                this.finish()
+                            }
+                            .addOnFailureListener { e ->
+                                Log.e(
+                                    javaClass.simpleName,
+                                    "Error while getting loggedIn user details",
+                                    e
+                                )
+                            }
 
-                        val userIndividualProviderRef: CollectionReference = userLoginDatabase.collection("company")
-                        val IndivQuery: Query = userIndividualProviderRef.whereEqualTo("id", registeredUserID)
-                        if(IndivQuery!=null){
+                        val userCustomerRef: CollectionReference =
+                            userLoginDatabase.collection("customers")
+                        userCustomerRef.whereEqualTo("id", registeredUserID)
+                        userLoginDatabase.collection(Constants.CUSTOMERS)
+                            // The document id to get the Fields of user.
+                            .document(getCurrentUserID())
+                            .get()
+                            .addOnSuccessListener { document ->
+                                Log.e(
+                                    javaClass.simpleName, document.toString()
+                                )
 
-                            // Here we pass the collection name from which we wants the data.
-                            userLoginDatabase.collection(Constants.INDIVIDUALPROVIDERS)
-                                // The document id to get the Fields of user.
-                                .document(getCurrentUserID())
-                                .get()
-                                .addOnSuccessListener { document ->
-                                    Log.e(
-                                        javaClass.simpleName, document.toString()
-                                    )
+                                // Here we have received the document snapshot which is converted into the User Data model object.
+//                                val loggedInUser = document.toObject(Customer::class.java)!!
 
-                                    // Here we have received the document snapshot which is converted into the User Data model object.
-                                    val loggedInUser = document.toObject(IndividualProviders::class.java)!!
+                                // Here call a function of base activity for transferring the result to it.
+                                hideProgressDialog()
 
-                                    // Here call a function of base activity for transferring the result to it.
-                                    hideProgressDialog()
-
-                                    startActivity(Intent(this@IntroActivity, ProviderHomeActivity::class.java))
-                                    this.finish()
-                                }
-                                .addOnFailureListener { e ->
-                                    Log.e(
-                                        javaClass.simpleName,
-                                        "Error while getting loggedIn user details",
-                                        e
-                                    )
-                                }
-                        }
-
-                        val userCustomerRef: CollectionReference = userLoginDatabase.collection("customers")
-                        val customerQuery: Query = userCustomerRef.whereEqualTo("id", registeredUserID)
-                        if(customerQuery !=null){
-
-                            // Here we pass the collection name from which we wants the data.
-                            userLoginDatabase.collection(Constants.CUSTOMERS)
-                                // The document id to get the Fields of user.
-                                .document(getCurrentUserID())
-                                .get()
-                                .addOnSuccessListener { document ->
-                                    Log.e(
-                                        javaClass.simpleName, document.toString()
-                                    )
-
-                                    // Here we have received the document snapshot which is converted into the User Data model object.
-                                    val loggedInUser = document.toObject(Customer::class.java)!!
-
-                                    // Here call a function of base activity for transferring the result to it.
-                                    hideProgressDialog()
-
-                                    startActivity(Intent(this@IntroActivity, MainActivity::class.java))
-                                    this.finish()
-                                }
-                                .addOnFailureListener { e ->
-                                    Log.e(
-                                        javaClass.simpleName,
-                                        "Error while getting loggedIn user details",
-                                        e
-                                    )
-                                }
-                        }
+                                startActivity(Intent(this@IntroActivity, MainActivity::class.java))
+                                this.finish()
+                            }
+                            .addOnFailureListener { e ->
+                                Log.e(
+                                    javaClass.simpleName,
+                                    "Error while getting loggedIn user details",
+                                    e
+                                )
+                            }
 
                     } else {
                         Toast.makeText(

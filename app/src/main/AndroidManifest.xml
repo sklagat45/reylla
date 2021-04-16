@@ -9,15 +9,19 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:icon="@drawable/logo_img"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.serviceproviders.addingNewService.AddTatooAndColourServiceActivity"
+        <activity
+            android:name=".activities.serviceproviders.addingNewService.AddTatooAndColourServiceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.serviceproviders.addingNewService.AddMakeUpServiceActivity"
+        <activity
+            android:name=".activities.serviceproviders.addingNewService.AddMakeUpServiceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.serviceproviders.addingNewService.AddMassageServiceActivity"

@@ -73,7 +73,7 @@
                     android:src="@drawable/angel_tattoo"/>
 
                 <TextView
-                    android:id="@+id/tv_add_service_image"
+                    android:id="@+id/tv_add_tat_service_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/add_screen_text_add_image_marginTop"
@@ -94,10 +94,10 @@
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_style_name"
+                    android:id="@+id/et_design_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Style Name"
+                    android:hint="Design Name"
                     android:inputType="textCapWords"
                     android:textColor="@color/primary_text_color"
                     android:textColorHint="@color/secondary_text_color"
@@ -111,7 +111,7 @@
                 android:layout_marginTop="@dimen/add_screen_til_marginTop">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_service_duration"
+                    android:id="@+id/et_design_service_duration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/duration_taken_to_offer_the_service_in_hours"
@@ -130,7 +130,7 @@
                     android:id="@+id/et_tat_style_cost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Style Cost"
+                    android:hint="Design Style Cost"
                     android:inputType="number"
                     android:textColor="@color/primary_text_color"
                     android:textColorHint="@color/secondary_text_color"
@@ -139,7 +139,7 @@
 
 
             <Button
-                android:id="@+id/btn_save_style_service"
+                android:id="@+id/btn_save_design_style_service"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
