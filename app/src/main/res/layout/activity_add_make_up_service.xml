@@ -73,7 +73,7 @@
                     android:src="@drawable/makeup_img1" />
 
                 <TextView
-                    android:id="@+id/tv_add_service_image"
+                    android:id="@+id/tv_add_makeup_service_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/add_screen_text_add_image_marginTop"
@@ -139,7 +139,7 @@
 
 
             <Button
-                android:id="@+id/btn_save_hair_service"
+                android:id="@+id/btn_save_makeup_service"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

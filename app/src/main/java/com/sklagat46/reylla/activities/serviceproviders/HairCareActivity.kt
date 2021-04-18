@@ -20,7 +20,7 @@ class HairCareActivity : AppCompatActivity() {
 //            startActivity(Intent(this@HairCareActivity, AddHairServiceActivity::class.java))
 
             val addHairServiceIntent = Intent(this@HairCareActivity, AddHairServiceActivity::class.java)
-            startActivityForResult(addHairServiceIntent, ADD_PLACE_ACTIVITY_REQUEST_CODE)
+            startActivityForResult(addHairServiceIntent, ADD_SERVICE_ACTIVITY_REQUEST_CODE)
 
         }
 //        getServiceListFromFirestoreDB()
@@ -32,10 +32,10 @@ class HairCareActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         // check if the request code is same as what is passed  here it is 'ADD_PLACE_ACTIVITY_REQUEST_CODE'
-        if (requestCode == ADD_PLACE_ACTIVITY_REQUEST_CODE) {
+        if (requestCode == ADD_SERVICE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
 //                getServiceListFromFirestoreDB()
-            }else{
+            } else {
                 Log.e("Activity", "Cancelled or Back Pressed")
             }
         }
@@ -95,7 +95,7 @@ class HairCareActivity : AppCompatActivity() {
 //    }
 
     companion object{
-        private const val ADD_PLACE_ACTIVITY_REQUEST_CODE = 1
+        private const val ADD_SERVICE_ACTIVITY_REQUEST_CODE = 1
         internal const val EXTRA_PLACE_DETAILS = "extra_place_details"
     }
 }

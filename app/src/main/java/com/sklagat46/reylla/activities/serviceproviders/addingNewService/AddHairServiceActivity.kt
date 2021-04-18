@@ -23,7 +23,6 @@ import com.sklagat46.reylla.R
 import com.sklagat46.reylla.activities.BaseActivity
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.Service
-import kotlinx.android.synthetic.main.activity_add_gallery_images.*
 import kotlinx.android.synthetic.main.activity_add_hair_service.*
 import java.io.IOException
 

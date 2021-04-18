@@ -9,7 +9,7 @@ import com.sklagat46.reylla.activities.SignUpActivity
 import com.sklagat46.reylla.activities.agentclients.RegisterCustomer
 import com.sklagat46.reylla.activities.serviceproviders.CompanyRegister
 import com.sklagat46.reylla.activities.serviceproviders.IndividualRegister
-import com.sklagat46.reylla.activities.serviceproviders.addingNewService.AddHairServiceActivity
+import com.sklagat46.reylla.activities.serviceproviders.addingNewService.*
 import com.sklagat46.reylla.model.*
 import com.sklagat46.reylla.utils.Constants
 
@@ -125,25 +125,147 @@ class FirestoreClass {
      */
     fun uploadProductDetails(activity: AddHairServiceActivity, serviceInfor: Service) {
 
-
-//        //Check if team with the same name already exists
-//        db.collection("Teams").document(teamNameText).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull (Task<DocumentSnapshot>) task) {
-//                if (task.getResult().exists()) {
-//                    teamName.setError("Team with same name already exists");
-//                    teamName.requestFocus();
-
-//        val query: Query = mFireStore.whereEqualTo("styleName", serviceInfor.styleName)
-//        println("Starting listener")
-//        query.get()
-//            .addOnSuccessListener(OnSuccessListener<QuerySnapshot?> { println("Got data from Firestore") })
-
         mFireStore.collection(Constants.HAIR_SERVICES)
-            .document(getCurrentUserID() + "/" + "hs" + "/" + System.currentTimeMillis())
+            .document(getCurrentUserID() + "." + System.currentTimeMillis())
 //            .whereEqualTo("styleName", serviceInfor.styleName)
             // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(serviceInfor, SetOptions.merge())
+            .addOnSuccessListener {
+                // Here call a function of base activity for transferring the result to it.
+                activity.serviceUploadSuccess()
+            }
+            .addOnFailureListener { e ->
+
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while uploading the service details.",
+                    e
+                )
+            }
+    }
+
+    /**
+     * A function to make an entry of the user's product in the cloud firestore database.
+     */
+    fun uploadBridalDetails(activity: AddBridalServiceActivity, bridalInfor: BridalService) {
+
+        mFireStore.collection(Constants.BRIDAL_SERVICES)
+            .document(getCurrentUserID() + "." + System.currentTimeMillis())
+//            .whereEqualTo("styleName", serviceInfor.styleName)
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(bridalInfor, SetOptions.merge())
+            .addOnSuccessListener {
+                // Here call a function of base activity for transferring the result to it.
+                activity.serviceUploadSuccess()
+            }
+            .addOnFailureListener { e ->
+
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while uploading the service details.",
+                    e
+                )
+            }
+    }
+
+
+    /**
+     * A function to make an entry of the user's product in the cloud firestore database.
+     */
+    fun uploadNailDetails(activity: AddNailCareServiceActivity, nailInfor: NailService) {
+
+        mFireStore.collection(Constants.NAIL_SERVICES)
+            .document(getCurrentUserID() + "." + System.currentTimeMillis())
+//            .whereEqualTo("styleName", serviceInfor.styleName)
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(nailInfor, SetOptions.merge())
+            .addOnSuccessListener {
+                // Here call a function of base activity for transferring the result to it.
+                activity.serviceUploadSuccess()
+            }
+            .addOnFailureListener { e ->
+
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while uploading the service details.",
+                    e
+                )
+            }
+    }
+
+
+    /**
+     * A function to make an entry of the user's product in the cloud firestore database.
+     */
+    fun uploadMakeupDetails(activity: AddMakeUpServiceActivity, makeupInfor: MakeupService) {
+
+        mFireStore.collection(Constants.MAKEUP_SERVICES)
+            .document(getCurrentUserID() + "." + System.currentTimeMillis())
+//            .whereEqualTo("styleName", serviceInfor.styleName)
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(makeupInfor, SetOptions.merge())
+            .addOnSuccessListener {
+                // Here call a function of base activity for transferring the result to it.
+                activity.serviceUploadSuccess()
+            }
+            .addOnFailureListener { e ->
+
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while uploading the service details.",
+                    e
+                )
+            }
+    }
+
+    /**
+     * A function to make an entry of the user's product in the cloud firestore database.
+     */
+    fun uploadMassageDetails(activity: AddMassageServiceActivity, massageInfor: MassageService) {
+
+        mFireStore.collection(Constants.MASSAGE_SERVICES)
+            .document(getCurrentUserID() + "." + System.currentTimeMillis())
+//            .whereEqualTo("styleName", serviceInfor.styleName)
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(massageInfor, SetOptions.merge())
+            .addOnSuccessListener {
+                // Here call a function of base activity for transferring the result to it.
+                activity.serviceUploadSuccess()
+            }
+            .addOnFailureListener { e ->
+
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while uploading the service details.",
+                    e
+                )
+            }
+    }
+
+
+    /**
+     * A function to make an entry of the user's product in the cloud firestore database.
+     */
+    fun uploadTatColourDetails(
+        activity: AddTatooAndColourServiceActivity,
+        tatColourInfor: TatColorService
+    ) {
+
+        mFireStore.collection(Constants.TATCOLOUR_SERVICES)
+            .document(getCurrentUserID() + "." + System.currentTimeMillis())
+//            .whereEqualTo("styleName", serviceInfor.styleName)
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(tatColourInfor, SetOptions.merge())
             .addOnSuccessListener {
                 // Here call a function of base activity for transferring the result to it.
                 activity.serviceUploadSuccess()

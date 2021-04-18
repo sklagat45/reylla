@@ -16,6 +16,11 @@ object Constants {
     const val INDIVIDUALPROVIDERS: String = "individualProviders"
     const val HAIR_SERVICES: String = "hairServices"
     const val HAIR_STYLE_NAME: String = "hairStyleName"
+    const val BRIDAL_SERVICES: String = "bridalServices"
+    const val NAIL_SERVICES: String = "nailServices"
+    const val MAKEUP_SERVICES: String = "makeupServices"
+    const val MASSAGE_SERVICES: String = "massageService"
+    const val TATCOLOUR_SERVICES: String = "tatcolourService"
 
 
     const val SERVICE_IMAGE: String = "Service_Image"
