@@ -17,7 +17,6 @@ class HairCareActivity : AppCompatActivity() {
 
         // Click event for add hair service button.
         fab_add_hair_care.setOnClickListener {
-//            startActivity(Intent(this@HairCareActivity, AddHairServiceActivity::class.java))
 
             val addHairServiceIntent = Intent(this@HairCareActivity, AddHairServiceActivity::class.java)
             startActivityForResult(addHairServiceIntent, ADD_SERVICE_ACTIVITY_REQUEST_CODE)

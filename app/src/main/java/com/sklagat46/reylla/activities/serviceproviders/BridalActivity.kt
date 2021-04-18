@@ -16,7 +16,6 @@ class BridalActivity : AppCompatActivity() {
         setContentView(R.layout.activity_bridal)
 
         fab_add_bridal_care.setOnClickListener {
-//            startActivity(Intent(this@HairCareActivity, AddHairServiceActivity::class.java))
 
             val addBridalServiceIntent =
                 Intent(this@BridalActivity, AddBridalServiceActivity::class.java)
