@@ -20,7 +20,14 @@ object Constants {
     const val NAIL_SERVICES: String = "nailServices"
     const val MAKEUP_SERVICES: String = "makeupServices"
     const val MASSAGE_SERVICES: String = "massageService"
+
+    const val USER_ID: String = "user_id"
     const val TATCOLOUR_SERVICES: String = "tatcolourService"
+
+    // Intent extra constants.
+    const val EXTRA_USER_DETAILS: String = "extra_user_details"
+
+    const val EXTRA_SERVICE_ID: String = "extra_service_id"
 
 
     const val SERVICE_IMAGE: String = "Service_Image"
@@ -73,7 +80,10 @@ object Constants {
     }
 
     /**
-     * A function to get the extension of selected image.
+     * A function to get the image file extension of the selected image.
+     *
+     * @param activity Activity reference.
+     * @param uri Image file uri.
      */
     fun getFileExtension(activity: Activity, uri: Uri?): String? {
         /*

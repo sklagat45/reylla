@@ -8,6 +8,7 @@ import com.sklagat46.reylla.activities.SignInActivity
 import com.sklagat46.reylla.activities.SignUpActivity
 import com.sklagat46.reylla.activities.agentclients.RegisterCustomer
 import com.sklagat46.reylla.activities.serviceproviders.CompanyRegister
+import com.sklagat46.reylla.activities.serviceproviders.HairCareActivity
 import com.sklagat46.reylla.activities.serviceproviders.IndividualRegister
 import com.sklagat46.reylla.activities.serviceproviders.addingNewService.*
 import com.sklagat46.reylla.model.*
@@ -120,13 +121,43 @@ class FirestoreClass {
             }
     }
 
+
+    /**
+     * A function to get the product details based on the product id.
+     */
+    fun getServiceListFromFirestoreDB(activity: HairCareActivity, service: Service) {
+
+        // The collection name for PRODUCTS
+        mFireStore.collection(Constants.HAIR_SERVICES)
+            .document(getCurrentUserID())
+            .get() // Will get the document snapshots.
+            .addOnSuccessListener { document ->
+
+                // Here we get the product details in the form of document.
+                Log.e(activity.javaClass.simpleName, document.toString())
+
+                // Convert the snapshot to the object of Product data model class.
+                val service = document.toObject(Service::class.java)!!
+
+                activity.productDetailsSuccess(service)
+            }
+            .addOnFailureListener { e ->
+
+                // Hide the progress dialog if there is an error.
+                activity.hideProgressDialog()
+
+                Log.e(activity.javaClass.simpleName, "Error while getting the product details.", e)
+            }
+    }
+
+
     /**
      * A function to make an entry of the user's product in the cloud firestore database.
      */
-    fun uploadProductDetails(activity: AddHairServiceActivity, serviceInfor: Service) {
-
+    fun uploadHairDetails(activity: AddHairServiceActivity, serviceInfor: Service) {
         mFireStore.collection(Constants.HAIR_SERVICES)
-            .document(getCurrentUserID() + "." + System.currentTimeMillis())
+            .document()
+//            .document(getCurrentUserID() + "." + System.currentTimeMillis())
 //            .whereEqualTo("styleName", serviceInfor.styleName)
             // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(serviceInfor, SetOptions.merge())
@@ -152,7 +183,7 @@ class FirestoreClass {
     fun uploadBridalDetails(activity: AddBridalServiceActivity, bridalInfor: BridalService) {
 
         mFireStore.collection(Constants.BRIDAL_SERVICES)
-            .document(getCurrentUserID() + "." + System.currentTimeMillis())
+            .document()
 //            .whereEqualTo("styleName", serviceInfor.styleName)
             // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(bridalInfor, SetOptions.merge())
@@ -179,7 +210,7 @@ class FirestoreClass {
     fun uploadNailDetails(activity: AddNailCareServiceActivity, nailInfor: NailService) {
 
         mFireStore.collection(Constants.NAIL_SERVICES)
-            .document(getCurrentUserID() + "." + System.currentTimeMillis())
+            .document()
 //            .whereEqualTo("styleName", serviceInfor.styleName)
             // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(nailInfor, SetOptions.merge())
@@ -206,7 +237,7 @@ class FirestoreClass {
     fun uploadMakeupDetails(activity: AddMakeUpServiceActivity, makeupInfor: MakeupService) {
 
         mFireStore.collection(Constants.MAKEUP_SERVICES)
-            .document(getCurrentUserID() + "." + System.currentTimeMillis())
+            .document()
 //            .whereEqualTo("styleName", serviceInfor.styleName)
             // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(makeupInfor, SetOptions.merge())
@@ -232,7 +263,7 @@ class FirestoreClass {
     fun uploadMassageDetails(activity: AddMassageServiceActivity, massageInfor: MassageService) {
 
         mFireStore.collection(Constants.MASSAGE_SERVICES)
-            .document(getCurrentUserID() + "." + System.currentTimeMillis())
+            .document()
 //            .whereEqualTo("styleName", serviceInfor.styleName)
             // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(massageInfor, SetOptions.merge())
@@ -262,7 +293,7 @@ class FirestoreClass {
     ) {
 
         mFireStore.collection(Constants.TATCOLOUR_SERVICES)
-            .document(getCurrentUserID() + "." + System.currentTimeMillis())
+            .document()
 //            .whereEqualTo("styleName", serviceInfor.styleName)
             // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(tatColourInfor, SetOptions.merge())

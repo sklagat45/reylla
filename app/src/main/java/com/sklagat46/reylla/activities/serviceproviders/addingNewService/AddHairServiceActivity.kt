@@ -40,7 +40,8 @@ class AddHairServiceActivity : BaseActivity() {
     private val mFireStore = FirebaseFirestore.getInstance()
 
     // A global variable for uploaded product image URL.
-    lateinit var mServiceImageURL: String
+    var mServiceImageURL: String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,7 +125,7 @@ class AddHairServiceActivity : BaseActivity() {
                                     ).show()
 
                                     mServiceImageURL = url.toString()
-                                    uploadProductDetails()
+                                    uploadServiceDetails()
                                     // TODO Step 3: Load the uploaded image url using Glide.
                                     // START
                                     Glide.with(this@AddHairServiceActivity)
@@ -275,7 +276,7 @@ class AddHairServiceActivity : BaseActivity() {
     }
 
 
-    private fun uploadProductDetails() {
+    private fun uploadServiceDetails() {
 
         // Get the current user id
         var currentUserID = ""
@@ -287,10 +288,10 @@ class AddHairServiceActivity : BaseActivity() {
             et_hair_style_name.text.toString().trim { it <= ' ' },
             et_hair_service_duration.text.toString().trim { it <= ' ' },
             et_hair_style_cost.text.toString().trim { it <= ' ' },
-            mServiceImageURL
+            mServiceImageURL,
         )
 
-        FirestoreClass().uploadProductDetails(this@AddHairServiceActivity, service)
+        FirestoreClass().uploadHairDetails(this@AddHairServiceActivity, service)
     }
 
     fun serviceUploadSuccess() {
