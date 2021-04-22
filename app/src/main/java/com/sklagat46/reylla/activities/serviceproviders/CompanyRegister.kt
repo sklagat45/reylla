@@ -1,4 +1,4 @@
-package com.sklagat46.reylla.activities
+package com.sklagat46.reylla.activities.serviceproviders
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,8 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.sklagat46.reylla.R
+import com.sklagat46.reylla.activities.BaseActivity
+import com.sklagat46.reylla.activities.agentclients.MainActivity
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.Company
 import kotlinx.android.synthetic.main.activity_company_register.*
@@ -17,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_individual_register.*
 import kotlinx.android.synthetic.main.activity_register_customer.*
 
 class CompanyRegister : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_company_register)
@@ -48,6 +51,7 @@ class CompanyRegister : BaseActivity() {
 
     private fun registerCompany() {
         // Here we get the text from editText and trim the space
+        val companyImage: String = iv_company_logo_image.toString()
         val companyName: String = et_company_name.text.toString().trim { it <= ' ' }
         val registrationNumber: String = et_registration_number.text.toString().trim { it <= ' ' }
         val companyAddress: String = et_company_address.text.toString().trim { it <= ' ' }
@@ -71,7 +75,8 @@ class CompanyRegister : BaseActivity() {
                             val registeredEmail = firebaseUser.email!!
 
                             val company = Company(
-                                firebaseUser.uid, companyName, registeredEmail
+                                firebaseUser.uid,companyImage,companyName, registrationNumber,
+                                companyAddress, companyPhonenumber,registeredEmail
                             )
 
                             // call the registerCustomer function of FirestoreClass to make an entry in the database.
@@ -86,7 +91,8 @@ class CompanyRegister : BaseActivity() {
                     })
         }
     }
-            private fun validateForm(companyName: String, registrationNumber: String,
+
+    private fun validateForm(companyName: String, registrationNumber: String,
                                      companyAddress: String, companyPhonenumber: String, companyEmail: String,
                                      companyPassword: String): Boolean {
                 return when {
@@ -138,6 +144,5 @@ class CompanyRegister : BaseActivity() {
     //        FirebaseAuth.getInstance().signOut()
         // Finish the Sign-Up Screen
         finish()
-    }
     }
     }

@@ -12,9 +12,19 @@ object Constants {
     // This  is used for the collection name for USERS.
     const val USERS: String = "users"
     const val CUSTOMERS: String = "customers"
-    const val COMPANY: String = "company"
-
+    const val COMPANIES: String = "companies"
     const val INDIVIDUALPROVIDERS: String = "individualProviders"
+    const val HAIR_SERVICES: String = "hairServices"
+    const val HAIR_STYLE_NAME: String = "hairStyleName"
+    const val BRIDAL_SERVICES: String = "bridalServices"
+    const val NAIL_SERVICES: String = "nailServices"
+    const val MAKEUP_SERVICES: String = "makeupServices"
+    const val MASSAGE_SERVICES: String = "massageService"
+    const val TATCOLOUR_SERVICES: String = "tatcolourService"
+
+
+    const val SERVICE_IMAGE: String = "Service_Image"
+
 
     // Firebase database field names
     const val IMAGE: String = "image"
@@ -30,6 +40,24 @@ object Constants {
     const val READ_STORAGE_PERMISSION_CODE = 1
     // A unique code of image selection from Phone Storage.
     const val PICK_IMAGE_REQUEST_CODE = 2
+
+    const val REYLLA_PREFERENCES: String = "ReyllaPrefs"
+    const val FCM_TOKEN:String = "fcmToken"
+    const val FCM_TOKEN_UPDATED:String = "fcmTokenUpdated"
+
+    // TODO (Step 1: Add the base url  and key params for sending firebase notification.)
+    // START
+    const val FCM_BASE_URL:String = "https://fcm.googleapis.com/fcm/send"
+    const val FCM_AUTHORIZATION:String = "authorization"
+    const val FCM_KEY:String = "key"
+//    const val FCM_SERVER_KEY:String = "AAAA-oftC-Q:APA91bFbmaYmj3lu_Oy3vwYkqh0tHjFNFanTjYIR-ilKo1SsoQHF8ODMiOzZg3JZAAfYGdOdaM_kBRRyM5IfXbaXq0phVHnUFrG35TWnxfJgK6ysrwqBYdoP-WPWAEjwQn1eeA7Sv1CC"
+    const val FCM_KEY_TITLE:String = "title"
+    const val FCM_KEY_MESSAGE:String = "message"
+    const val FCM_KEY_DATA:String = "data"
+    const val FCM_KEY_TO:String = "to"
+// END
+
+
 
     /**
      * A function for user profile image selection from phone storage.

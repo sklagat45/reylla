@@ -4,7 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".activities.CompanyRegister">
+tools:context=".activities.serviceproviders.CompanyRegister">
 
 <androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbar_company_sign_up_activity"
@@ -76,7 +76,7 @@ tools:context=".activities.CompanyRegister">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_indiv_profile_image"
+                android:id="@+id/iv_company_logo_image"
                 android:layout_width="@dimen/my_profile_user_image_size"
                 android:layout_height="@dimen/my_profile_user_image_size"
                 android:contentDescription="Company Logo"
@@ -87,7 +87,7 @@ tools:context=".activities.CompanyRegister">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/tv_indiv_add_photo"
+                android:id="@+id/tv_company_add_photo"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/add_photo"
                 android:textColor="#792C58"
@@ -99,7 +99,6 @@ tools:context=".activities.CompanyRegister">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:textColorHint="#000000"
                     android:focusable="true"
                     android:layout_height="wrap_content">
 
@@ -108,6 +107,7 @@ tools:context=".activities.CompanyRegister">
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:paddingStart="6dp"
+                        android:inputType="textPersonName"
                         android:contentDescription="@string/company_name"
                         android:background="@drawable/gray_border_shape_rounded"
                         android:hint="Company Name"
@@ -117,7 +117,6 @@ tools:context=".activities.CompanyRegister">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:textColorHint="#000000"
                 android:focusable="true"
                 android:layout_height="wrap_content">
 
@@ -127,6 +126,7 @@ tools:context=".activities.CompanyRegister">
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:paddingStart="10dp"
+                    android:inputType="number"
                     android:contentDescription="@string/company_registration_number"
                     android:background="@drawable/gray_border_shape_rounded"
                     android:hint="@string/registration_number"
@@ -140,7 +140,6 @@ tools:context=".activities.CompanyRegister">
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="#000000"
                     android:focusable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
@@ -151,6 +150,7 @@ tools:context=".activities.CompanyRegister">
                         android:contentDescription="@string/address"
                         android:layout_height="35dp"
                         android:layout_marginStart="2dp"
+                        android:inputType="textPostalAddress"
                         android:background="@drawable/gray_border_shape_rounded"
                         android:hint="@string/company_address"
                         android:paddingStart="10dp"
@@ -158,12 +158,14 @@ tools:context=".activities.CompanyRegister">
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/iv_company_loc_image"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_weight="1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:paddingEnd="5dp"
                     android:contentDescription="@string/select_location_on_google_maps"
                     app:srcCompat="@drawable/ic_location_on_24" />
@@ -171,7 +173,6 @@ tools:context=".activities.CompanyRegister">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:textColorHint="#000000"
                 android:focusable="true"
                 android:layout_height="wrap_content">
 
@@ -179,6 +180,7 @@ tools:context=".activities.CompanyRegister">
                     android:id="@+id/et_company_phonenumber"
                     android:layout_marginStart="2dp"
                     android:layout_width="match_parent"
+                    android:inputType="phone"
                     android:layout_height="35dp"
                     android:paddingStart="10dp"
                     android:contentDescription="@string/phone_number"
@@ -189,7 +191,6 @@ tools:context=".activities.CompanyRegister">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:textColorHint="#000000"
                 android:focusable="true"
                 android:layout_height="wrap_content">
 
@@ -198,6 +199,7 @@ tools:context=".activities.CompanyRegister">
                     android:layout_marginStart="2dp"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
+                    android:inputType="textEmailAddress"
                     android:paddingStart="10dp"
                     android:contentDescription="Email"
                     android:background="@drawable/gray_border_shape_rounded"
@@ -209,7 +211,6 @@ tools:context=".activities.CompanyRegister">
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:focusable="true"
-                android:textColorHint="#000000"
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatEditText

@@ -2,21 +2,20 @@ package com.sklagat46.reylla.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import kotlinx.android.synthetic.main.activity_register_customer.*
 
 data class Customer(
 
     val id: String = "",
-    val customerImage: String = "",
+    val customerProfileImage: String = "0",
     val customerFName: String ="",
     val customerLName: String = "",
     val customerDOB: String = "",
     val customerAddress: String = "",
-    val customerPhoneNumber: Long = 0,
+    val customerPhoneNumber: String = "0",
     val customerEmail: String = "",
     val customerGender: String = "",
-    val fcmToken: String = "",
-    val customerPassword: String = ""
+    val fcmToken: String = ""
+
 
 ) : Parcelable {
     constructor(source: Parcel) : this(
@@ -26,27 +25,26 @@ data class Customer(
         source.readString()!!,
         source.readString()!!,
         source.readString()!!,
-        source.readLong(),
         source.readString()!!,
         source.readString()!!,
         source.readString()!!,
-        source.readString()!!
+        source.readString()!!,
     )
 
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
         writeString(id)
-        writeString(customerImage)
+        writeString(customerProfileImage)
         writeString(customerFName)
         writeString(customerLName)
         writeString(customerDOB)
         writeString(customerAddress)
-        writeLong(customerPhoneNumber)
+        writeString(customerPhoneNumber)
         writeString(customerEmail)
         writeString(customerGender)
         writeString(fcmToken)
-        writeString(customerPassword)
+
     }
 
     companion object {

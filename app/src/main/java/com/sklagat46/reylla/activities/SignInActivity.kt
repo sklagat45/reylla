@@ -7,6 +7,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.sklagat46.reylla.R
+import com.sklagat46.reylla.activities.agentclients.MainActivity
 import com.sklagat46.reylla.model.User
 import kotlinx.android.synthetic.main.activity_sign_in.*
 

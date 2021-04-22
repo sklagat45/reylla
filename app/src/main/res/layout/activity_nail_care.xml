@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".activities.serviceproviders.NailCareActivity">
+
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar_nail_care_activity"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="?attr/actionBarSize">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:text="Nail Care"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+</androidx.appcompat.widget.Toolbar>
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/rv_nail_care_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    tools:visibility="gone" />
+
+<!--This text view we will make it visible when the list size is 0 means no data available to display in list.-->
+<TextView
+    android:id="@+id/tv_no_records_available"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:text="@string/there_s_no_available_service_yet_please_add"
+    android:textSize="16sp"
+    android:visibility="visible"
+    tools:visibility="visible" />
+
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/fab_add_nail_care"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:layout_margin="15dp"
+    app:srcCompat="@drawable/ic_baseline_add_24"
+    android:contentDescription="@string/add_nail_care" />
+
+</FrameLayout>
