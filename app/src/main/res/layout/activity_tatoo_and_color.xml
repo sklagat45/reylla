@@ -13,7 +13,7 @@ tools:context=".activities.serviceproviders.TatooAndColorActivity">
     android:layout_height="?attr/actionBarSize">
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tv_tittle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"

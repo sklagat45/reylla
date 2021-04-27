@@ -12,7 +12,7 @@
     card_view:cardElevation="4dp">
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:id="@+id/iv_hair_service__image"
+        android:id="@+id/iv_item_service_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_margin="15dp"
@@ -24,7 +24,7 @@
         android:background="#00555555">
 
         <TextView
-            android:id="@+id/tv_service_name"
+            android:id="@+id/tv_item_service_name"
             android:layout_width="122dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
@@ -49,12 +49,12 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.041"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_service_name"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_service_name"
             card_view:layout_constraintVertical_bias="0.0"
             tools:text="Colour: " />
 
         <EditText
-            android:id="@+id/et_color"
+            android:id="@+id/et_item_color"
             android:layout_width="55dp"
             android:layout_height="35dp"
             android:textColor="@color/colorPrimary"
@@ -63,7 +63,7 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toEndOf="@+id/tv_har_service_name"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_service_name"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_service_name"
             card_view:layout_constraintVertical_bias="0.028"
             tools:text="Black" />
 
@@ -83,7 +83,7 @@
             tools:text="Ksh: " />
 
         <EditText
-            android:id="@+id/et_cost"
+            android:id="@+id/et_item_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000"
@@ -94,10 +94,10 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toEndOf="@+id/tv_ksh"
-            card_view:layout_constraintTop_toBottomOf="@+id/et_color" />
+            card_view:layout_constraintTop_toBottomOf="@+id/et_item_color" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_delete"
+            android:id="@+id/iv_item_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"

@@ -21,13 +21,17 @@ object Constants {
     const val MAKEUP_SERVICES: String = "makeupServices"
     const val MASSAGE_SERVICES: String = "massageService"
 
-    const val USER_ID: String = "user_id"
+    const val SERVICE: String = "service"
+
+
+    const val PROVIDER_ID: String = "provider_id"
     const val TATCOLOUR_SERVICES: String = "tatcolourService"
 
     // Intent extra constants.
     const val EXTRA_USER_DETAILS: String = "extra_user_details"
 
     const val EXTRA_SERVICE_ID: String = "extra_service_id"
+    const val EXTRA_SERVICE_OWNER_ID: String = "extra_service_owner_id"
 
 
     const val SERVICE_IMAGE: String = "Service_Image"

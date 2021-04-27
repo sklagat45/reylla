@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
-        tools:listitem="@layout/row_add_service_item"
+        tools:listitem="@layout/row_service_item"
         android:visibility="gone"
         tools:visibility="gone" />
 

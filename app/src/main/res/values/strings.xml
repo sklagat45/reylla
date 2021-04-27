@@ -53,4 +53,6 @@
     <string name="add_nail_care">Add nail care</string>
     <string name="save">Save</string>
     <string name="duration_taken_to_offer_the_service_in_hours">Duration Taken To Offer The Service in hours</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
