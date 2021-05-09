@@ -1,9 +1,13 @@
 package com.sklagat46.reylla.firebase
 
 import android.app.Activity
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
 import com.sklagat46.reylla.activities.SignInActivity
 import com.sklagat46.reylla.activities.SignUpActivity
@@ -369,44 +373,67 @@ class FirestoreClass {
     }
 
 
-    fun getServiceList(hairCareActivity: HairCareActivity) {
+    fun getServiceList(context: Context, serviceName: String) {
         // The collection name for PRODUCTS
-        mFireStore.collection(Constants.HAIR_SERVICES)
+        mFireStore.collection(serviceName)
             .whereEqualTo(Constants.PROVIDER_ID, getCurrentUserID())
-            .get() // Will get the documents snapshots.
-            .addOnSuccessListener { document ->
-
-                // Here we get the list of boards in the form of documents.
-                Log.e("Service List", document.documents.toString())
-
-                // Here we have created a new instance for Products ArrayList.
-                val serviceList: ArrayList<Service> = ArrayList()
-
-                // A for loop as per the list of documents to convert them into Products ArrayList.
-                for (i in document.documents) {
-                    val service = i.toObject(Service::class.java)
-                    service!!.service_id = i.id
-                    serviceList.add(service)
+            .addSnapshotListener(EventListener { snapshots, e ->
+                if (e != null) {
+                    Toast.makeText(context, "Error $e", Toast.LENGTH_SHORT).show()
+                    when (context) {
+                        is HairCareActivity -> {
+                            context.hideProgressDialog()
+                        }
+                    }
+                    return@EventListener
                 }
 
-                when (hairCareActivity) {
+                when (context) {
                     is HairCareActivity -> {
-                        hairCareActivity.successServiceListFromFireStore(serviceList)
+                        displayHairCareData(context, snapshots)
+                    }
+                    is BridalActivity -> {
+                        displayBridalData(context, snapshots)
                     }
                 }
-            }
-            .addOnFailureListener { e ->
-                // Hide the progress dialog if there is any error based on the base class instance.
-                when (hairCareActivity) {
-                    is HairCareActivity -> {
-                        hairCareActivity.hideProgressDialog()
-                    }
-                }
-                Log.e("Get service List", "Error while getting service list.", e)
-            }
 
+            })
 
     }
+
+    private fun displayHairCareData(
+        context: HairCareActivity,
+        snapshots: QuerySnapshot?, ) {
+        Log.d("service_1", "")
+        val serviceList: ArrayList<Service> = ArrayList()
+        if (snapshots != null) {
+            for (doc in snapshots) {
+                val service = doc.toObject(Service::class.java)
+                service!!.service_id = doc.id
+                serviceList.add(service)
+            }
+        }
+        context.hideProgressDialog()
+        context.successServiceListFromFireStore(serviceList)
+    }
+
+    private fun displayBridalData(
+        context: BridalActivity,
+        snapshots: QuerySnapshot?, ) {
+
+        Log.d("service_2", "")
+        val serviceList: ArrayList<BridalService> = ArrayList()
+        if (snapshots != null) {
+            for (doc in snapshots) {
+                val service = doc.toObject(BridalService::class.java)
+                service!!.service_id = doc.id
+                serviceList.add(service)
+            }
+        }
+        context.hideProgressDialog()
+        context.successBridalServiceListFromFireStore(serviceList)
+    }
+
 
     fun getBridalServiceList(bridalActivity: BridalActivity) {
         // The collection name for PRODUCTS

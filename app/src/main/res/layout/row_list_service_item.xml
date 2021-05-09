@@ -11,7 +11,7 @@
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="4dp">
 
-    <androidx.constraintlayout.utils.widget.ImageFilterView
+    <ImageView
         android:id="@+id/iv_item_service_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -51,7 +51,7 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_item_service_name"
             card_view:layout_constraintVertical_bias="0.0"
-            tools:text="Duration: " />
+            android:text="Duration: " />
 
         <TextView
             android:id="@+id/tv_item_duration"
@@ -81,7 +81,7 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_item_duration"
             card_view:layout_constraintVertical_bias="0.375"
-            tools:text="Ksh: " />
+            android:text="Ksh " />
 
         <TextView
             android:id="@+id/tv_item_cost"
@@ -89,6 +89,7 @@
             android:layout_height="wrap_content"
             android:textColor="#000"
             android:textSize="14sp"
+            android:layout_marginStart="2dp"
             android:inputType="number"
             android:hint="1200"
             card_view:layout_constraintBottom_toBottomOf="parent"
