@@ -7,21 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sklagat46.reylla.R
+import com.sklagat46.reylla.activities.serviceproviders.TatooAndColorActivity
 import com.sklagat46.reylla.activities.serviceproviders.ui.details.ServiceDetailsActivity
-import com.sklagat46.reylla.model.Service
+import com.sklagat46.reylla.model.TatColorService
 import com.sklagat46.reylla.utils.Constants
 import com.sklagat46.reylla.utils.GlideLoader
 import kotlinx.android.synthetic.main.row_list_service_item.view.*
 
-class HairCareServiceAdapter(
+class TatColorServiceAdapter(
     private val context: Context,
-    private var list: ArrayList<Service>,
+    private var list: ArrayList<TatColorService>,
+    private val activity: TatooAndColorActivity
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return HairViewHolder(
+        return TatColorServiceAdapter.TatooAndColorViewHolder(
             LayoutInflater.from(context).inflate(
-                R.layout.row_list_service_item,
+                R.layout.row_service_item,
                 parent,
                 false
             )
@@ -32,18 +34,17 @@ class HairCareServiceAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
 
-        if (holder is HairViewHolder) {
-
+        if (holder is TatColorServiceAdapter.TatooAndColorViewHolder) {
 
             GlideLoader(context).loadServicePicture(
-                model.mserviceImageURL,
+                model.mServiceImageURL,
                 holder.itemView.iv_item_service_image
             )
 
-            //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(holder.itemView.iv_item_service_image);
             holder.itemView.tv_item_service_name.text = model.styleName
             holder.itemView.tv_item_duration.text = model.styleDuration
-            holder.itemView.tv_item_cost.text = model.styleCost
+
+            holder.itemView.tv_item_cost.text = "Ksh" + "$${model.styleCost}"
 
 //            holder.itemView.iv_item_delete.setOnClickListener {
 //
@@ -54,7 +55,7 @@ class HairCareServiceAdapter(
                 // Launch Product details screen.
                 val intent = Intent(context, ServiceDetailsActivity::class.java)
                 intent.putExtra(Constants.EXTRA_SERVICE_ID, model.service_id)
-                intent.putExtra(Constants.EXTRA_SERVICE_OWNER_ID, model.provider_id)
+                intent.putExtra(Constants.EXTRA_SERVICE_OWNER_ID, model.providerID)
                 context.startActivity(intent)
             }
         }
@@ -64,7 +65,7 @@ class HairCareServiceAdapter(
         return list.size
     }
 
-    inner class HairViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class TatooAndColorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     }
 

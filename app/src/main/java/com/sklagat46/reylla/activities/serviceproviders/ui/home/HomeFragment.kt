@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
                         }
                         "color and Tattoo" -> {
                             val tattooCareIntent =
-                                Intent(requireContext(), NailCareActivity::class.java)
+                                Intent(requireContext(), TatooAndColorActivity::class.java)
                             requireContext().startActivity(tattooCareIntent)
 
                         }

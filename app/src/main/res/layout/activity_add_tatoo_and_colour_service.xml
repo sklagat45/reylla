@@ -17,13 +17,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tvv_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="Add Tattoo or Coloring style"
+            android:text="Add Tattoo Coloring"
             android:textColor="#000000"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
