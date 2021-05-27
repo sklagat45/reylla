@@ -10,7 +10,6 @@ object Constants {
 
     // Firebase Constants
     // This  is used for the collection name for USERS.
-    const val EMPTY_STRING: String = ""
     const val USERS: String = "users"
     const val CUSTOMERS: String = "customers"
     const val COMPANIES: String = "companies"

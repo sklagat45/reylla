@@ -13,7 +13,6 @@ import com.sklagat46.reylla.activities.serviceproviders.addingNewService.AddBrid
 import com.sklagat46.reylla.adapter.BridalServiceAdapter
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.BridalService
-import com.sklagat46.reylla.utils.Constants
 import kotlinx.android.synthetic.main.activity_bridal.*
 import java.util.*
 
@@ -51,8 +50,7 @@ class BridalActivity : BaseActivity() {
         showProgressDialog(resources.getString(R.string.please_wait))
 
         // Call the function of Firestore class.
-        FirestoreClass().getServiceList(this@BridalActivity, Constants.BRIDAL_SERVICES)
-        hideProgressDialog()
+        FirestoreClass().getBridalServiceList(this@BridalActivity)
     }
 
     /**
@@ -79,7 +77,7 @@ class BridalActivity : BaseActivity() {
         // Hide Progress dialog.
         hideProgressDialog()
 
-        if (bridalServiceList.isNotEmpty()) {
+        if (bridalServiceList.size > 0) {
             rv_bridal_care_list.visibility = View.VISIBLE
             tv_no_records_available.visibility = View.GONE
 
@@ -87,7 +85,7 @@ class BridalActivity : BaseActivity() {
             rv_bridal_care_list.setHasFixedSize(true)
 
             val adapterService =
-                BridalServiceAdapter(this, bridalServiceList)
+                BridalServiceAdapter(applicationContext, bridalServiceList, this@BridalActivity)
             rv_bridal_care_list.adapter = adapterService
         } else {
             rv_bridal_care_list.visibility = View.GONE

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sklagat46.reylla.R
+import com.sklagat46.reylla.activities.serviceproviders.BridalActivity
 import com.sklagat46.reylla.activities.serviceproviders.ui.details.ServiceDetailsActivity
 import com.sklagat46.reylla.model.BridalService
 import com.sklagat46.reylla.utils.Constants
@@ -15,11 +16,12 @@ import kotlinx.android.synthetic.main.row_list_service_item.view.*
 
 class BridalServiceAdapter(
     private val context: Context,
-    private var list: ArrayList<BridalService>
+    private var list: ArrayList<BridalService>,
+    private val activity: BridalActivity
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return BridalViewHolder(
+        return BridalServiceAdapter.BridalViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.row_list_service_item,
                 parent,
@@ -32,7 +34,7 @@ class BridalServiceAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
 
-        if (holder is BridalViewHolder) {
+        if (holder is BridalServiceAdapter.BridalViewHolder) {
 
             GlideLoader(context).loadServicePicture(
                 model.mServiceImageURL,

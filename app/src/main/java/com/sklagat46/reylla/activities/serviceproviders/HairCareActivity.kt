@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sklagat46.reylla.R
@@ -12,14 +13,11 @@ import com.sklagat46.reylla.activities.serviceproviders.addingNewService.AddHair
 import com.sklagat46.reylla.adapter.HairCareServiceAdapter
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.Service
-import com.sklagat46.reylla.utils.Constants
-import com.sklagat46.reylla.utils.Util
 import kotlinx.android.synthetic.main.activity_hair_care.*
-
 
 class HairCareActivity : BaseActivity() {
 
-    private val mFireStore = FirebaseFirestore.getInstance()
+    val mFireStore = FirebaseFirestore.getInstance()
     private lateinit var mRootView: View
 
     private val currentUser = FirebaseAuth.getInstance().currentUser!!
@@ -28,7 +26,6 @@ class HairCareActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hair_care)
         getServiceListFromFirestoreDB()
-        Util.setRecyclerView(this, rv_hair_care_list)
         // Click event for add hair service button.
         fab_add_hair_care.setOnClickListener {
             val addHairServiceIntent =
@@ -45,12 +42,19 @@ class HairCareActivity : BaseActivity() {
         internal const val EXTRA_PLACE_DETAILS = "extra_place_details"
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        getServiceListFromFirestoreDB()
+    }
 
     private fun getServiceListFromFirestoreDB() {
+
         showProgressDialog(resources.getString(R.string.please_wait))
+
         // Call the function of Firestore class.
-        FirestoreClass().getServiceList(this@HairCareActivity, Constants.HAIR_SERVICES)
-        hideProgressDialog()
+        FirestoreClass().getServiceList(this@HairCareActivity)
+
     }
 
 
@@ -64,15 +68,19 @@ class HairCareActivity : BaseActivity() {
         // Hide Progress dialog.
         hideProgressDialog()
 
-        if (serviceList.isNotEmpty()) {
+        if (serviceList.size > 0) {
             rv_hair_care_list.visibility = View.VISIBLE
-            //tv_no_records_available.visibility = View.GONE
+            tv_no_records_available.visibility = View.GONE
+
+            rv_hair_care_list.layoutManager = LinearLayoutManager(this)
+            rv_hair_care_list.setHasFixedSize(true)
+
             val adapterService =
-                HairCareServiceAdapter(this, serviceList)
+                HairCareServiceAdapter(applicationContext, serviceList, this@HairCareActivity)
             rv_hair_care_list.adapter = adapterService
         } else {
             rv_hair_care_list.visibility = View.GONE
-            //tv_no_records_available.visibility = View.VISIBLE
+            tv_no_records_available.visibility = View.VISIBLE
         }
     }
 

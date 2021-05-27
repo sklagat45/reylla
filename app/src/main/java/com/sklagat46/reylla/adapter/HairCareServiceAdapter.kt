@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sklagat46.reylla.R
+import com.sklagat46.reylla.activities.serviceproviders.HairCareActivity
 import com.sklagat46.reylla.activities.serviceproviders.ui.details.ServiceDetailsActivity
 import com.sklagat46.reylla.model.Service
 import com.sklagat46.reylla.utils.Constants
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.row_list_service_item.view.*
 class HairCareServiceAdapter(
     private val context: Context,
     private var list: ArrayList<Service>,
+    private val activity: HairCareActivity
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -34,16 +36,15 @@ class HairCareServiceAdapter(
 
         if (holder is HairViewHolder) {
 
-
             GlideLoader(context).loadServicePicture(
-                model.mserviceImageURL,
+                model.mServiceImageURL,
                 holder.itemView.iv_item_service_image
             )
 
-            //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(holder.itemView.iv_item_service_image);
             holder.itemView.tv_item_service_name.text = model.styleName
             holder.itemView.tv_item_duration.text = model.styleDuration
-            holder.itemView.tv_item_cost.text = model.styleCost
+
+            holder.itemView.tv_item_cost.text = "Ksh" + "$${model.styleCost}"
 
 //            holder.itemView.iv_item_delete.setOnClickListener {
 //
