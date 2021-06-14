@@ -81,7 +81,7 @@ class IntroActivity : BaseActivity() {
 //                        FirestoreClass().signInUser(this@IntroActivity)
 
                         val currentUser = FirebaseAuth.getInstance().currentUser
-                        val registeredUserID = currentUser.uid
+                        val registeredUserID = currentUser?.uid
                         val userLoginDatabase = FirebaseFirestore.getInstance()
 //                            .getReference().child("Users").child(RegisteredUserID);
 

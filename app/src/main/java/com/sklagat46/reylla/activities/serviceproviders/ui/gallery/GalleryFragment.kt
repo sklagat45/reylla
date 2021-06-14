@@ -20,7 +20,6 @@ class GalleryFragment : Fragment() {
 
     private val currentUser = FirebaseAuth.getInstance().currentUser!!
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,7 +27,6 @@ class GalleryFragment : Fragment() {
     ): View? {
         (activity as AppCompatActivity).supportActionBar!!.hide()
         return inflater.inflate(R.layout.fragment_gallery, container, false)
-
 
     }
 

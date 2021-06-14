@@ -7,6 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class GalleryItem(
     val id: String = "",
     val userId: String = "",
-    val image: Int = 0,
+    val imageUrl: String = "",
     val date: String
 ) : Parcelable

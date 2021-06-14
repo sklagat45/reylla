@@ -9,7 +9,7 @@ class TatColorService(
     var styleName: String,
     var styleDuration: String,
     var styleCost: String,
-    var mServiceImageURL: String,
+    var mserviceImageURL: String,
     var service_id: String = ""
 
 ) : Parcelable

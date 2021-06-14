@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sklagat46.reylla.R
@@ -13,6 +12,7 @@ import com.sklagat46.reylla.activities.serviceproviders.addingNewService.AddMake
 import com.sklagat46.reylla.adapter.MakeupServiceAdapter
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.MakeupService
+import kotlinx.android.synthetic.main.activity_hair_care.*
 import kotlinx.android.synthetic.main.activity_make_u_p.*
 
 class MakeUPActivity : BaseActivity() {
@@ -62,24 +62,41 @@ class MakeUPActivity : BaseActivity() {
      *
      * @param productsList Will receive the product list from cloud firestore.
      */
+//    fun successServiceListFromFireStore(makeupServiceList: ArrayList<MakeupService>) {
+//
+//        // Hide Progress dialog.
+//        hideProgressDialog()
+//
+//        if (makeupServiceList.size > 0) {
+//            rv_makeup_list.visibility = View.VISIBLE
+//            tv_no_records_available.visibility = View.GONE
+//
+//            rv_makeup_list.layoutManager = LinearLayoutManager(this)
+//            rv_makeup_list.setHasFixedSize(true)
+//
+//            val adapterService =
+//                MakeupServiceAdapter(applicationContext, makeupServiceList, this@MakeUPActivity)
+//            rv_makeup_list.adapter = adapterService
+//        } else {
+//            rv_makeup_list.visibility = View.GONE
+//            tv_no_records_available.visibility = View.VISIBLE
+//        }
+//    }
+
     fun successServiceListFromFireStore(makeupServiceList: ArrayList<MakeupService>) {
 
         // Hide Progress dialog.
         hideProgressDialog()
 
-        if (makeupServiceList.size > 0) {
+        if (makeupServiceList.isNotEmpty()) {
             rv_makeup_list.visibility = View.VISIBLE
-            tv_no_records_available.visibility = View.GONE
-
-            rv_makeup_list.layoutManager = LinearLayoutManager(this)
-            rv_makeup_list.setHasFixedSize(true)
-
+            //tv_no_records_available.visibility = View.GONE
             val adapterService =
-                MakeupServiceAdapter(applicationContext, makeupServiceList, this@MakeUPActivity)
+                MakeupServiceAdapter(this, makeupServiceList)
             rv_makeup_list.adapter = adapterService
         } else {
             rv_makeup_list.visibility = View.GONE
-            tv_no_records_available.visibility = View.VISIBLE
+            //tv_no_records_available.visibility = View.VISIBLE
         }
     }
 

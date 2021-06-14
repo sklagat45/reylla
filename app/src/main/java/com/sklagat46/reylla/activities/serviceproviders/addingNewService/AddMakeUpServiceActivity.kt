@@ -36,7 +36,7 @@ class AddMakeUpServiceActivity : BaseActivity() {
     private val mFireStore = FirebaseFirestore.getInstance()
 
     // A global variable for uploaded product image URL.
-    lateinit var mServiceImageURL: String
+    lateinit var mserviceImageURL: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -119,7 +119,7 @@ class AddMakeUpServiceActivity : BaseActivity() {
                                         Toast.LENGTH_LONG
                                     ).show()
 
-                                    mServiceImageURL = url.toString()
+                                    mserviceImageURL = url.toString()
                                     uploadProductDetails()
                                     // TODO Step 3: Load the uploaded image url using Glide.
                                     // START
@@ -280,7 +280,7 @@ class AddMakeUpServiceActivity : BaseActivity() {
             et_make_up_name.text.toString().trim { it <= ' ' },
             et_make_up_service_duration.text.toString().trim { it <= ' ' },
             et_make_up_style_cost.text.toString().trim { it <= ' ' },
-            mServiceImageURL
+            mserviceImageURL
         )
 
         FirestoreClass().uploadMakeupDetails(this@AddMakeUpServiceActivity, makeupService)

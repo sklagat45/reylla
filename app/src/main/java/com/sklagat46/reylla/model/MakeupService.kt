@@ -9,7 +9,7 @@ class MakeupService(
     var styleName: String,
     var styleDuration: String,
     var styleCost: String,
-    val mServiceImageURL: String,
+    val mserviceImageURL: String,
     var service_id: String = "",
 
     ) : Parcelable

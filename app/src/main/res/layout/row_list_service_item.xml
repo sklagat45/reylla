@@ -65,7 +65,7 @@
             card_view:layout_constraintHorizontal_bias="0.833"
             card_view:layout_constraintStart_toEndOf="@+id/tv_service_name"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_item_service_name"
-            card_view:layout_constraintVertical_bias="0.208"
+            card_view:layout_constraintVertical_bias="0.128"
             tools:text="2hrs" />
 
         <TextView
@@ -87,11 +87,12 @@
             android:id="@+id/tv_item_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="4dp"
+            android:hint="1200"
+            android:inputType="number"
             android:textColor="#000"
             android:textSize="14sp"
-            android:layout_marginStart="2dp"
-            android:inputType="number"
-            android:hint="1200"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"

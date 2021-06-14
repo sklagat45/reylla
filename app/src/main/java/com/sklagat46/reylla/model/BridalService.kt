@@ -7,6 +7,6 @@ data class BridalService(
     var styleName: String = Constants.EMPTY_STRING,
     var styleDuration: String = Constants.EMPTY_STRING,
     var styleCost: String = Constants.EMPTY_STRING,
-    val mServiceImageURL: String = Constants.EMPTY_STRING,
+    val mserviceImageURL: String = Constants.EMPTY_STRING,
     var service_id: String = "",
 )

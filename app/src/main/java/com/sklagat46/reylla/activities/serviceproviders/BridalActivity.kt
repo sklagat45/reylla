@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sklagat46.reylla.R
@@ -15,6 +14,7 @@ import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.BridalService
 import com.sklagat46.reylla.utils.Constants
 import kotlinx.android.synthetic.main.activity_bridal.*
+import kotlinx.android.synthetic.main.activity_tatoo_and_color.*
 import java.util.*
 
 class BridalActivity : BaseActivity() {
@@ -74,24 +74,19 @@ class BridalActivity : BaseActivity() {
         // END
     }
 
-
     fun successBridalServiceListFromFireStore(bridalServiceList: ArrayList<BridalService>) {
+
         // Hide Progress dialog.
         hideProgressDialog()
-
         if (bridalServiceList.isNotEmpty()) {
             rv_bridal_care_list.visibility = View.VISIBLE
-            tv_no_records_available.visibility = View.GONE
-
-            rv_bridal_care_list.layoutManager = LinearLayoutManager(this)
-            rv_bridal_care_list.setHasFixedSize(true)
-
+            //tv_no_records_available.visibility = View.GONE
             val adapterService =
                 BridalServiceAdapter(this, bridalServiceList)
             rv_bridal_care_list.adapter = adapterService
         } else {
             rv_bridal_care_list.visibility = View.GONE
-            tv_no_records_available.visibility = View.VISIBLE
+            //tv_no_records_available.visibility = View.VISIBLE
         }
     }
 

@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sklagat46.reylla.R
-import com.sklagat46.reylla.activities.serviceproviders.MassageActivity
 import com.sklagat46.reylla.activities.serviceproviders.ui.details.ServiceDetailsActivity
 import com.sklagat46.reylla.model.MassageService
 import com.sklagat46.reylla.utils.Constants
@@ -17,11 +17,10 @@ import kotlinx.android.synthetic.main.row_list_service_item.view.*
 class MassageServiceAdapter(
     private val context: Context,
     private var list: ArrayList<MassageService>,
-    private val activity: MassageActivity
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return MassageServiceAdapter.MassageViewHolder(
+        return MassageViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.row_list_service_item,
                 parent,
@@ -30,20 +29,22 @@ class MassageServiceAdapter(
         )
     }
 
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
 
         if (holder is MassageServiceAdapter.MassageViewHolder) {
 
+
             GlideLoader(context).loadServicePicture(
-                model.mServiceImageURL,
+                model.mserviceImageURL,
                 holder.itemView.iv_item_service_image
             )
 
+            //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(holder.itemView.iv_item_service_image);
             holder.itemView.tv_item_service_name.text = model.styleName
             holder.itemView.tv_item_duration.text = model.styleDuration
-
-            holder.itemView.tv_item_cost.text = "Ksh" + "$${model.styleCost}"
+            holder.itemView.tv_item_cost.text = model.styleCost
 
 //            holder.itemView.iv_item_delete.setOnClickListener {
 //
@@ -64,8 +65,16 @@ class MassageServiceAdapter(
         return list.size
     }
 
-    class MassageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MassageViewHolder(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+        fun bind(serviceItem: MassageService) {
+            itemView.tv_item_service_name.text = serviceItem.styleName
+            itemView.tv_item_duration.text = serviceItem.styleDuration
+            itemView.tv_item_cost.text = serviceItem.styleCost
 
+            Glide.with(context)
+                .load(serviceItem.mserviceImageURL)
+                .into(itemView.iv_item_service_image)
+        }
     }
-
 }

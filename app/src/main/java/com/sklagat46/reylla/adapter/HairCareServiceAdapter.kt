@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sklagat46.reylla.R
 import com.sklagat46.reylla.activities.serviceproviders.ui.details.ServiceDetailsActivity
+import com.sklagat46.reylla.model.HairCareServiceModel
 import com.sklagat46.reylla.model.Service
 import com.sklagat46.reylla.utils.Constants
 import com.sklagat46.reylla.utils.GlideLoader
@@ -64,8 +66,18 @@ class HairCareServiceAdapter(
         return list.size
     }
 
-    inner class HairViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class HairViewHolder(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+        fun bind(serviceItem: HairCareServiceModel) {
+            itemView.tv_item_service_name.text = serviceItem.styleName
+            itemView.tv_item_duration.text = serviceItem.styleDuration
+            itemView.tv_item_cost.text = serviceItem.styleCost
 
+            Glide.with(context)
+                .load(serviceItem.mserviceImageURL)
+                .into(itemView.iv_item_service_image)
+        }
     }
+
 
 }
