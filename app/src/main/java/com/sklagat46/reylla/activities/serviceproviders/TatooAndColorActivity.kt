@@ -12,12 +12,13 @@ import com.sklagat46.reylla.activities.serviceproviders.addingNewService.AddTato
 import com.sklagat46.reylla.adapter.TatColorServiceAdapter
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.TatColorService
-import kotlinx.android.synthetic.main.activity_massage.*
+import com.sklagat46.reylla.utils.Constants
+import com.sklagat46.reylla.utils.Util
 import kotlinx.android.synthetic.main.activity_tatoo_and_color.*
 
 class TatooAndColorActivity : BaseActivity() {
 
-    val mFireStore = FirebaseFirestore.getInstance()
+    private val mFireStore = FirebaseFirestore.getInstance()
     private lateinit var mRootView: View
 
     private val currentUser = FirebaseAuth.getInstance().currentUser!!
@@ -26,6 +27,8 @@ class TatooAndColorActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tatoo_and_color)
 
+        getTatColorListFromFirestoreDB()
+        Util.setRecyclerView(this, rv_tattoo_color_list)
 
         fab_add_tattoo_color.setOnClickListener {
 
@@ -33,7 +36,6 @@ class TatooAndColorActivity : BaseActivity() {
                 Intent(this@TatooAndColorActivity, AddTatooAndColourServiceActivity::class.java)
             startActivityForResult(addTattooColorServiceIntent, ADD_SERVICE_ACTIVITY_REQUEST_CODE)
         }
-        getTatColorListFromFirestoreDB()
     }
 
 
@@ -52,7 +54,9 @@ class TatooAndColorActivity : BaseActivity() {
         showProgressDialog(resources.getString(R.string.please_wait))
 
         // Call the function of Firestore class.
-        FirestoreClass().getTatColorList(this@TatooAndColorActivity)
+        FirestoreClass().getServiceList(this@TatooAndColorActivity, Constants.TATCOLOUR_SERVICES)
+        hideProgressDialog()
+
     }
 
     /**

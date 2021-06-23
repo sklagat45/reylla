@@ -287,7 +287,6 @@ class FirestoreClass {
             }
     }
 
-
     /**
      * A function to make an entry of the user's product in the cloud firestore database.
      */
@@ -372,8 +371,7 @@ class FirestoreClass {
         TODO("Not yet implemented")
     }
 
-
-    fun getServiceList(context: Context, serviceName: String) {
+    fun getHairServiceList(context: Context, serviceName: String) {
         // The collection name for PRODUCTS
         mFireStore.collection(serviceName)
             .whereEqualTo(Constants.PROVIDER_ID, getCurrentUserID())
@@ -392,9 +390,44 @@ class FirestoreClass {
                     is HairCareActivity -> {
                         displayHairCareData(context, snapshots)
                     }
+                }
+
+            })
+
+    }
+
+    fun getServiceList(context: Context, serviceName: String) {
+        // The collection name for PRODUCTS
+        mFireStore.collection(serviceName)
+            .whereEqualTo(Constants.PROVIDER_IDD, getCurrentUserID())
+            .addSnapshotListener(EventListener { snapshots, e ->
+                if (e != null) {
+                    Toast.makeText(context, "Error $e", Toast.LENGTH_SHORT).show()
+                    when (context) {
+                        is HairCareActivity -> {
+                            context.hideProgressDialog()
+                        }
+                    }
+                    return@EventListener
+                }
+
+                when (context) {
                     is BridalActivity -> {
                         displayBridalData(context, snapshots)
                     }
+                    is NailCareActivity -> {
+                        displayNailCareData(context, snapshots)
+                    }
+                    is MassageActivity -> {
+                        displayMassageCareData(context, snapshots)
+                    }
+                    is MakeUPActivity -> {
+                        displayMakeupCareData(context, snapshots)
+                    }
+                    is TatooAndColorActivity -> {
+                        displayTatColorData(context, snapshots)
+                    }
+
                 }
 
             })
@@ -426,7 +459,7 @@ class FirestoreClass {
         if (snapshots != null) {
             for (doc in snapshots) {
                 val service = doc.toObject(BridalService::class.java)
-                service!!.service_id = doc.id
+                service.service_id = doc.id
                 serviceList.add(service)
             }
         }
@@ -434,200 +467,72 @@ class FirestoreClass {
         context.successBridalServiceListFromFireStore(serviceList)
     }
 
-
-    fun getBridalServiceList(bridalActivity: BridalActivity) {
-        // The collection name for PRODUCTS
-        mFireStore.collection(Constants.BRIDAL_SERVICES)
-            .whereEqualTo(Constants.PROVIDER_ID, getCurrentUserID())
-            .get() // Will get the documents snapshots.
-            .addOnSuccessListener { document ->
-
-                // Here we get the list of boards in the form of documents.
-                Log.e("Bridal Service List", document.documents.toString())
-
-                // Here we have created a new instance for Products ArrayList.
-                val bridalServiceList: ArrayList<BridalService> = ArrayList()
-
-                // A for loop as per the list of documents to convert them into Products ArrayList.
-                for (i in document.documents) {
-                    val bridalService = i.toObject(BridalService::class.java)
-                    bridalService!!.service_id = i.id
-                    bridalServiceList.add(bridalService)
-                }
-
-                when (bridalActivity) {
-                    is BridalActivity -> {
-                        bridalActivity.successBridalServiceListFromFireStore(bridalServiceList)
-                    }
-                }
+    private fun displayMakeupCareData(
+        context: MakeUPActivity,
+        snapshots: QuerySnapshot?,
+    ) {
+        Log.d("service_3", "")
+        val makeupServiceList: ArrayList<MakeupService> = ArrayList()
+        if (snapshots != null) {
+            for (doc in snapshots) {
+                val service = doc.toObject(MakeupService::class.java)
+                service!!.service_id = doc.id
+                makeupServiceList.add(service)
             }
-            .addOnFailureListener { e ->
-                // Hide the progress dialog if there is any error based on the base class instance.
-                when (bridalActivity) {
-                    is BridalActivity -> {
-                        bridalActivity.hideProgressDialog()
-                    }
-                }
-                Log.e("Get service List", "Error while getting service list.", e)
-            }
-
-
+        }
+        context.hideProgressDialog()
+        context.successMakeupServiceListFromFireStore(makeupServiceList)
     }
 
-    fun getMakeupServiceList(makeupActivity: MakeUPActivity) {
-        // The collection name for PRODUCTS
-        mFireStore.collection(Constants.MAKEUP_SERVICES)
-            .whereEqualTo(Constants.PROVIDER_ID, getCurrentUserID())
-            .get() // Will get the documents snapshots.
-            .addOnSuccessListener { document ->
-
-                // Here we get the list of boards in the form of documents.
-                Log.e("Service List", document.documents.toString())
-
-                // Here we have created a new instance for Products ArrayList.
-                val makeupServiceList: ArrayList<MakeupService> = ArrayList()
-
-                // A for loop as per the list of documents to convert them into Products ArrayList.
-                for (i in document.documents) {
-                    val makeService = i.toObject(MakeupService::class.java)
-                    makeService!!.service_id = i.id
-                    makeupServiceList.add(makeService)
-                }
-
-                when (makeupActivity) {
-                    is MakeUPActivity -> {
-                        makeupActivity.successServiceListFromFireStore(makeupServiceList)
-                    }
-                }
+    private fun displayMassageCareData(
+        context: MassageActivity,
+        snapshots: QuerySnapshot?,
+    ) {
+        Log.d("service_4", "")
+        val massageServiceList: ArrayList<MassageService> = ArrayList()
+        if (snapshots != null) {
+            for (doc in snapshots) {
+                val service = doc.toObject(MassageService::class.java)
+                service!!.service_id = doc.id
+                massageServiceList.add(service)
             }
-            .addOnFailureListener { e ->
-                // Hide the progress dialog if there is any error based on the base class instance.
-                when (makeupActivity) {
-                    is MakeUPActivity -> {
-                        makeupActivity.hideProgressDialog()
-                    }
-                }
-                Log.e("Get service List", "Error while getting service list.", e)
-            }
-
-
+        }
+        context.hideProgressDialog()
+        context.successMassageServiceListFromFireStore(massageServiceList)
     }
 
-    fun getMassageList(massageActivity: MassageActivity) {
-        // The collection name for PRODUCTS
-        mFireStore.collection(Constants.MASSAGE_SERVICES)
-            .whereEqualTo(Constants.PROVIDER_ID, getCurrentUserID())
-            .get() // Will get the documents snapshots.
-            .addOnSuccessListener { document ->
-
-                // Here we get the list of boards in the form of documents.
-                Log.e("Service List", document.documents.toString())
-
-                // Here we have created a new instance for Products ArrayList.
-                val massageServiceList: ArrayList<MassageService> = ArrayList()
-
-                // A for loop as per the list of documents to convert them into Products ArrayList.
-                for (i in document.documents) {
-                    val massageService = i.toObject(MassageService::class.java)
-                    massageService!!.service_id = i.id
-                    massageServiceList.add(massageService)
-                }
-
-                when (massageActivity) {
-                    is MassageActivity -> {
-                        massageActivity.successMassageServiceListFromFireStore(massageServiceList)
-                    }
-                }
+    private fun displayNailCareData(
+        context: NailCareActivity,
+        snapshots: QuerySnapshot?,
+    ) {
+        Log.d("service_5", "")
+        val nailServiceList: ArrayList<NailService> = ArrayList()
+        if (snapshots != null) {
+            for (doc in snapshots) {
+                val service = doc.toObject(NailService::class.java)
+                service!!.service_id = doc.id
+                nailServiceList.add(service)
             }
-            .addOnFailureListener { e ->
-                // Hide the progress dialog if there is any error based on the base class instance.
-                when (massageActivity) {
-                    is MassageActivity -> {
-                        massageActivity.hideProgressDialog()
-                    }
-                }
-                Log.e("Get service List", "Error while getting service list.", e)
-            }
+        }
+        context.hideProgressDialog()
+        context.successNailCareServiceListFromFireStore(nailServiceList)
     }
 
-    fun getNailServiceList(hairCareActivity: HairCareActivity) {
-        // The collection name for PRODUCTS
-        mFireStore.collection(Constants.HAIR_SERVICES)
-            .whereEqualTo(Constants.PROVIDER_ID, getCurrentUserID())
-            .get() // Will get the documents snapshots.
-            .addOnSuccessListener { document ->
-
-                // Here we get the list of boards in the form of documents.
-                Log.e("Service List", document.documents.toString())
-
-                // Here we have created a new instance for Products ArrayList.
-                val serviceList: ArrayList<Service> = ArrayList()
-
-                // A for loop as per the list of documents to convert them into Products ArrayList.
-                for (i in document.documents) {
-                    val service = i.toObject(Service::class.java)
-                    service!!.service_id = i.id
-                    serviceList.add(service)
-                }
-
-                when (hairCareActivity) {
-                    is HairCareActivity -> {
-                        hairCareActivity.successServiceListFromFireStore(serviceList)
-                    }
-                }
+    private fun displayTatColorData(
+        context: TatooAndColorActivity,
+        snapshots: QuerySnapshot?,
+    ) {
+        Log.d("service_5", "")
+        val tatServiceList: ArrayList<TatColorService> = ArrayList()
+        if (snapshots != null) {
+            for (doc in snapshots) {
+                val service = doc.toObject(TatColorService::class.java)
+                service!!.service_id = doc.id
+                tatServiceList.add(service)
             }
-            .addOnFailureListener { e ->
-                // Hide the progress dialog if there is any error based on the base class instance.
-                when (hairCareActivity) {
-                    is HairCareActivity -> {
-                        hairCareActivity.hideProgressDialog()
-                    }
-                }
-                Log.e("Get service List", "Error while getting service list.", e)
-            }
-
-
-    }
-
-    fun getTatColorList(tatooAndColorActivity: TatooAndColorActivity) {
-        // The collection name for PRODUCTS
-        mFireStore.collection(Constants.TATCOLOUR_SERVICES)
-            .whereEqualTo(Constants.PROVIDER_ID, getCurrentUserID())
-            .get() // Will get the documents snapshots.
-            .addOnSuccessListener { document ->
-
-                // Here we get the list of boards in the form of documents.
-                Log.e("Service List", document.documents.toString())
-
-                // Here we have created a new instance for Products ArrayList.
-                val tatColorserviceList: ArrayList<TatColorService> = ArrayList()
-
-                // A for loop as per the list of documents to convert them into Products ArrayList.
-                for (i in document.documents) {
-                    val tatService = i.toObject(TatColorService::class.java)
-                    tatService!!.service_id = i.id
-                    tatColorserviceList.add(tatService)
-                }
-
-                when (tatooAndColorActivity) {
-                    is TatooAndColorActivity -> {
-                        tatooAndColorActivity.successTatColorServiceListFromFireStore(
-                            tatColorserviceList
-                        )
-                    }
-                }
-            }
-            .addOnFailureListener { e ->
-                // Hide the progress dialog if there is any error based on the base class instance.
-                when (tatooAndColorActivity) {
-                    is TatooAndColorActivity -> {
-                        tatooAndColorActivity.hideProgressDialog()
-                    }
-                }
-                Log.e("Get service List", "Error while getting service list.", e)
-            }
-
-
+        }
+        context.hideProgressDialog()
+        context.successTatColorServiceListFromFireStore(tatServiceList)
     }
 
 

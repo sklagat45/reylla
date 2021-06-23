@@ -33,7 +33,7 @@ class NailServiceAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
 
-        if (holder is NailServiceAdapter.NailsViewHolder) {
+        if (holder is NailsViewHolder) {
 
 
             GlideLoader(context).loadServicePicture(

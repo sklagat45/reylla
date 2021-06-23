@@ -5,22 +5,30 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.sklagat46.reylla.R
 import com.sklagat46.reylla.activities.BaseActivity
 import com.sklagat46.reylla.activities.serviceproviders.addingNewService.AddMassageServiceActivity
 import com.sklagat46.reylla.adapter.MassageServiceAdapter
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.MassageService
-import kotlinx.android.synthetic.main.activity_make_u_p.*
+import com.sklagat46.reylla.utils.Constants
+import com.sklagat46.reylla.utils.Util
 import kotlinx.android.synthetic.main.activity_massage.*
-import java.util.*
 
 class MassageActivity : BaseActivity() {
+
+    private val mFireStore = FirebaseFirestore.getInstance()
+    private lateinit var mRootView: View
+
+    private val currentUser = FirebaseAuth.getInstance().currentUser!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_massage)
 
         getMassageServiceListFromFirestoreDB()
+        Util.setRecyclerView(this, rv_massage_list)
         fab_add_massage.setOnClickListener {
 
             val addMassageServiceIntent =
@@ -36,8 +44,8 @@ class MassageActivity : BaseActivity() {
     private fun getMassageServiceListFromFirestoreDB() {
         showProgressDialog(resources.getString(R.string.please_wait))
         // Call the function of Firestore class.
-        FirestoreClass().getMassageList(this@MassageActivity)
-
+        FirestoreClass().getServiceList(this@MassageActivity, Constants.MASSAGE_SERVICES)
+        hideProgressDialog()
     }
 
     override fun onResume() {

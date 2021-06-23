@@ -4,15 +4,24 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 import com.sklagat46.reylla.R
+import com.sklagat46.reylla.activities.BaseActivity
 import com.sklagat46.reylla.activities.serviceproviders.addingNewService.AddNailCareServiceActivity
+import com.sklagat46.reylla.adapter.NailServiceAdapter
+import com.sklagat46.reylla.firebase.FirestoreClass
+import com.sklagat46.reylla.model.NailService
+import com.sklagat46.reylla.utils.Constants
+import com.sklagat46.reylla.utils.Util
 import kotlinx.android.synthetic.main.activity_nail_care.*
 
-class NailCareActivity : AppCompatActivity() {
+class NailCareActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nail_care)
+
+        getNailCareServiceListFromFirestoreDB()
+        Util.setRecyclerView(this, rv_nail_care_list)
 
 
         fab_add_nail_care.setOnClickListener {
@@ -24,6 +33,31 @@ class NailCareActivity : AppCompatActivity() {
                 NailCareActivity.ADD_SERVICE_ACTIVITY_REQUEST_CODE
             )
 
+        }
+    }
+
+    private fun getNailCareServiceListFromFirestoreDB() {
+        showProgressDialog(resources.getString(R.string.please_wait))
+        // Call the function of Firestore class.
+        FirestoreClass().getServiceList(this@NailCareActivity, Constants.NAIL_SERVICES)
+        hideProgressDialog()
+    }
+
+
+    fun successNailCareServiceListFromFireStore(nailServiceList: ArrayList<NailService>) {
+
+        // Hide Progress dialog.
+//        hideProgressDialog()
+
+        if (nailServiceList.isNotEmpty()) {
+            rv_nail_care_list.visibility = View.VISIBLE
+            //tv_no_records_available.visibility = View.GONE
+            val adapterService =
+                NailServiceAdapter(this, nailServiceList)
+            rv_nail_care_list.adapter = adapterService
+        } else {
+            rv_nail_care_list.visibility = View.GONE
+            //tv_no_records_available.visibility = View.VISIBLE
         }
     }
 

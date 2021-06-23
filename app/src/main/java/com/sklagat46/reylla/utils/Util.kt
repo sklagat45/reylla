@@ -12,7 +12,10 @@ object Util {
         recyclerView: RecyclerView
     ) {
         val mLayoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL, false
+            )
         recyclerView.layoutManager = mLayoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
         /* recyclerView.addItemDecoration(

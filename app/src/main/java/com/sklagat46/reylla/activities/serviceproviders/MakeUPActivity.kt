@@ -12,11 +12,12 @@ import com.sklagat46.reylla.activities.serviceproviders.addingNewService.AddMake
 import com.sklagat46.reylla.adapter.MakeupServiceAdapter
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.MakeupService
-import kotlinx.android.synthetic.main.activity_hair_care.*
+import com.sklagat46.reylla.utils.Constants
+import com.sklagat46.reylla.utils.Util
 import kotlinx.android.synthetic.main.activity_make_u_p.*
 
 class MakeUPActivity : BaseActivity() {
-    val mFireStore = FirebaseFirestore.getInstance()
+    private val mFireStore = FirebaseFirestore.getInstance()
     private lateinit var mRootView: View
 
     private val currentUser = FirebaseAuth.getInstance().currentUser!!
@@ -24,9 +25,11 @@ class MakeUPActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_make_u_p)
-        getMakeupServiceListFromFirestoreDB()
-        fab_add_Makeup.setOnClickListener {
 
+        Util.setRecyclerView(this, rv_makeup_list)
+        getMakeupServiceListFromFirestoreDB()
+
+        fab_add_Makeup.setOnClickListener {
             val addMakeupServiceIntent =
                 Intent(this@MakeUPActivity, AddMakeUpServiceActivity::class.java)
             startActivityForResult(
@@ -41,18 +44,13 @@ class MakeUPActivity : BaseActivity() {
         internal const val EXTRA_PLACE_DETAILS = "extra_place_details"
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        getMakeupServiceListFromFirestoreDB()
-    }
 
     private fun getMakeupServiceListFromFirestoreDB() {
 
         showProgressDialog(resources.getString(R.string.please_wait))
-
         // Call the function of Firestore class.
-        FirestoreClass().getMakeupServiceList(this@MakeUPActivity)
+        FirestoreClass().getServiceList(this@MakeUPActivity, Constants.MAKEUP_SERVICES)
+        hideProgressDialog()
 
     }
 
@@ -83,7 +81,7 @@ class MakeUPActivity : BaseActivity() {
 //        }
 //    }
 
-    fun successServiceListFromFireStore(makeupServiceList: ArrayList<MakeupService>) {
+    fun successMakeupServiceListFromFireStore(makeupServiceList: ArrayList<MakeupService>) {
 
         // Hide Progress dialog.
         hideProgressDialog()

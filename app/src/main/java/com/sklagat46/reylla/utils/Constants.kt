@@ -26,6 +26,7 @@ object Constants {
 
 
     const val PROVIDER_ID: String = "provider_id"
+    const val PROVIDER_IDD: String = "providerID"
     const val TATCOLOUR_SERVICES: String = "tatcolourService"
 
     // Intent extra constants.

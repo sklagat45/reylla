@@ -33,7 +33,7 @@ class TatColorServiceAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
 
-        if (holder is TatColorServiceAdapter.TatColorViewHolder) {
+        if (holder is TatColorViewHolder) {
 
 
             GlideLoader(context).loadServicePicture(
@@ -77,6 +77,4 @@ class TatColorServiceAdapter(
                 .into(itemView.iv_item_service_image)
         }
     }
-
-
 }

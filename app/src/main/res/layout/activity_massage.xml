@@ -27,20 +27,22 @@ tools:context=".activities.serviceproviders.MassageActivity">
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/rv_massage_list"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:visibility="gone"
-    tools:visibility="gone" />
-
-<!--This text view we will make it visible when the list size is 0 means no data available to display in list.-->
-<TextView
-    android:id="@+id/tv_no_records_available"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:text="@string/there_s_no_available_service_yet_please_add"
-    android:textSize="16sp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    tools:listitem="@layout/row_service_item"
     android:visibility="visible"
     tools:visibility="visible" />
+
+<!--This text view we will make it visible when the list size is 0 means no data available to display in list.-->
+    <TextView
+        android:id="@+id/tv_no_records_available"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/there_s_no_available_service_yet_please_add"
+        android:textSize="16sp"
+        android:visibility="gone"
+        tools:visibility="gone" />
 
 <com.google.android.material.floatingactionbutton.FloatingActionButton
     android:id="@+id/fab_add_massage"

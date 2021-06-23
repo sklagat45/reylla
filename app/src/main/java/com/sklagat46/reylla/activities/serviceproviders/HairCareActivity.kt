@@ -34,11 +34,8 @@ class HairCareActivity : BaseActivity() {
             val addHairServiceIntent =
                 Intent(this@HairCareActivity, AddHairServiceActivity::class.java)
             startActivityForResult(addHairServiceIntent, ADD_SERVICE_ACTIVITY_REQUEST_CODE)
-
         }
-
     }
-
 
     companion object {
         private const val ADD_SERVICE_ACTIVITY_REQUEST_CODE = 1
@@ -49,7 +46,7 @@ class HairCareActivity : BaseActivity() {
     private fun getServiceListFromFirestoreDB() {
         showProgressDialog(resources.getString(R.string.please_wait))
         // Call the function of Firestore class.
-        FirestoreClass().getServiceList(this@HairCareActivity, Constants.HAIR_SERVICES)
+        FirestoreClass().getHairServiceList(this@HairCareActivity, Constants.HAIR_SERVICES)
         hideProgressDialog()
     }
 

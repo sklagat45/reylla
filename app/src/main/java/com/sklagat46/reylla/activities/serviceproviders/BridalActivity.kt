@@ -13,8 +13,8 @@ import com.sklagat46.reylla.adapter.BridalServiceAdapter
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.BridalService
 import com.sklagat46.reylla.utils.Constants
+import com.sklagat46.reylla.utils.Util
 import kotlinx.android.synthetic.main.activity_bridal.*
-import kotlinx.android.synthetic.main.activity_tatoo_and_color.*
 import java.util.*
 
 class BridalActivity : BaseActivity() {
@@ -27,6 +27,7 @@ class BridalActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bridal)
         getBridalServiceListFromFirestoreDB()
+        Util.setRecyclerView(this, rv_bridal_care_list)
 
         fab_add_bridal_care.setOnClickListener {
 
