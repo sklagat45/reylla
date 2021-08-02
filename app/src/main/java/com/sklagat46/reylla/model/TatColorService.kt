@@ -7,5 +7,6 @@ class TatColorService(
     var styleCost: String,
     var mserviceImageURL: String,
     var service_id: String = "",
-
-    )
+    ) {
+    constructor():this("","","","","")
+}

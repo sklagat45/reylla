@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Company(
 
-    val id: String = "",
+    var id: String = "",
     val companyImage: String = "",
     val companyName: String = "",
     val registrationNumber: String = "",
@@ -14,5 +14,6 @@ data class Company(
     val companyPhonenumber: String = "0",
     val companyEmail: String = "",
     val fcmToken: String = "",
-
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0
     ) : Parcelable

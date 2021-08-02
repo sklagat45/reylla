@@ -23,7 +23,6 @@ class NailCareActivity : BaseActivity() {
         getNailCareServiceListFromFirestoreDB()
         Util.setRecyclerView(this, rv_nail_care_list)
 
-
         fab_add_nail_care.setOnClickListener {
 
             val addNailServiceIntent =

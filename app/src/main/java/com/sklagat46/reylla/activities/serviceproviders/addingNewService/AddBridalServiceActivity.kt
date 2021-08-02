@@ -32,7 +32,6 @@ class AddBridalServiceActivity : BaseActivity() {
     private var mSelectedImageFileUri: Uri? = null
     private val currentUser = FirebaseAuth.getInstance().currentUser!!
 
-
     // Access a Cloud Firestore instance.
     private val mFireStore = FirebaseFirestore.getInstance()
 
@@ -274,14 +273,20 @@ class AddBridalServiceActivity : BaseActivity() {
         // Get the current user id
         var providerID = ""
         providerID = currentUser.uid
-
+//
+//        var service: BridalService
+//        val newDocID: String = mFireStore.document("service").getId() //Get Doc ID first.
+//
+//        service.setToolID(newDocID)
         // Here we get the text from editText and trim the space
         val bridalService = BridalService(
             providerID,
             et_bridal_style_name.text.toString().trim { it <= ' ' },
             et_bridal_service_duration.text.toString().trim { it <= ' ' },
             et_bridal_style_cost.text.toString().trim { it <= ' ' },
-            mserviceImageURL
+            mserviceImageURL,
+//            newDocID
+
         )
 
         FirestoreClass().uploadBridalDetails(this@AddBridalServiceActivity, bridalService)

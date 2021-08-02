@@ -15,6 +15,8 @@ data class IndividualProviders(
     val individualPhoneNum: String = "0",
     val individualEmail: String = "",
     val individualGender: String = "",
-    val fcmToken: String = ""
+    val fcmToken: String = "",
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0
 
 ) : Parcelable

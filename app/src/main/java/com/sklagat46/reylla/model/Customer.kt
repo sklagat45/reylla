@@ -16,6 +16,8 @@ data class Customer(
     val customerEmail: String = "",
     val customerGender: String = "",
     val fcmToken: String = "",
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0
 
 
     ) : Parcelable

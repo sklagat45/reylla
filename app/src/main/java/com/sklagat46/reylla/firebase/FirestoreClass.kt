@@ -2,18 +2,26 @@ package com.sklagat46.reylla.firebase
 
 import android.app.Activity
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import android.widget.Toast
+import android.widget.Toast.makeText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.sklagat46.reylla.R2
 import com.sklagat46.reylla.activities.SignInActivity
 import com.sklagat46.reylla.activities.SignUpActivity
 import com.sklagat46.reylla.activities.agentclients.RegisterCustomer
 import com.sklagat46.reylla.activities.serviceproviders.*
 import com.sklagat46.reylla.activities.serviceproviders.addingNewService.*
+import com.sklagat46.reylla.activities.serviceproviders.ui.CompleteProfile
+import com.sklagat46.reylla.activities.serviceproviders.ui.gallery.AddGalleryImagesActivity
+import com.sklagat46.reylla.activities.serviceproviders.ui.home.HomeFragment
 import com.sklagat46.reylla.model.*
 import com.sklagat46.reylla.utils.Constants
 
@@ -30,6 +38,57 @@ class FirestoreClass {
     /**
      * A function to make an entry of the registered user in the firestore database.
      */
+
+    // A function to upload the image to the cloud storage.
+    fun uploadImageToCloudStorage(activity: Activity, imageFileURI: Uri?, imageType: String) {
+
+        //getting the storage reference
+        val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
+            imageType + System.currentTimeMillis() + "."
+                    + Constants.getFileExtension(
+                activity,
+                imageFileURI
+            )
+        )
+
+        //adding the file to reference
+        sRef.putFile(imageFileURI!!)
+            .addOnSuccessListener { taskSnapshot ->
+                // The image upload is success
+                Log.e(
+                    "Firebase Image URL",
+                    taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
+                )
+
+                // Get the downloadable url from the task snapshot
+                taskSnapshot.metadata!!.reference!!.downloadUrl
+                    .addOnSuccessListener { uri ->
+                        Log.e("Downloadable Image URL", uri.toString())
+                        // Here call a function of base activity for transferring the result to it.
+                        when (activity) {
+                            is CompanyRegister -> {
+                                activity.imageUploadSuccess(uri.toString())
+                            }
+                        }
+                    }
+            }
+            .addOnFailureListener { exception ->
+
+                // Hide the progress dialog if there is any error. And print the error in log.
+                when (activity) {
+                    is CompanyRegister -> {
+                        activity.hideProgressDialog()
+                    }
+
+                }
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    exception.message,
+                    exception
+                )
+            }
+    }
     fun registerUser(activity: SignUpActivity, userInfo: User) {
 
         mFireStore.collection(Constants.USERS)
@@ -161,7 +220,9 @@ class FirestoreClass {
     fun uploadHairDetails(activity: AddHairServiceActivity, serviceInfor: Service) {
         mFireStore.collection(Constants.HAIR_SERVICES)
             .document()
-//            .document(getCurrentUserID() + "." + System.currentTimeMillis())
+//            .document(
+//            getCurrentUserID() + "." + System.currentTimeMillis()
+//            )
 //            .whereEqualTo("styleName", serviceInfor.styleName)
             // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(serviceInfor, SetOptions.merge())
@@ -169,16 +230,13 @@ class FirestoreClass {
                 // Here call a function of base activity for transferring the result to it.
                 activity.serviceUploadSuccess()
             }
-            .addOnFailureListener { e ->
-
+            .addOnFailureListener{ e ->
                 activity.hideProgressDialog()
-
                 Log.e(
                     activity.javaClass.simpleName,
                     "Error while uploading the service details.",
                     e
-                )
-            }
+                ) }
     }
 
     /**
@@ -194,6 +252,7 @@ class FirestoreClass {
             .addOnSuccessListener {
                 // Here call a function of base activity for transferring the result to it.
                 activity.serviceUploadSuccess()
+
             }
             .addOnFailureListener { e ->
 
@@ -287,6 +346,36 @@ class FirestoreClass {
             }
     }
 
+
+    fun uploadImageDetails(
+        activity: AddGalleryImagesActivity,
+        galleryItemInfor: GalleryItem
+    ) {
+
+        mFireStore.collection(Constants.GALLERY_ITEMS)
+            .document()
+//            .whereEqualTo("styleName", serviceInfor.styleName)
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(galleryItemInfor, SetOptions.merge())
+            .addOnSuccessListener {
+//                val imageInfor = it.toObject(GalleryItem::class.java)
+                galleryItemInfor.id = mFireStore.collection(Constants.GALLERY_ITEMS)
+                    .document().toString()
+
+                // Here call a function of base activity for transferring the result to it.
+                activity.serviceUploadSuccess(galleryItemInfor.id)
+            }
+            .addOnFailureListener { e ->
+
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while uploading the service details.",
+                    e
+                )
+            }
+    }
     /**
      * A function to make an entry of the user's product in the cloud firestore database.
      */
@@ -377,7 +466,7 @@ class FirestoreClass {
             .whereEqualTo(Constants.PROVIDER_ID, getCurrentUserID())
             .addSnapshotListener(EventListener { snapshots, e ->
                 if (e != null) {
-                    Toast.makeText(context, "Error $e", Toast.LENGTH_SHORT).show()
+                    makeText(context, "Error $e", Toast.LENGTH_SHORT).show()
                     when (context) {
                         is HairCareActivity -> {
                             context.hideProgressDialog()
@@ -385,7 +474,6 @@ class FirestoreClass {
                     }
                     return@EventListener
                 }
-
                 when (context) {
                     is HairCareActivity -> {
                         displayHairCareData(context, snapshots)
@@ -402,9 +490,9 @@ class FirestoreClass {
             .whereEqualTo(Constants.PROVIDER_IDD, getCurrentUserID())
             .addSnapshotListener(EventListener { snapshots, e ->
                 if (e != null) {
-                    Toast.makeText(context, "Error $e", Toast.LENGTH_SHORT).show()
+                    makeText(context, "Error $e", Toast.LENGTH_SHORT).show()
                     when (context) {
-                        is HairCareActivity -> {
+                        is BridalActivity -> {
                             context.hideProgressDialog()
                         }
                     }
@@ -437,7 +525,7 @@ class FirestoreClass {
     private fun displayHairCareData(
         context: HairCareActivity,
         snapshots: QuerySnapshot?, ) {
-        Log.d("service_1", "")
+        Log.d("service_1", "haiiiiirrrrrr")
         val serviceList: ArrayList<Service> = ArrayList()
         if (snapshots != null) {
             for (doc in snapshots) {
@@ -450,11 +538,28 @@ class FirestoreClass {
         context.successServiceListFromFireStore(serviceList)
     }
 
+    private fun displayTatColorData(
+        context: TatooAndColorActivity,
+        snapshots: QuerySnapshot?,
+    ) {
+        Log.d("service_5", "")
+        val tatServiceList: ArrayList<TatColorService> = ArrayList()
+        if (snapshots != null) {
+            for (doc in snapshots) {
+                val service = doc.toObject(TatColorService::class.java)
+                service!!.service_id = doc.id
+                tatServiceList.add(service)
+            }
+        }
+        context.hideProgressDialog()
+        context.successTatColorServiceListFromFireStore(tatServiceList)
+    }
+
+
     private fun displayBridalData(
         context: BridalActivity,
         snapshots: QuerySnapshot?, ) {
-
-        Log.d("service_2", "")
+        Log.d("service_2", "bridieeeee")
         val serviceList: ArrayList<BridalService> = ArrayList()
         if (snapshots != null) {
             for (doc in snapshots) {
@@ -471,7 +576,7 @@ class FirestoreClass {
         context: MakeUPActivity,
         snapshots: QuerySnapshot?,
     ) {
-        Log.d("service_3", "")
+        Log.d("service_3", "mmmmakeup")
         val makeupServiceList: ArrayList<MakeupService> = ArrayList()
         if (snapshots != null) {
             for (doc in snapshots) {
@@ -518,22 +623,92 @@ class FirestoreClass {
         context.successNailCareServiceListFromFireStore(nailServiceList)
     }
 
-    private fun displayTatColorData(
-        context: TatooAndColorActivity,
+
+    /**
+     * A function to update the user profile data into the database.
+     *
+     * @param activity The activity is used for identifying the Base activity to which the result is passed.
+     * @param userHashMap HashMap of fields which are to be updated.
+     */
+    fun updateUserProfileData(activity: Activity, userHashMap: HashMap<String, Any>) {
+        // Collection Name
+        mFireStore.collection(Constants.USERS)
+            // Document ID against which the data to be updated. Here the document id is the current logged in user id.
+            .document(getCurrentUserID())
+            // A HashMap of fields which are to be updated.
+            .update(userHashMap)
+            .addOnSuccessListener {
+
+                // Notify the success result.
+                when (activity) {
+                    is CompleteProfile -> {
+                        // Call a function of base activity for transferring the result to it.
+                        activity.userProfileUpdateSuccess()
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+
+                when (activity) {
+                    is CompleteProfile -> {
+                        // Hide the progress dialog if there is any error. And print the error in log.
+                        activity.hideProgressDialog()
+                    }
+                }
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating the user details.",
+                    e
+                )
+            }
+    }
+
+
+
+    fun getSalonItemsList(homeFragment: HomeFragment) {
+        // The collection name for PRODUCTS
+        mFireStore.collection(Constants.COMPANIES)
+            .addSnapshotListener(EventListener { snapshots, e ->
+                if (e != null) {
+//                    Toast.makeText(homeFragment, "Error $e", Toast.LENGTH_SHORT).show()
+
+                    when (homeFragment) {
+                        is HomeFragment -> {
+//                            homeFragment.hideProgressDialog()
+                        }
+                    }
+                    return@EventListener
+                }
+                when (homeFragment) {
+                    is HomeFragment -> {
+                        displaySalonItemsList(homeFragment, snapshots)
+                    }
+                }
+
+            })
+
+    }
+
+    private fun displaySalonItemsList(
+        context: HomeFragment,
         snapshots: QuerySnapshot?,
     ) {
         Log.d("service_5", "")
-        val tatServiceList: ArrayList<TatColorService> = ArrayList()
+
+        val saloonList: ArrayList<Company> = ArrayList()
         if (snapshots != null) {
             for (doc in snapshots) {
-                val service = doc.toObject(TatColorService::class.java)
-                service!!.service_id = doc.id
-                tatServiceList.add(service)
+                val service = doc.toObject(Company::class.java)
+                service!!.id = doc.id
+                saloonList.add(service)
             }
         }
-        context.hideProgressDialog()
-        context.successTatColorServiceListFromFireStore(tatServiceList)
+//        context.hideProgressDialog()
+        context.successSaloonItemsList(saloonList)
     }
+
+
 
 
 }

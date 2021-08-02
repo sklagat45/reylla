@@ -29,12 +29,10 @@ class MakeupServiceAdapter(
         )
     }
 
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
 
         if (holder is MakeupViewHolder) {
-
 
             GlideLoader(context).loadServicePicture(
                 model.mserviceImageURL,
@@ -55,7 +53,8 @@ class MakeupServiceAdapter(
                 // Launch Product details screen.
                 val intent = Intent(context, ServiceDetailsActivity::class.java)
                 intent.putExtra(Constants.EXTRA_SERVICE_ID, model.service_id)
-                intent.putExtra(Constants.EXTRA_SERVICE_OWNER_ID, model.providerID)
+                intent.putExtra(Constants.EXTRA_SERVICE_OWNER_ID, model.providerID
+                )
                 context.startActivity(intent)
             }
         }
@@ -77,5 +76,4 @@ class MakeupServiceAdapter(
                 .into(itemView.iv_item_service_image)
         }
     }
-
 }

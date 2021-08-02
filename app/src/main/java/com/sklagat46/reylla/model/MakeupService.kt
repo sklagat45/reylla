@@ -8,4 +8,6 @@ class MakeupService(
     val mserviceImageURL: String,
     var service_id: String = "",
 
-    )
+    ) {
+    constructor():this("","","","","")
+}

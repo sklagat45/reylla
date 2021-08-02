@@ -42,7 +42,7 @@
     <string name="super_services">Services</string>
     <string name="add_images">Add Images</string>
     <string name="add_to_gallery">Add To Gallery</string>
-    <string name="text_add_image">ADD IMAGE</string>
+    <string name="text_add_image">ADD LOGO</string>
     <string name="from_gallery">FROM GALLERY</string>
     <string name="add_hair_care">add hair care</string>
     <string name="there_s_no_service_yet_please_add">There\'s no service yet please add</string>
@@ -55,4 +55,10 @@
     <string name="duration_taken_to_offer_the_service_in_hours">Duration Taken To Offer The Service in hours</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyApmayiVEYETgnKjAY8R_2oUA1dFH2XI_8</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="location">Location</string>
+    <string name="image_selection_failed">fail to load the image</string>
+    <string name="read_storage_permission_denied">permission denied</string>
+    <string name="msg_profile_update_success">profile updated successfully</string>
 </resources>

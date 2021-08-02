@@ -5,13 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.sklagat46.reylla.R
 import com.sklagat46.reylla.activities.serviceproviders.*
 import com.sklagat46.reylla.adapter.CategoriesAdapter
+import com.sklagat46.reylla.adapter.SaloonItemsListAdapter
+import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.listener.CustomItemClickListener
 import com.sklagat46.reylla.model.CategoriesViews
+import com.sklagat46.reylla.model.Company
 import com.sklagat46.reylla.utils.CustomGridLayoutManager
 import com.sklagat46.reylla.utils.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -36,8 +43,15 @@ class HomeFragment : Fragment() {
 
         setRvAdapter()
         setUpAdapter()
+        getGetExistingSalonList()
 
     }
+
+//    private fun setSaloonRVAdapter() {
+//        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//        rv_other_saloons.layoutManager = layoutManager
+//
+//    }
 
     private fun setRvAdapter() {
         val layoutManager = CustomGridLayoutManager(requireContext(), 3)
@@ -47,6 +61,16 @@ class HomeFragment : Fragment() {
         recycleViewCards.addItemDecoration(itemDecoration)
     }
 
+    private fun getGetExistingSalonList() {
+        // Show the progress dialog.
+        Toast.makeText(
+            activity,"please Wait",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        FirestoreClass().getSalonItemsList(this@HomeFragment)
+
+    }
     private fun setUpAdapter() {
         categoriesAdapter = CategoriesAdapter(requireContext(), emptyList(),
             object : CustomItemClickListener {
@@ -156,26 +180,48 @@ class HomeFragment : Fragment() {
         return arrayList
     }
 
-    override fun onStart() {
-        super.onStart()
-        (activity as AppCompatActivity).supportActionBar!!.hide()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as AppCompatActivity).supportActionBar!!.show()
-    }
-
 
     override fun onResume() {
         super.onResume()
+
+        getGetExistingSalonList()
         (activity as AppCompatActivity).supportActionBar!!.hide()
     }
+    /**
+     * A function to get the success result of the dashboard items from cloud firestore.
+     *
+     * @param salonItemsList
+     */
+    fun successSaloonItemsList(salonItemsList: ArrayList<Company>) {
 
-    override fun onPause() {
-        super.onPause()
-        (activity as AppCompatActivity).supportActionBar!!.hide()
+        // Hide the progress dialog.
 
+        if (salonItemsList.size > 0) {
+
+            rv_other_saloons.visibility = View.VISIBLE
+            tv_no_saloon_exist.visibility = View.GONE
+
+            rv_other_saloons.layoutManager = GridLayoutManager(activity, 3,)
+            rv_other_saloons.setHasFixedSize(true)
+
+            val adapter = SaloonItemsListAdapter(requireActivity(), salonItemsList)
+            rv_other_saloons.adapter = adapter
+
+            adapter.setOnClickListener(object :
+                SaloonItemsListAdapter.OnClickListener {
+                override fun onClick(position: Int, company: Company) {
+
+//                    val intent = Intent(context, DetailsActivity::class.java)
+//                    intent.putExtra(Constants.EXTRA_PRODUCT_ID, company.id)
+//                    intent.putExtra(Constants.EXTRA_PRODUCT_OWNER_ID, company.user_id)
+//                    startActivity(intent)
+                }
+            })
+            // END
+        } else {
+            rv_other_saloons.visibility = View.GONE
+            tv_no_saloon_exist.visibility = View.VISIBLE
+        }
     }
 
 

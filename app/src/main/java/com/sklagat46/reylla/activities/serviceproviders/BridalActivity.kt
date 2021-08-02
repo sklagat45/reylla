@@ -17,6 +17,7 @@ import com.sklagat46.reylla.utils.Util
 import kotlinx.android.synthetic.main.activity_bridal.*
 import java.util.*
 
+
 class BridalActivity : BaseActivity() {
 
     val mFireStore = FirebaseFirestore.getInstance()
@@ -70,7 +71,6 @@ class BridalActivity : BaseActivity() {
         if (currentUser != null) {
             currentUserID = currentUser.uid
         }
-
         return currentUserID
         // END
     }

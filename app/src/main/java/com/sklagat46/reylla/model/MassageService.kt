@@ -7,4 +7,6 @@ class MassageService(
     var styleCost: String,
     val mserviceImageURL: String,
     var service_id: String = "",
-    )
+    ) {
+    constructor():this("","","","","")
+}

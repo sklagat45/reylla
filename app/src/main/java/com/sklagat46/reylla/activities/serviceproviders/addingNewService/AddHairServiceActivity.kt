@@ -80,82 +80,86 @@ class AddHairServiceActivity : BaseActivity() {
 
         // Assign the click event to submit button.
         btn_save_hair_service.setOnClickListener {
-            if (validateServiceDetails()) {
-
-                if (mSelectedImageFileUri != null) {
-                    // Get the current user id
-                    var currentUserID = ""
-                    currentUserID = currentUser.uid
-
-//                getCurrentProviderID()
-                    // Get the image extension.
-                    /*MimeTypeMap: Two-way map that maps MIME-types to file extensions and vice versa.
-        getSingleton(): Get the singleton instance of MimeTypeMap.
-        getExtensionFromMimeType: Return the registered extension for the given MIME type.
-        contentResolver.getType: Return the MIME type of the given content URL.*/
-                    val imageExtension = MimeTypeMap.getSingleton()
-                        .getExtensionFromMimeType(contentResolver.getType(mSelectedImageFileUri!!))
-
-                    //getting the storage reference
-                    val sRef: StorageReference =
-                        FirebaseStorage.getInstance().reference.child(currentUserID)
-                            .child("hairStyles")
-                            .child(
-                                "Image" + System.currentTimeMillis() + "."
-                                        + imageExtension
-                            )
-
-                    //adding the file to reference
-                    sRef.putFile(mSelectedImageFileUri!!)
-                        .addOnSuccessListener { taskSnapshot ->
-                            // The image upload is success
-                            Log.e(
-                                "Firebase Image URL",
-                                taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
-                            )
-                            // Get the downloadable url from the task snapshot
-                            taskSnapshot.metadata!!.reference!!.downloadUrl
-                                .addOnSuccessListener { url ->
-                                    Log.e("Downloadable Image URL", url.toString())
-
-                                    Toast.makeText(
-                                        this@AddHairServiceActivity,
-                                        "Your image uploaded successfully",
-                                        Toast.LENGTH_LONG
-                                    ).show()
-
-                                    mserviceImageURL = url.toString()
-                                    uploadServiceDetails()
-                                    // TODO Step 3: Load the uploaded image url using Glide.
-                                    // START
-                                    Glide.with(this@AddHairServiceActivity)
-                                        .load(url)
-                                        .placeholder(R.drawable.long_hair_logo) // If the image is failed to load then the placeholder will be visible.
-                                        .into(iv_service_image)
-                                    // END
-                                }
-                                .addOnFailureListener { exception ->
-                                    Toast.makeText(
-                                        this,
-                                        exception.message,
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                    Log.e(javaClass.simpleName, exception.message, exception)
-                                }
-                        }
-                } else {
-
-                    Toast.makeText(
-                        this,
-                        "Please select the image to upload.",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-
-
-            }
+           saveData()
         }
 
+    }
+
+    private fun saveData() {
+        if (validateServiceDetails()) {
+
+            if (mSelectedImageFileUri != null) {
+                // Get the current user id
+                var currentUserID = ""
+                currentUserID = currentUser.uid
+
+//                getCurrentProviderID()
+                // Get the image extension.
+                /*MimeTypeMap: Two-way map that maps MIME-types to file extensions and vice versa.
+    getSingleton(): Get the singleton instance of MimeTypeMap.
+    getExtensionFromMimeType: Return the registered extension for the given MIME type.
+    contentResolver.getType: Return the MIME type of the given content URL.*/
+                val imageExtension = MimeTypeMap.getSingleton()
+                    .getExtensionFromMimeType(contentResolver.getType(mSelectedImageFileUri!!))
+
+                //getting the storage reference
+                val sRef: StorageReference =
+                    FirebaseStorage.getInstance().reference.child(currentUserID)
+                        .child("hairStyles")
+                        .child(
+                            "Image" + System.currentTimeMillis() + "."
+                                    + imageExtension
+                        )
+
+                //adding the file to reference
+                sRef.putFile(mSelectedImageFileUri!!)
+                    .addOnSuccessListener { taskSnapshot ->
+                        // The image upload is success
+                        Log.e(
+                            "Firebase Image URL",
+                            taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
+                        )
+                        // Get the downloadable url from the task snapshot
+                        taskSnapshot.metadata!!.reference!!.downloadUrl
+                            .addOnSuccessListener { url ->
+                                Log.e("Downloadable Image URL", url.toString())
+
+                                Toast.makeText(
+                                    this@AddHairServiceActivity,
+                                    "Your image uploaded successfully",
+                                    Toast.LENGTH_LONG
+                                ).show()
+
+                                mserviceImageURL = url.toString()
+                                uploadServiceDetails()
+                                // TODO Step 3: Load the uploaded image url using Glide.
+                                // START
+                                Glide.with(this@AddHairServiceActivity)
+                                    .load(url)
+                                    .placeholder(R.drawable.long_hair_logo) // If the image is failed to load then the placeholder will be visible.
+                                    .into(iv_service_image)
+                                // END
+                            }
+                            .addOnFailureListener { exception ->
+                                Toast.makeText(
+                                    this,
+                                    exception.message,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                Log.e(javaClass.simpleName, exception.message, exception)
+                            }
+                    }
+            } else {
+
+                Toast.makeText(
+                    this,
+                    "Please select the image to upload.",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+
+        }
     }
 
     /**

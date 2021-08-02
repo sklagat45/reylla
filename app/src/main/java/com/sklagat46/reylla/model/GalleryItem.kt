@@ -1,12 +1,13 @@
 package com.sklagat46.reylla.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import com.google.firebase.firestore.Exclude
 
-@Parcelize
 data class GalleryItem(
-    val id: String = "",
+    @Exclude
+    var id: String = "",
     val userId: String = "",
     val imageUrl: String = "",
     val date: String
-) : Parcelable
+) {
+    constructor():this("","","","")
+}

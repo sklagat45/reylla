@@ -1,5 +1,6 @@
 package com.sklagat46.reylla.model
 
+import com.google.firebase.firestore.Exclude
 import com.sklagat46.reylla.utils.Constants
 
 data class BridalService(
@@ -9,4 +10,6 @@ data class BridalService(
     var styleCost: String = Constants.EMPTY_STRING,
     val mserviceImageURL: String = Constants.EMPTY_STRING,
     var service_id: String = "",
-)
+) {
+    constructor():this("","","","","")
+}

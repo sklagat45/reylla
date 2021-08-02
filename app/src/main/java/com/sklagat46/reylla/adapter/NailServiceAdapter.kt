@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sklagat46.reylla.R
 import com.sklagat46.reylla.activities.serviceproviders.ui.details.ServiceDetailsActivity
+import com.sklagat46.reylla.model.BridalService
 import com.sklagat46.reylla.model.NailService
 import com.sklagat46.reylla.utils.Constants
 import com.sklagat46.reylla.utils.GlideLoader
@@ -20,7 +21,7 @@ class NailServiceAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return NailsViewHolder(
+        return NailCareViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.row_list_service_item,
                 parent,
@@ -33,7 +34,7 @@ class NailServiceAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
 
-        if (holder is NailsViewHolder) {
+        if (holder is NailCareViewHolder) {
 
 
             GlideLoader(context).loadServicePicture(
@@ -65,7 +66,7 @@ class NailServiceAdapter(
         return list.size
     }
 
-    inner class NailsViewHolder(itemView: View) :
+    inner class NailCareViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         fun bind(serviceItem: NailService) {
             itemView.tv_item_service_name.text = serviceItem.styleName

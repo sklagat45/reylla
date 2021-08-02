@@ -2,11 +2,13 @@ package com.sklagat46.reylla.activities.serviceproviders.ui.gallery
 
 import android.Manifest
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.TextUtils
 import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.Toast
@@ -18,17 +20,35 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.sklagat46.reylla.R
 import com.sklagat46.reylla.activities.BaseActivity
+import com.sklagat46.reylla.firebase.FirestoreClass
+import com.sklagat46.reylla.model.GalleryItem
+import com.sklagat46.reylla.utils.Constants
 import kotlinx.android.synthetic.main.activity_add_gallery_images.*
 import java.io.IOException
+import java.text.SimpleDateFormat
 import java.util.*
 
 
 class AddGalleryImagesActivity : BaseActivity() {
 
     // A global variable for URI of a selected image from phone storage.
-    private var mSelectedImageFileUri: Uri? = null
     private val currentUser = FirebaseAuth.getInstance().currentUser!!
+    private var cal = Calendar.getInstance()
 
+    private var mGalleryItem: GalleryItem? = null
+
+
+    private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
+
+    private var mSelectedImageFileUri: Uri? = null
+
+    // A global variable for uploaded product image URL.
+    private var imageType: String = "galleryImage"
+    private var mGalleryImageURL: String = ""
+    private var imageDetailsId: String = ""
+
+
+    private var mFcmToken: String = ""
 
     /**!
      * This function is auto created by Android when the Activity Class is created.
@@ -39,8 +59,7 @@ class AddGalleryImagesActivity : BaseActivity() {
         // This is used to align the xml view to this class
         setContentView(R.layout.activity_add_gallery_images)
 
-//        val image_selection = findViewById<TextView>(R.id.tv_add_image)
-//        val image_selection: TextView? = findViewById<TextView>(R.id.tv_add_image);
+        setupActionBar()
 
         tv_select_image.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
@@ -68,10 +87,48 @@ class AddGalleryImagesActivity : BaseActivity() {
             }
             // END
         }
-//        val btnSaveToGallery: Button? = findViewById<Button>(R.id.btn_save);
-
 
         btn_save.setOnClickListener {
+
+            saveImageData()
+        }
+
+
+        // https://www.tutorialkart.com/kotlin-android/android-datepicker-kotlin-example/
+        // create an OnDateSetListener
+        dateSetListener =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH, monthOfYear)
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                updateDateInView()
+            }
+
+        updateDateInView() // Here the calender instance what we have created before will give us the current date which is formatted in the format in function
+
+        if (mGalleryItem != null) {
+            supportActionBar?.title = "ADD IMAGE"
+            et_date.setText(mGalleryItem!!.date)
+
+        }
+
+        et_date.setOnClickListener {
+            DatePickerDialog(
+                this@AddGalleryImagesActivity,
+                dateSetListener, // This is the variable which have created globally and initialized in setupUI method.
+                // set DatePickerDialog to point to today's date when it loads up
+                cal.get(Calendar.YEAR), // Here the cal instance is created globally and used everywhere in the class where it is required.
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+
+
+    }
+
+    private fun saveImageData() {
+        if (validateGalleryDetails()) {
             if (mSelectedImageFileUri != null) {
 
                 // Get the current user id
@@ -116,11 +173,15 @@ class AddGalleryImagesActivity : BaseActivity() {
                                 ).show()
 
                                 // TODO Step 3: Load the uploaded image url using Glide.
-                                // START
+                                 mGalleryImageURL = url.toString()
+
+                                uploadGalleryDetails()
                                 Glide.with(this@AddGalleryImagesActivity)
                                     .load(url)
                                     .placeholder(R.mipmap.ic_launcher) // If the image is failed to load then the placeholder will be visible.
                                     .into(iv_place_image)
+
+
                                 // END
                             }
                             .addOnFailureListener { exception ->
@@ -141,8 +202,37 @@ class AddGalleryImagesActivity : BaseActivity() {
                 ).show()
             }
         }
+
     }
 
+    private fun updateDateInView() {
+
+        val myFormat = "dd.MM.yyyy" // mention the format you need
+        val sdf = SimpleDateFormat(myFormat, Locale.getDefault()) // A date format
+        et_date.setText(
+            sdf.format(cal.time).toString()
+        ) // A selected date using format which we have used is set to the UI.
+
+    }
+
+
+    private fun uploadGalleryDetails() {
+
+        // Get the current user id
+        var currentUserID = ""
+        currentUserID = currentUser.uid
+
+        // Here we get the text from editText and trim the space
+
+        val mGalleryItem = GalleryItem(
+            imageDetailsId,
+            currentUserID,
+            mGalleryImageURL.toString(),
+            et_date.text.toString(),
+        )
+        FirestoreClass().uploadImageDetails(this@AddGalleryImagesActivity, mGalleryItem)
+
+    }
 
     /**
      * This function will identify the result of runtime permission after the user allows or deny permission based on the unique code.
@@ -179,21 +269,8 @@ class AddGalleryImagesActivity : BaseActivity() {
         }
     }
 
-    /**
-     * Receive the result from a previous call to
-     * {@link #startActivityForResult(Intent, int)}.  This follows the
-     * related Activity API as described there in
-     * {@link Activity#onActivityResult(int, int, Intent)}.
-     *
-     * @param requestCode The integer request code originally supplied to
-     *                    startActivityForResult(), allowing you to identify who this
-     *                    result came from.
-     * @param resultCode The integer result code returned by the child activity
-     *                   through its setResult().
-     * @param data An Intent, which can return result data to the caller
-     *               (various data can be attached to Intent "extras").
-     */
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == 222) {
@@ -228,4 +305,53 @@ class AddGalleryImagesActivity : BaseActivity() {
             Log.e("Request Cancelled", "Image selection cancelled")
         }
     }
+
+
+    /**
+     * A function to validate the product details.
+     */
+    private fun validateGalleryDetails(): Boolean {
+        return when {
+
+            mSelectedImageFileUri == null -> {
+                showErrorSnackBar("please select the image")
+                false
+            }
+
+            TextUtils.isEmpty(et_date.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar("make sure the date is enter")
+                false
+            }
+            else -> {
+                true
+            }
+        }
+    }
+
+    private fun setupActionBar() {
+
+        setSupportActionBar(toolbar_add_image)
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.back_btn)
+        }
+        toolbar_add_image.setNavigationOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    fun imageUploadSuccess(imageUrl: String) {
+        mGalleryImageURL = imageUrl
+    }
+
+    fun serviceUploadSuccess(id: String) {
+        Toast.makeText(
+            this@AddGalleryImagesActivity, "data uploaded successfully",
+            Toast.LENGTH_SHORT
+        ).show()
+        imageDetailsId = id
+        finish()
+    }
+
 }
