@@ -13,14 +13,16 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.sklagat46.reylla.R2
 import com.sklagat46.reylla.activities.SignInActivity
 import com.sklagat46.reylla.activities.SignUpActivity
+import com.sklagat46.reylla.activities.agentclients.clientActivities.ClieantHomeActivity
 import com.sklagat46.reylla.activities.agentclients.RegisterCustomer
+import com.sklagat46.reylla.activities.agentclients.clientActivities.GalleryActivity
 import com.sklagat46.reylla.activities.serviceproviders.*
 import com.sklagat46.reylla.activities.serviceproviders.addingNewService.*
 import com.sklagat46.reylla.activities.serviceproviders.ui.CompleteProfile
 import com.sklagat46.reylla.activities.serviceproviders.ui.gallery.AddGalleryImagesActivity
+import com.sklagat46.reylla.activities.serviceproviders.ui.gallery.GalleryFragment
 import com.sklagat46.reylla.activities.serviceproviders.ui.home.HomeFragment
 import com.sklagat46.reylla.model.*
 import com.sklagat46.reylla.utils.Constants
@@ -665,7 +667,6 @@ class FirestoreClass {
     }
 
 
-
     fun getSalonItemsList(homeFragment: HomeFragment) {
         // The collection name for PRODUCTS
         mFireStore.collection(Constants.COMPANIES)
@@ -708,7 +709,132 @@ class FirestoreClass {
         context.successSaloonItemsList(saloonList)
     }
 
+    fun getSalonsGalleryImages(activity: GalleryActivity){
+        // The collection name for PRODUCTS
+        mFireStore.collection(Constants.GALLERY_ITEMS)
+            .addSnapshotListener(EventListener { snapshots, e ->
+                if (e != null) {
+//                    Toast.makeText(homeFragment, "Error $e", Toast.LENGTH_SHORT).show()
 
+                    when (activity) {
+                        is GalleryActivity -> {
+//                            homeFragment.hideProgressDialog()
+                        }
+                    }
+                    return@EventListener
+                }
+                when (activity) {
+                    is GalleryActivity -> {
+                        displaySalonsGalleryItemsList(activity, snapshots)
+                    }
+                }
+
+            })
+
+    }
+
+    private fun displaySalonsGalleryItemsList(
+        activity: GalleryActivity,
+        snapshots: QuerySnapshot?
+    ) {
+        Log.d("service_5", "")
+
+        val galleryList: ArrayList<GalleryItem> = ArrayList()
+        if (snapshots != null) {
+            for (doc in snapshots) {
+                val items = doc.toObject(GalleryItem::class.java)
+                items!!.id = doc.id
+                galleryList.add(items)
+            }
+        }
+//        context.hideProgressDialog()
+        activity.successGalleryItemsList(galleryList)
+
+    }
+
+    fun getGalleryImages(galleryFragment: GalleryFragment) {
+        // The collection name for PRODUCTS
+        mFireStore.collection(Constants.GALLERY_ITEMS)
+            .addSnapshotListener(EventListener { snapshots, e ->
+                if (e != null) {
+//                    Toast.makeText(homeFragment, "Error $e", Toast.LENGTH_SHORT).show()
+
+                    when (galleryFragment) {
+                        is GalleryFragment -> {
+//                            homeFragment.hideProgressDialog()
+                        }
+                    }
+                    return@EventListener
+                }
+                when (galleryFragment) {
+                    is GalleryFragment -> {
+                        displayGalleryItemsList(galleryFragment, snapshots)
+                    }
+                }
+
+            })
+
+    }
+
+    private fun displayGalleryItemsList(
+        context: GalleryFragment,
+        snapshots: QuerySnapshot?,
+    ) {
+        Log.d("service_5", "")
+
+        val galleryList: ArrayList<GalleryItem> = ArrayList()
+        if (snapshots != null) {
+            for (doc in snapshots) {
+                val items = doc.toObject(GalleryItem::class.java)
+                items!!.id = doc.id
+                galleryList.add(items)
+            }
+        }
+//        context.hideProgressDialog()
+        context.successGalleryItemsList(galleryList)
+    }
+
+    fun getSalonList(clieantHomeActivity: ClieantHomeActivity, salons: String) {
+        // The collection name for PRODUCTS
+        mFireStore.collection(salons)
+//            .whereNotEqualTo(Constants.PROVIDER_ID, getCurrentUserID())
+            .addSnapshotListener(EventListener { snapshots, e ->
+                if (e != null) {
+//                    Toast.makeText(homeFragment, "Error $e", Toast.LENGTH_SHORT).show()
+
+                    when (clieantHomeActivity) {
+                        is ClieantHomeActivity -> {
+                            clieantHomeActivity.hideProgressDialog()
+                        }
+                    }
+                    return@EventListener
+                }
+                when (clieantHomeActivity) {
+                    is ClieantHomeActivity -> {
+                        displaySalonsList(clieantHomeActivity, snapshots)
+                    }
+                }
+
+            })
+
+    }
+
+    private fun displaySalonsList(
+        context: ClieantHomeActivity, snapshots: QuerySnapshot?) {
+
+        Log.d("service_5", "")
+
+        val salonList: ArrayList<Company> = ArrayList()
+        if (snapshots != null) {
+            for (doc in snapshots) {
+                val items = doc.toObject(Company::class.java)
+                items!!.id = doc.id
+                salonList.add(items)
+            }
+        }
+        context.hideProgressDialog()
+        context.successSalonsListFromFireStore(salonList)
+    }
 
 
 }

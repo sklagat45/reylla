@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.sklagat46.reylla.R
 import com.sklagat46.reylla.activities.BaseActivity
 import com.sklagat46.reylla.activities.ForgotPassword
+import com.sklagat46.reylla.activities.agentclients.clientActivities.ClieantHomeActivity
 import com.sklagat46.reylla.activities.serviceproviders.ServiceProvidersMainPage
 import com.sklagat46.reylla.activities.serviceproviders.ServiceProvidersReg
 import com.sklagat46.reylla.model.IndividualProviders
@@ -172,7 +173,7 @@ class IntroActivity : BaseActivity() {
                                 // Here call a function of base activity for transferring the result to it.
                                 hideProgressDialog()
 
-                                startActivity(Intent(this@IntroActivity, MainActivity::class.java))
+                                startActivity(Intent(this@IntroActivity, ClieantHomeActivity::class.java))
                                 this.finish()
                             }
                             .addOnFailureListener { e ->

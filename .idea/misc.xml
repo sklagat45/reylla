@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Hp/AndroidStudioProjects/reylla/app/src/main/res/layout/activity_clieant_home.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Hp/AndroidStudioProjects/reylla/app/src/main/res/layout/activity_gallery.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/activity_add_gallery_images.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/activity_clieant_home.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/activity_gallery.xml" value="0.1" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/activity_nail_care.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/activity_select_service.xml" value="0.1" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/activity_service_providers_main_page.xml" value="0.25" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/activity_service_providers_reg.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/activity_set_display_image.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/activity_settings_view_model.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/fragment_gallery.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/fragment_home.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/row_featured_saloons_items.xml" value="0.18" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/row_gallery_container.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/user/StudioProjects/reylla/app/src/main/res/layout/row_service_item.xml" value="0.2552083333333333" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

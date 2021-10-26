@@ -37,7 +37,6 @@ class BridalActivity : BaseActivity() {
             startActivityForResult(
                 addBridalServiceIntent, ADD_SERVICE_ACTIVITY_REQUEST_CODE
             )
-
         }
 
     }

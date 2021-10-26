@@ -22,7 +22,6 @@ import com.sklagat46.reylla.R
 import com.sklagat46.reylla.activities.BaseActivity
 import com.sklagat46.reylla.firebase.FirestoreClass
 import com.sklagat46.reylla.model.GalleryItem
-import com.sklagat46.reylla.utils.Constants
 import kotlinx.android.synthetic.main.activity_add_gallery_images.*
 import java.io.IOException
 import java.text.SimpleDateFormat

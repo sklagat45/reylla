@@ -9,8 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.sklagat46.reylla.R
 import com.sklagat46.reylla.activities.serviceproviders.*
 import com.sklagat46.reylla.adapter.CategoriesAdapter
@@ -181,12 +179,7 @@ class HomeFragment : Fragment() {
     }
 
 
-    override fun onResume() {
-        super.onResume()
 
-        getGetExistingSalonList()
-        (activity as AppCompatActivity).supportActionBar!!.hide()
-    }
     /**
      * A function to get the success result of the dashboard items from cloud firestore.
      *
