@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "920972026361",
+    "project_id": "reylla-ca8da",
+    "storage_bucket": "reylla-ca8da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:920972026361:android:2bec1ae801703b70379d28",
+        "android_client_info": {
+          "package_name": "com.srklagat.reylla"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "920972026361-d52a63krh3gjde8pomj56tqr1b80b3ro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1P5i0hTpnf2PKRCJgDBFT8pbxOiCsb14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "920972026361-d52a63krh3gjde8pomj56tqr1b80b3ro.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
