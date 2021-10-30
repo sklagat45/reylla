@@ -55,7 +55,7 @@
     <string name="duration_taken_to_offer_the_service_in_hours">Duration Taken To Offer The Service in hours</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyApmayiVEYETgnKjAY8R_2oUA1dFH2XI_8</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyA1P5i0hTpnf2PKRCJgDBFT8pbxOiCsb14</string>
     <string name="title_activity_maps">Map</string>
     <string name="location">Location</string>
     <string name="image_selection_failed">fail to load the image</string>
