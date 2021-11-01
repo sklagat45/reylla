@@ -12,7 +12,6 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        android:forceDarkAllowed="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -176,7 +175,7 @@
                             android:layout_height="35dp"
                             android:layout_marginStart="2dp"
                             android:background="@drawable/gray_border_shape_rounded"
-                            android:contentDescription="address"
+                            android:contentDescription="@string/c_address"
                             android:hint="Address"
                             android:inputType="textPostalAddress"
                             android:paddingStart="10dp"
@@ -184,7 +183,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <ImageView
-                        android:id="@+id/imageView"
+                        android:id="@+id/location_img"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"

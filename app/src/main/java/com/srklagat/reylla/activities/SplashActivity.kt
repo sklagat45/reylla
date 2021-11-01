@@ -7,6 +7,8 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.srklagat.reylla.R
 import com.srklagat.reylla.activities.agentclients.IntroActivity
+import com.srklagat.reylla.activities.agentclients.RegisterCustomer
+import com.srklagat.reylla.activities.agentclients.clientActivities.ClieantHomeActivity
 import com.srklagat.reylla.activities.serviceproviders.ServiceProvidersMainPage
 import com.srklagat.reylla.firebase.FirestoreClass
 import kotlinx.android.synthetic.main.activity_splash.*
@@ -50,7 +52,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
             } else {
                 // Start the Main Activity
-                startActivity(Intent(this@SplashActivity, ServiceProvidersMainPage::class.java))
+                startActivity(Intent(this@SplashActivity, ClieantHomeActivity::class.java))
             }
             finish() // Call this when your activity is done and should be closed.
             // END

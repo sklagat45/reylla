@@ -13,7 +13,7 @@
     <FrameLayout
         android:layout_width="100dp"
         android:background="@drawable/gray_border_shape_rounded"
-        android:layout_height="130dp">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageViewColorCode"

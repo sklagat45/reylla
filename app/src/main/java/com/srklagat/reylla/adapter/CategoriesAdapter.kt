@@ -1,13 +1,16 @@
 package com.srklagat.reylla.adapter
 
 import android.content.Context
+import android.os.Vibrator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import com.srklagat.reylla.R
 import com.srklagat.reylla.listener.CustomItemClickListener
 import com.srklagat.reylla.model.CategoriesViews
+import kotlinx.android.synthetic.main.activity_intro.*
 import kotlinx.android.synthetic.main.row_category_item.view.*
 
 
@@ -52,7 +55,15 @@ class CategoriesAdapter(
             itemView.tv_service_category_name.text = category.categoryTitle
             itemView.setOnClickListener { view ->
                 listener.onItemClick(view, position)
+
             }
+
+//            itemView.setOnTouchListener(View.OnTouchListener { v, event -> // TODO Auto-generated method stub
+//                val vb = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+//                vb.vibrate(100)
+//                false
+//            })
+
         }
     }
 

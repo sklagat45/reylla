@@ -1,38 +1,44 @@
 package com.srklagat.reylla.activities.agentclients
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.Vibrator
 import android.text.TextUtils
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.WindowManager
+import android.widget.Magnifier
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.srklagat.reylla.R
 import com.srklagat.reylla.activities.BaseActivity
 import com.srklagat.reylla.activities.ForgotPassword
-import com.srklagat.reylla.activities.agentclients.clientActivities.ClieantHomeActivity
 import com.srklagat.reylla.activities.serviceproviders.ServiceProvidersMainPage
 import com.srklagat.reylla.activities.serviceproviders.ServiceProvidersReg
 import com.srklagat.reylla.model.IndividualProviders
 import com.srklagat.reylla.utils.Constants
 import kotlinx.android.synthetic.main.activity_intro.*
 
+
 class IntroActivity : BaseActivity() {
 
     /**
      * This function is auto created by Android when the Activity Class is created.
      */
+    @SuppressLint("NewApi")
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
         // This is used to align the xml view to this class
-        setContentView(R.layout.activity_intro)
+        setContentView(com.srklagat.reylla.R.layout.activity_intro)
 
         // This is used to hide the status bar and make the splash screen as a full screen activity.
         window.setFlags(
@@ -40,6 +46,37 @@ class IntroActivity : BaseActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
+
+////        val view: View = findViewById(R.id.view)
+//        val magnifier = Magnifier.Builder(introMessageTV)
+        val magnifier = Magnifier.Builder(introMessageTV)
+            .setInitialZoom(2.0f)
+            .setElevation(40.0f)
+            .setCornerRadius(10.0f).build()
+//        magnifier.show(introMessageTV.width / 2.0f, introMessageTV.height / 2.0f)
+
+
+        introMessageTV.setOnTouchListener { v, event ->
+            when (event.actionMasked) {
+                MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
+                    val viewPosition = IntArray(2)
+                    v.getLocationOnScreen(viewPosition)
+                    magnifier.show(event.rawX - viewPosition[0], event.rawY - viewPosition[1])
+                }
+                MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
+                    magnifier.dismiss()
+                }
+            }
+            true
+        }
+
+
+//        val b: Button = findViewById<View>(com.srklagat.reylla.R.id.btn_intro_sign_in) as Button
+        btn_intro_sign_in.setOnTouchListener(OnTouchListener { v, event -> // TODO Auto-generated method stub
+            val vb = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            vb.vibrate(100)
+            false
+        })
 
         btn_intro_sign_in.setOnClickListener {
             signInRegisteredUser()
@@ -73,7 +110,7 @@ class IntroActivity : BaseActivity() {
 
         if (validateForm(email, password)) {
             // Show the progress dialog.
-            showProgressDialog(resources.getString(R.string.please_wait))
+            showProgressDialog(resources.getString(com.srklagat.reylla.R.string.please_wait))
 
             // Sign-In using FirebaseAuth
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)

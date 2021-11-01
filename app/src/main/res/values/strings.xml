@@ -61,4 +61,5 @@
     <string name="image_selection_failed">fail to load the image</string>
     <string name="read_storage_permission_denied">permission denied</string>
     <string name="msg_profile_update_success">profile updated successfully</string>
+    <string name="c_address">your address</string>
 </resources>
