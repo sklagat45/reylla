@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.srklagat.reylla.R
@@ -48,11 +49,7 @@ class HomeFragment : Fragment() {
 
     }
 
-//    private fun setSaloonRVAdapter() {
-//        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        rv_other_saloons.layoutManager = layoutManager
-//
-//    }
+
 
     private fun setRvAdapter() {
         val layoutManager = CustomGridLayoutManager(requireContext(), 3)
@@ -60,6 +57,8 @@ class HomeFragment : Fragment() {
         recycleViewCards.layoutManager = layoutManager
         val itemDecoration = ItemOffsetDecoration(requireContext(), R.dimen.item_offset)
         recycleViewCards.addItemDecoration(itemDecoration)
+
+
     }
 
     private fun getGetExistingSalonList() {

@@ -41,7 +41,7 @@ class ClieantHomeActivity : BaseActivity() {
         showProgressDialog(resources.getString(R.string.please_wait))
 
         // Call the function of Firestore class.
-        FirestoreClass().getSalonList(this@ClieantHomeActivity, Constants.SALONS)
+        FirestoreClass().getSalonList(this@ClieantHomeActivity, Constants.COMPANIES)
         hideProgressDialog()
     }
 

@@ -12,8 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
-
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -25,15 +24,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.srklagat.reylla.activities.agentclients.clientActivities.GalleryActivity"
+            android:name=".activities.agentclients.clientActivities.SelectedSalon"
+            android:exported="false" />
+        <activity
+            android:name=".activities.agentclients.clientActivities.GalleryActivity"
             android:exported="true" />
         <activity
-            android:name="com.srklagat.reylla.activities.agentclients.clientActivities.SelectServiceActivity"
+            android:name=".activities.agentclients.clientActivities.SelectServiceActivity"
             android:exported="true" />
         <activity
-            android:name="com.srklagat.reylla.activities.agentclients.clientActivities.ClieantHomeActivity"
+            android:name=".activities.agentclients.clientActivities.ClieantHomeActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -47,85 +49,85 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.srklagat.reylla.activities.MapsActivity"
+            android:name=".activities.MapsActivity"
             android:label="@string/title_activity_maps"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.srklagat.reylla.activities.serviceproviders.ui.CompleteProfile" />
-        <activity android:name="com.srklagat.reylla.activities.serviceproviders.ui.details.ServiceDetailsActivity" />
+        <activity android:name=".activities.serviceproviders.ui.CompleteProfile" />
+        <activity android:name=".activities.serviceproviders.ui.details.ServiceDetailsActivity" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.addingNewService.AddTatooAndColourServiceActivity"
+            android:name=".activities.serviceproviders.addingNewService.AddTatooAndColourServiceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.addingNewService.AddMakeUpServiceActivity"
+            android:name=".activities.serviceproviders.addingNewService.AddMakeUpServiceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.addingNewService.AddMassageServiceActivity"
+            android:name=".activities.serviceproviders.addingNewService.AddMassageServiceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.addingNewService.AddNailCareServiceActivity"
+            android:name=".activities.serviceproviders.addingNewService.AddNailCareServiceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.addingNewService.AddBridalServiceActivity"
+            android:name=".activities.serviceproviders.addingNewService.AddBridalServiceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.addingNewService.AddHairServiceActivity"
+            android:name=".activities.serviceproviders.addingNewService.AddHairServiceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.ui.gallery.AddGalleryImagesActivity"
+            android:name=".activities.serviceproviders.ui.gallery.AddGalleryImagesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.BridalActivity"
+            android:name=".activities.serviceproviders.BridalActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.TatooAndColorActivity"
+            android:name=".activities.serviceproviders.TatooAndColorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.MassageActivity"
+            android:name=".activities.serviceproviders.MassageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.ServiceProvidersMainPage"
+            android:name=".activities.serviceproviders.ServiceProvidersMainPage"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.MakeUPActivity"
+            android:name=".activities.serviceproviders.MakeUPActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.NailCareActivity"
+            android:name=".activities.serviceproviders.NailCareActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.HairCareActivity"
+            android:name=".activities.serviceproviders.HairCareActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.ProviderHomeActivity"
+            android:name=".activities.serviceproviders.ProviderHomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.CompanyRegister"
+            android:name=".activities.serviceproviders.CompanyRegister"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.agentclients.RegisterCustomer"
+            android:name=".activities.agentclients.RegisterCustomer"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.srklagat.reylla.activities.ForgotPassword" />
+        <activity android:name=".activities.ForgotPassword" />
         <activity
-            android:name="com.srklagat.reylla.activities.serviceproviders.IndividualRegister"
+            android:name=".activities.serviceproviders.IndividualRegister"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.srklagat.reylla.activities.serviceproviders.ServiceProvidersReg" /> <!-- [START fcm_default_icon] -->
+        <activity android:name=".activities.serviceproviders.ServiceProvidersReg" /> <!-- [START fcm_default_icon] -->
         <!--
  Set custom default icon. This is used when no icon is set for incoming notification messages.
              See README(https://goo.gl/l4GJaQ) for more.
@@ -145,7 +147,7 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" /> <!-- [END fcm_default_channel] -->
         <activity
-            android:name="com.srklagat.reylla.activities.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -155,23 +157,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.srklagat.reylla.activities.agentclients.IntroActivity"
+            android:name=".activities.agentclients.IntroActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.SignUpActivity"
+            android:name=".activities.SignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.SignInActivity"
+            android:name=".activities.SignInActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.BaseActivity"
+            android:name=".activities.BaseActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.srklagat.reylla.activities.agentclients.MainActivity"
+            android:name=".activities.agentclients.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

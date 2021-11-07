@@ -31,14 +31,12 @@ class BridalActivity : BaseActivity() {
         Util.setRecyclerView(this, rv_bridal_care_list)
 
         fab_add_bridal_care.setOnClickListener {
-
             val addBridalServiceIntent =
                 Intent(this@BridalActivity, AddBridalServiceActivity::class.java)
             startActivityForResult(
                 addBridalServiceIntent, ADD_SERVICE_ACTIVITY_REQUEST_CODE
             )
         }
-
     }
 
     override fun onResume() {
@@ -80,7 +78,7 @@ class BridalActivity : BaseActivity() {
         hideProgressDialog()
         if (bridalServiceList.isNotEmpty()) {
             rv_bridal_care_list.visibility = View.VISIBLE
-            //tv_no_records_available.visibility = View.GONE
+
             val adapterService =
                 BridalServiceAdapter(this, bridalServiceList)
             rv_bridal_care_list.adapter = adapterService

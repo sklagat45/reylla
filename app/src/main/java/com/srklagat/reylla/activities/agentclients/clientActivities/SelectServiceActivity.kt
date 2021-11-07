@@ -13,12 +13,12 @@ class SelectServiceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_service)
-        getSalonsListFromFirestoreDB()
-        Util.setRecyclerView(this, rv_bridal_care_list)
+//        getSalonsListFromFirestoreDB()
+//        Util.setRecyclerView(this, rv_bridal_care_list)
 
     }
 
-    private fun getSalonsListFromFirestoreDB() {
-        TODO("Not yet implemented")
-    }
+//    private fun getSalonsListFromFirestoreDB() {
+//        TODO("Not yet implemented")
+//    }
 }

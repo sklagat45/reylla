@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import butterknife.ButterKnife
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.srklagat.reylla.R
@@ -45,13 +46,11 @@ class FeaturedSalonsAdapter(
                 holder.itemView.iv_item_salon_image
             )
 
-            //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(holder.itemView.iv_item_service_image);
-            holder.itemView.tv_item_salon_name.text = model.companyName
-            holder.itemView.tv_address.text = model.companyAddress
-//            holder.itemView.tv_item_cost.text = model.styleCost
-
             val timeSelected: String = holder.itemView.tv_selected_time.text.toString()
             val userID: String = currentUser.uid
+
+            holder.itemView.tv_item_salon_name.text = model.companyName
+            holder.itemView.tv_address.text = model.companyAddress
 
             holder.itemView.tv_view_gallery.setOnClickListener {
                 // Launch Product details screen.
@@ -91,13 +90,17 @@ class FeaturedSalonsAdapter(
 
     inner class ClientViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        fun bind(salon: Company) {
-            itemView.tv_item_salon_name.text = salon.companyName
-            itemView.tv_address.text = salon.companyAddress
+        fun bind(company: Company) {
+
+            ButterKnife.bind(this, itemView);
+            itemView.tv_item_salon_name.text = company.companyName
+            itemView.tv_address.text = company.companyAddress
 
             Glide.with(context)
-                .load(salon.companyImage)
+                .load(company.companyImage)
                 .into(itemView.iv_item_salon_image)
+
+
         }
     }
 }

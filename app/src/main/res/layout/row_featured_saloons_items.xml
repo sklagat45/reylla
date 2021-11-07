@@ -8,6 +8,7 @@
     android:background="@drawable/gray_border_shape_rounded"
     android:clickable="true"
     android:focusable="true"
+    android:layout_marginStart="5dp"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="4dp">
 
@@ -21,7 +22,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="295dp"
         android:layout_height="110dp"
-        android:background="#00555555">
+        android:layout_margin="2dp">
 
         <TextView
             android:id="@+id/tv_item_salon_name"
@@ -36,114 +37,112 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintVertical_bias="0.106"
-            tools:text="Salon Name" />
+            android:text="Salon Name" />
 
 
         <TextView
             android:id="@+id/tv_view_gallery"
             android:layout_width="wrap_content"
-            android:layout_height="23dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.965"
-            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.824"
+            card_view:layout_constraintStart_toEndOf="@+id/tv_item_salon_name"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.03"
-            tools:text="View Gallery " />
+            card_view:layout_constraintVertical_bias="0.048"
+            android:text="View Gallery"  />
 
         <TextView
             android:id="@+id/tv_pick_time"
             android:layout_width="wrap_content"
-            android:layout_height="23dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
             android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.041"
-            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintEnd_toStartOf="@+id/tv_selected_time"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_item_salon_name"
             card_view:layout_constraintVertical_bias="0.0"
-            tools:text="Pick Time " />
+            android:text="Pick Time " />
 
         <TextView
             android:id="@+id/tv_selected_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="172dp"
             android:textColor="#000"
             android:textSize="16sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.356"
-            card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_item_salon_name"
-            card_view:layout_constraintVertical_bias="0.1"
-            tools:text="Date " />
+            card_view:layout_constraintVertical_bias="0.037"
+            android:text="Date " />
 
         <TextView
-            android:id="@+id/tv_ksh"
-            android:layout_width="wrap_content"
-            android:layout_height="26dp"
-            android:textColor="#000"
-            android:textSize="16sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.04"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_pick_time"
-            card_view:layout_constraintVertical_bias="0.0"
-            tools:text="Remaining slots: " />
-
-        <TextView
-            android:id="@+id/et_item_cost"
+            android:id="@+id/tv_slots"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="172dp"
+            android:textColor="#000"
+            android:textSize="15sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_pick_time"
+            card_view:layout_constraintVertical_bias="0.03"
+            android:text="Remaining slots: " />
+
+        <TextView
+            android:id="@+id/et_slots_items"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
             android:inputType="number"
+            android:padding="2dp"
             android:text="2"
             android:textColor="#000"
             android:textSize="16sp"
-            android:padding="2dp"
             android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintStart_toEndOf="@+id/tv_ksh" />
+            card_view:layout_constraintStart_toEndOf="@+id/tv_slots" />
 
         <TextView
             android:id="@+id/tv_book_us"
             android:layout_width="wrap_content"
-            android:layout_height="23dp"
-            android:layout_marginStart="220dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.682"
-            tools:text="Book US " />
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="1.0"
+            card_view:layout_constraintStart_toEndOf="@+id/tv_address"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_view_gallery"
+            card_view:layout_constraintVertical_bias="0.719"
+            android:text="Book US " />
 
         <TextView
             android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="26dp"
+            android:layout_width="68dp"
+            android:layout_height="14dp"
             android:layout_marginTop="8dp"
             android:textColor="#000"
-            android:textSize="16sp"
+            android:textSize="11sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.037"
+            card_view:layout_constraintHorizontal_bias="0.039"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_pick_time"
-            card_view:layout_constraintVertical_bias="1.0"
-            tools:text="Nairobi " />
+            card_view:layout_constraintVertical_bias="0.692"
+            android:text="Nairobi " />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

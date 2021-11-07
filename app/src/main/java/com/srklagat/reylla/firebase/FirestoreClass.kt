@@ -675,14 +675,14 @@ class FirestoreClass {
 //                    Toast.makeText(homeFragment, "Error $e", Toast.LENGTH_SHORT).show()
 
                     when (homeFragment) {
-                        is HomeFragment -> {
+                        else -> {
 //                            homeFragment.hideProgressDialog()
                         }
                     }
                     return@EventListener
                 }
                 when (homeFragment) {
-                    is HomeFragment -> {
+                    else -> {
                         displaySalonItemsList(homeFragment, snapshots)
                     }
                 }
@@ -803,14 +803,14 @@ class FirestoreClass {
 //                    Toast.makeText(homeFragment, "Error $e", Toast.LENGTH_SHORT).show()
 
                     when (clieantHomeActivity) {
-                        is ClieantHomeActivity -> {
+                        else -> {
                             clieantHomeActivity.hideProgressDialog()
                         }
                     }
                     return@EventListener
                 }
                 when (clieantHomeActivity) {
-                    is ClieantHomeActivity -> {
+                    else -> {
                         displaySalonsList(clieantHomeActivity, snapshots)
                     }
                 }
