@@ -1,18 +1,23 @@
 package com.srklagat.reylla.activities.agentclients.clientActivities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.Vibrator
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.srklagat.reylla.R
 import com.srklagat.reylla.activities.BaseActivity
 import com.srklagat.reylla.activities.agentclients.clientsAdapters.FeaturedSalonsAdapter
+import com.srklagat.reylla.activities.serviceproviders.ServiceProvidersReg
 import com.srklagat.reylla.firebase.FirestoreClass
 import com.srklagat.reylla.model.Company
 import com.srklagat.reylla.utils.Constants
 import com.srklagat.reylla.utils.Util
 import kotlinx.android.synthetic.main.activity_bridal.*
 import kotlinx.android.synthetic.main.activity_clieant_home.*
+import kotlinx.android.synthetic.main.activity_intro.*
 import java.util.ArrayList
 
 class ClieantHomeActivity : BaseActivity() {
@@ -24,6 +29,16 @@ class ClieantHomeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_clieant_home)
+
+        cartImageViewBtn.setOnTouchListener(View.OnTouchListener { v, event -> // TODO Auto-generated method stub
+            val vb = getSystemService(VIBRATOR_SERVICE) as Vibrator
+            vb.vibrate(100)
+            false
+        })
+
+        cartImageViewBtn.setOnClickListener {
+            startActivity(Intent(this@ClieantHomeActivity, CartListActivity::class.java))
+        }
 
         getSalonsListFromFirestoreDB()
         Util.setRecyclerView(this, rv_featured_saloons)

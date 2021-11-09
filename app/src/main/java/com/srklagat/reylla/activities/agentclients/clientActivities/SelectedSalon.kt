@@ -2,6 +2,7 @@ package com.srklagat.reylla.activities.agentclients.clientActivities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Vibrator
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +20,6 @@ import com.srklagat.reylla.model.SalonService
 import com.srklagat.reylla.utils.Constants
 import com.srklagat.reylla.utils.ItemOffsetDecoration
 import com.srklagat.reylla.utils.Util
-import kotlinx.android.synthetic.main.activity_hair_care.*
 import kotlinx.android.synthetic.main.activity_selected_salon.*
 
 class SelectedSalon : BaseActivity() {
@@ -40,6 +40,15 @@ class SelectedSalon : BaseActivity() {
         val salonID = intent.getStringExtra("salonID")
         if (salonID != null) {
             mSalonID = salonID
+        }
+        cartImageViewBtn.setOnTouchListener(View.OnTouchListener { v, event -> // TODO Auto-generated method stub
+            val vb = getSystemService(VIBRATOR_SERVICE) as Vibrator
+            vb.vibrate(100)
+            false
+        })
+
+        cartImageViewBtn.setOnClickListener {
+            startActivity(Intent(this@SelectedSalon, CartListActivity::class.java))
         }
 
         Log.e("service_5","" + salonID)
