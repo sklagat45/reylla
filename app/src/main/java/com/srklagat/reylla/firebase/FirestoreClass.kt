@@ -18,6 +18,7 @@ import com.srklagat.reylla.activities.SignUpActivity
 import com.srklagat.reylla.activities.agentclients.clientActivities.ClieantHomeActivity
 import com.srklagat.reylla.activities.agentclients.RegisterCustomer
 import com.srklagat.reylla.activities.agentclients.clientActivities.GalleryActivity
+import com.srklagat.reylla.activities.agentclients.clientActivities.SelectedSalon
 import com.srklagat.reylla.activities.serviceproviders.*
 import com.srklagat.reylla.activities.serviceproviders.addingNewService.*
 import com.srklagat.reylla.activities.serviceproviders.ui.CompleteProfile
@@ -486,6 +487,76 @@ class FirestoreClass {
 
     }
 
+
+    fun getSalonServiceList(context: Context, serviceName: String,salonId: String) {
+        // The collection name for PRODUCTS
+        mFireStore.collection(serviceName)
+            .whereEqualTo(Constants.PROVIDER_IDD, salonId)
+            .addSnapshotListener(EventListener { snapshots, e ->
+                if (e != null) {
+                    makeText(context, "Error $e", Toast.LENGTH_SHORT).show()
+                    when (context) {
+                        is SelectedSalon -> {
+                            context.hideProgressDialog()
+                            Log.d("service_1", "servicesss$salonId")
+
+                        }
+                    }
+                    return@EventListener
+                }
+                when (context) {
+                    is SelectedSalon -> {
+                        displaySalonServicesData(context, snapshots)
+                    }
+                }
+
+            })
+
+    }
+
+    fun getHairSalonServiceList(context: Context, serviceName: String,salonId: String) {
+        // The collection name for PRODUCTS
+        mFireStore.collection(serviceName)
+            .whereEqualTo(Constants.PROVIDER_ID, salonId)
+            .addSnapshotListener(EventListener { snapshots, e ->
+                if (e != null) {
+                    makeText(context, "Error $e", Toast.LENGTH_SHORT).show()
+                    when (context) {
+                        is SelectedSalon -> {
+                            context.hideProgressDialog()
+                            Log.d("service_1", "servicesss$salonId")
+
+                        }
+                    }
+                    return@EventListener
+                }
+                when (context) {
+                    is SelectedSalon -> {
+                        displaySalonServicesData(context, snapshots)
+                    }
+                }
+
+            })
+
+    }
+
+
+    private fun displaySalonServicesData(context: SelectedSalon, snapshots: QuerySnapshot?) {
+
+        Log.d("service_1", "servicesss$snapshots")
+        val serviceList: ArrayList<SalonService> = ArrayList()
+        if (snapshots != null) {
+            for (doc in snapshots) {
+                val service = doc.toObject(SalonService::class.java)
+                service!!.service_id = doc.id
+                serviceList.add(service)
+            }
+        }
+        context.hideProgressDialog()
+        context.successServiceListFromFireStore(serviceList)
+
+    }
+
     fun getServiceList(context: Context, serviceName: String) {
         // The collection name for PRODUCTS
         mFireStore.collection(serviceName)
@@ -709,9 +780,10 @@ class FirestoreClass {
         context.successSaloonItemsList(saloonList)
     }
 
-    fun getSalonsGalleryImages(activity: GalleryActivity){
+    fun getSalonsGalleryImages(activity: GalleryActivity, mSalonID: String){
         // The collection name for PRODUCTS
         mFireStore.collection(Constants.GALLERY_ITEMS)
+            .whereEqualTo(Constants.USER_ID, mSalonID)
             .addSnapshotListener(EventListener { snapshots, e ->
                 if (e != null) {
 //                    Toast.makeText(homeFragment, "Error $e", Toast.LENGTH_SHORT).show()

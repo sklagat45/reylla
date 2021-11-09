@@ -36,7 +36,7 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintVertical_bias="0.106"
-            tools:text="Service Name" />
+            android:text="Service Name" />
 
         <TextView
             android:id="@+id/tv_service_duration"
@@ -66,7 +66,7 @@
             card_view:layout_constraintStart_toEndOf="@+id/tv_service_duration"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_item_service_name"
             card_view:layout_constraintVertical_bias="0.128"
-            tools:text="2hrs" />
+            android:text="2hrs" />
 
         <TextView
             android:id="@+id/tv_ksh"
@@ -101,7 +101,7 @@
             card_view:layout_constraintVertical_bias="1.0" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_item_delete"
+            android:id="@+id/iv_item_add_to_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"

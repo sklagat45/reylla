@@ -1,6 +1,7 @@
 package com.srklagat.reylla.activities.agentclients.clientActivities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,6 +17,8 @@ import kotlinx.android.synthetic.main.activity_gallery.*
 
 class GalleryActivity : BaseActivity() {
 
+    private lateinit var mSalonID: String
+
     val mFireStore = FirebaseFirestore.getInstance()
     private val currentUser = FirebaseAuth.getInstance().currentUser!!
 //    val bundle: Bundle? = intent.extras
@@ -25,6 +28,15 @@ class GalleryActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gallery)
+
+
+        val salonID = intent.getStringExtra("salonID")
+        if (salonID != null) {
+            mSalonID = salonID
+        }
+
+        Log.e("service_5","" + salonID)
+
 
         getSalonsGalleryImagesLists()
         Util.setRecyclerView(this, rv_gallery)
@@ -38,7 +50,7 @@ class GalleryActivity : BaseActivity() {
             Toast.LENGTH_SHORT
         ).show()
 
-        FirestoreClass().getSalonsGalleryImages(this@GalleryActivity)
+        FirestoreClass().getSalonsGalleryImages(this@GalleryActivity,mSalonID)
 
     }
 

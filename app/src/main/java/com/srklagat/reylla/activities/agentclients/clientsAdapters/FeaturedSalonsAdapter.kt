@@ -2,6 +2,7 @@ package com.srklagat.reylla.activities.agentclients.clientsAdapters
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +13,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.srklagat.reylla.R
 import com.srklagat.reylla.activities.agentclients.clientActivities.GalleryActivity
 import com.srklagat.reylla.activities.agentclients.clientActivities.SelectServiceActivity
+import com.srklagat.reylla.activities.agentclients.clientActivities.SelectedSalon
 import com.srklagat.reylla.model.Company
 import com.srklagat.reylla.utils.Constants
+import com.srklagat.reylla.utils.Constants.EXTRA_SALON_ID
 import com.srklagat.reylla.utils.GlideLoader
 import kotlinx.android.synthetic.main.row_featured_saloons_items.view.*
 
@@ -55,27 +58,31 @@ class FeaturedSalonsAdapter(
             holder.itemView.tv_view_gallery.setOnClickListener {
                 // Launch Product details screen.
                 val intent = Intent(context, GalleryActivity::class.java)
-                intent.putExtra(Constants.EXTRA_SALON_ID, model.id)
+                intent.putExtra("salonID", model.id);
                 intent.putExtra(Constants.EXTRA_USER_ID, userID)
                 intent.putExtra(Constants.EXTRA_SALON_NAME, model.companyName)
+                Log.e("service_2","" +  model.id)
                 context.startActivity(intent)
             }
 
             holder.itemView.tv_pick_time.setOnClickListener {
                 // Launch Product details screen.
                 val intent = Intent(context, SelectServiceActivity::class.java)
-                intent.putExtra(Constants.EXTRA_SALON_ID, model.id)
+                intent.putExtra("salonID", model.id);
                 intent.putExtra(Constants.EXTRA_USER_ID, userID)
+                Log.e("service_2","" +  model.id)
+
                 context.startActivity(intent)
             }
             holder.itemView.tv_book_us.setOnClickListener {
                 // Launch Product details screen.
-                val intent = Intent(context, SelectServiceActivity::class.java)
-                intent.putExtra(Constants.EXTRA_SALON_ID, model.id)
+                val intent = Intent(context, SelectedSalon::class.java)
+                intent.putExtra("salonID", model.id);
                 intent.putExtra(Constants.EXTRA_TIME_PICKED_ID, timeSelected)
                 intent.putExtra(Constants.EXTRA_SALON_ADDRESS, model.companyAddress)
                 intent.putExtra(Constants.EXTRA_LONGITUDE, model.longitude)
                 intent.putExtra(Constants.EXTRA_LATITUDE, model.latitude)
+                Log.e("service_2","" +  model.id)
 
                 context.startActivity(intent)
             }

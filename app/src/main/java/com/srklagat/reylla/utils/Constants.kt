@@ -9,7 +9,7 @@ import android.webkit.MimeTypeMap
 object Constants {
 
 
-
+    const val USER_ID: String= "userId"
 
     // Firebase Constants
     // This  is used for the collection name for USERS.

@@ -69,8 +69,9 @@ tools:context=".activities.agentclients.clientActivities.SelectedSalon">
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="75dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="409dp"
+        android:layout_height="89dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -78,25 +79,34 @@ tools:context=".activities.agentclients.clientActivities.SelectedSalon">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_services"
             android:layout_width="match_parent"
-            android:layout_height="77dp"
+            android:layout_height="wrap_content"
             tools:listitem="@layout/item_service_top_category" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="402dp"
-        android:layout_height="723dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="160dp"
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_featured_saloons"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/service_item" />
+            android:layout_marginLeft="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_featured_salons_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/service_item" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
