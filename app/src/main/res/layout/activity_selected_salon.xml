@@ -102,6 +102,7 @@ tools:context=".activities.agentclients.clientActivities.SelectedSalon">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_featured_salons_service"
                 android:layout_width="match_parent"
+                android:scrollbars="vertical"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/service_item" />
 
