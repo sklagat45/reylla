@@ -5,10 +5,13 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.srklagat.reylla.R
 import com.srklagat.reylla.activities.serviceproviders.ui.details.ServiceDetailsActivity
+import com.srklagat.reylla.firebase.FirestoreClass
+import com.srklagat.reylla.model.Cart
 import com.srklagat.reylla.model.SalonService
 import com.srklagat.reylla.utils.Constants
 import com.srklagat.reylla.utils.GlideLoader
@@ -48,6 +51,26 @@ class ServicesAdapter (
 
             holder.itemView.iv_item_add_to_cart.setOnClickListener {
                 // Launch Product details screen.
+
+//                fun addToCart() {
+
+                    val addToCart = Cart(
+                        FirestoreClass().getCurrentUserID(),
+                        model.styleName,
+                        model.styleDuration,
+                        model.styleCost,
+                        model.mserviceImageURL,
+                        model.providerID
+                    )
+
+                    Toast.makeText(context, " please wait", Toast.LENGTH_LONG).show()
+
+                    FirestoreClass().addCartItems(this@ServicesAdapter, addToCart)
+
+                    holder.itemView.iv_item_add_to_cart.visibility = View.GONE
+
+
+
                 val intent = Intent(context, ServiceDetailsActivity::class.java)
                 intent.putExtra(Constants.EXTRA_SERVICE_ID, model.service_id)
                 intent.putExtra(Constants.EXTRA_SERVICE_OWNER_ID, model.providerID)
@@ -58,6 +81,12 @@ class ServicesAdapter (
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    fun addToCartSuccess() {
+
+        Toast.makeText(context, " Item added to cart", Toast.LENGTH_LONG).show()
+
     }
 
     inner class ServicesViewHolder(itemView: View) :

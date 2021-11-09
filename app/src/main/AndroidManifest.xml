@@ -24,9 +24,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".activities.agentclients.clientActivities.CheckOutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.agentclients.clientActivities.AddressListActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.agentclients.clientActivities.CartListActivity"
             android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar"  />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.agentclients.clientActivities.SelectedSalon"
             android:exported="false"

@@ -15,10 +15,9 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.srklagat.reylla.activities.SignInActivity
 import com.srklagat.reylla.activities.SignUpActivity
-import com.srklagat.reylla.activities.agentclients.clientActivities.ClieantHomeActivity
 import com.srklagat.reylla.activities.agentclients.RegisterCustomer
-import com.srklagat.reylla.activities.agentclients.clientActivities.GalleryActivity
-import com.srklagat.reylla.activities.agentclients.clientActivities.SelectedSalon
+import com.srklagat.reylla.activities.agentclients.clientActivities.*
+import com.srklagat.reylla.activities.agentclients.clientsAdapters.ServicesAdapter
 import com.srklagat.reylla.activities.serviceproviders.*
 import com.srklagat.reylla.activities.serviceproviders.addingNewService.*
 import com.srklagat.reylla.activities.serviceproviders.ui.CompleteProfile
@@ -906,6 +905,123 @@ class FirestoreClass {
         }
         context.hideProgressDialog()
         context.successSalonsListFromFireStore(salonList)
+    }
+
+    fun addCartItems(servicesAdapter: ServicesAdapter, addToCart: Cart) {
+        mFireStore.collection(Constants.CART_ITEMS)
+            .document()
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(addToCart, SetOptions.merge())
+            .addOnSuccessListener {
+
+                // Here call a function of base activity for transferring the result to it.
+                servicesAdapter.addToCartSuccess()
+            }
+            .addOnFailureListener { e ->
+
+//                servicesAdapter.hideProgressDialog()
+
+                Log.e(
+                    servicesAdapter.javaClass.simpleName,
+                    "Error while creating the document for cart item.",
+                    e
+                )
+            }
+
+
+    }
+
+    fun getAllProductsList(activity: Activity) {
+        // The collection name for PRODUCTS
+        mFireStore.collection(Constants.SALONSERVICE)
+            .get() // Will get the documents snapshots.
+            .addOnSuccessListener { document ->
+
+                // Here we get the list of boards in the form of documents.
+                Log.e("Products List", document.documents.toString())
+
+                // Here we have created a new instance for Products ArrayList.
+                val productsList: ArrayList<SalonService> = ArrayList()
+
+                // A for loop as per the list of documents to convert them into Products ArrayList.
+                for (i in document.documents) {
+
+                    val product = i.toObject(SalonService::class.java)
+                    product!!.service_id = i.id
+
+                    productsList.add(product)
+                }
+
+                when (activity) {
+                    is CartListActivity -> {
+                        activity.successProductsListFromFireStore(productsList)
+                    }
+                    is CheckOutActivity -> {
+//                        activity.successProductsListFromFireStore(productsList)
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                // Hide the progress dialog if there is any error based on the base class instance.
+                when (activity) {
+                    is CartListActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is CheckOutActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+
+                Log.e("Get Product List", "Error while getting all product list.", e)
+            }
+    }
+
+    fun getCartList(activity: Activity) {
+
+        // The collection name for PRODUCTS
+        mFireStore.collection(Constants.CART_ITEMS)
+            .whereEqualTo("user_id", getCurrentUserID())
+            .get() // Will get the documents snapshots.
+            .addOnSuccessListener { document ->
+
+                // Here we get the list of cart items in the form of documents.
+                Log.e(activity.javaClass.simpleName, document.documents.toString())
+
+                // Here we have created a new instance for Cart Items ArrayList.
+                val list: ArrayList<Cart> = ArrayList()
+
+                // A for loop as per the list of documents to convert them into Cart Items ArrayList.
+                for (i in document.documents) {
+
+                    val cartItem = i.toObject(Cart::class.java)!!
+                    cartItem.id = i.id
+
+                    list.add(cartItem)
+                }
+
+                when (activity) {
+                    is CartListActivity -> {
+                        activity.successCartItemsList(list)
+                    }
+                    is CheckOutActivity -> {
+//                        activity.successCartItemsList(list)
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                // Hide the progress dialog if there is an error based on the activity instance.
+                when (activity) {
+                    is CartListActivity -> {
+                        activity.hideProgressDialog()
+                    }
+
+                    is CheckOutActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+
+                Log.e(activity.javaClass.simpleName, "Error while getting the cart list items.", e)
+            }
     }
 
 

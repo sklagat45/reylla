@@ -9,6 +9,8 @@ import android.webkit.MimeTypeMap
 object Constants {
 
 
+    const val SALONSERVICE: String = "SalonService"
+    const val CART_ITEMS: String = "cart_items"
     const val USER_ID: String= "userId"
 
     // Firebase Constants

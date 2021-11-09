@@ -107,7 +107,7 @@ tools:context=".activities.agentclients.clientActivities.CartListActivity">
             android:textSize="@dimen/checkout_label_value_textSize" />
 
         <com.srklagat.reylla.utils.MSPTextView
-            android:id="@+id/tv_shipping_charge"
+            android:id="@+id/tv_tax_charge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
