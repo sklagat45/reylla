@@ -267,7 +267,7 @@
                 android:id="@+id/tv_payment_mode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cash On Delivery"
+                android:text="Cash After Service"
                 android:textAlignment="center"
                 android:textColor="@color/quantum_white_100"
                 android:textSize="@dimen/checkout_label_value_textSize" />

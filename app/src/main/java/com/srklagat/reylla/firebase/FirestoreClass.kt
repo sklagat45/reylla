@@ -6,6 +6,7 @@ import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import android.widget.Toast.makeText
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,6 +25,7 @@ import com.srklagat.reylla.activities.serviceproviders.ui.CompleteProfile
 import com.srklagat.reylla.activities.serviceproviders.ui.gallery.AddGalleryImagesActivity
 import com.srklagat.reylla.activities.serviceproviders.ui.gallery.GalleryFragment
 import com.srklagat.reylla.activities.serviceproviders.ui.home.HomeFragment
+import com.srklagat.reylla.activities.serviceproviders.ui.reminders.BookingsFragment
 import com.srklagat.reylla.model.*
 import com.srklagat.reylla.utils.Constants
 
@@ -1076,6 +1078,37 @@ class FirestoreClass {
                 )
             }
     }
+
+    fun getMyOrdersList(fragment: BookingsFragment) {
+
+        mFireStore.collection(Constants.ORDERS)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+            .get() // Will get the documents snapshots.
+            .addOnSuccessListener { document ->
+                Log.e(fragment.javaClass.simpleName, document.documents.toString())
+                val list: ArrayList<Order> = ArrayList()
+
+                for (i in document.documents) {
+
+                    val orderItem = i.toObject(Order::class.java)!!
+                    orderItem.id = i.id
+
+                    list.add(orderItem)
+                }
+
+                fragment.populateBookingListInUI(list)
+            }
+            .addOnFailureListener { e ->
+                // Here call a function of base activity for transferring the result to it.
+
+
+                Log.e(fragment.javaClass.simpleName, "Error while getting the orders list.", e)
+            }
+
+
+    }
+
+
 
 
 }
