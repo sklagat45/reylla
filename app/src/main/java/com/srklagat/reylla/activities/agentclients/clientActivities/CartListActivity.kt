@@ -32,14 +32,16 @@ class CartListActivity : BaseActivity() {
 
 //        Log.e("service_5","" + salonID)
 
+        btn_checkout.setOnClickListener {
+            val intent = Intent(this@CartListActivity, CheckOutActivity::class.java)
+
+            startActivity(intent)
+        }
+
         Util.setRecyclerView(this, rv_cart_items_list)
         // Click event for add hair service button.
 
-        btn_checkout.setOnClickListener {
-            val intent = Intent(this@CartListActivity, AddressListActivity::class.java)
-//            intent.putExtra(Constants.EXTRA_TIME_PICKED_ID, Cart.time)
-            startActivity(intent)
-        }
+
     }
 
     override fun onResume() {
@@ -98,7 +100,6 @@ class CartListActivity : BaseActivity() {
                 CartAdapter(this, cartList)
             rv_cart_items_list.adapter = adapterSalons
 
-
             var subTotal: Double = 0.0
 
             for (item in cartList) {
@@ -109,15 +110,15 @@ class CartListActivity : BaseActivity() {
 
             }
 
-            tv_sub_total.text = "$$subTotal"
+            tv_sub_total.text = "Ksh$subTotal"
             // Here we have kept Shipping Charge is fixed as $10 but in your case it may cary. Also, it depends on the location and total amount.
-            tv_tax_charge.text = "$10.0"
+            tv_tax_charge.text = "5%"
 
             if (subTotal > 0) {
                 ll_checkout.visibility = View.VISIBLE
 
-                val total = subTotal + 10
-                tv_total_amount.text = "$$total"
+                val total = subTotal * 0.95
+                tv_total_amount.text = "Ksh $total"
             } else {
                 ll_checkout.visibility = View.GONE
             }

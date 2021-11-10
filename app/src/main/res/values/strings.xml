@@ -77,4 +77,5 @@
 
     <string name="msg_for_available_stock">Available stock is %1$s!. You can not add more than stock quantity.</string>
     <string name="service_charge">Service Charge</string>
+    <string name="confirm_service">CONFIRM SERVICE</string>
 </resources>

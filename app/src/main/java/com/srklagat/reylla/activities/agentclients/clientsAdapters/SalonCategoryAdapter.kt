@@ -54,11 +54,7 @@ class SalonCategoryAdapter (
 
             }
 
-//            itemView.setOnTouchListener(View.OnTouchListener { v, event -> // TODO Auto-generated method stub
-//                val vb = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-//                vb.vibrate(100)
-//                false
-//            })
+
 
         }
     }
