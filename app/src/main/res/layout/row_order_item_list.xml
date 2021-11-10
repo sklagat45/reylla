@@ -106,16 +106,33 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginBottom="4dp"
-            android:hint="15/11/2021 11:00"
+            android:hint="15/11/2021"
             android:inputType="datetime"
             android:textColor="#000"
             android:textSize="14sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.927"
+            card_view:layout_constraintHorizontal_bias="0.706"
             card_view:layout_constraintStart_toEndOf="@+id/tv_ksh"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_service_duration"
-            card_view:layout_constraintVertical_bias="0.785" />
+            card_view:layout_constraintVertical_bias="0.928" />
+
+        <TextView
+            android:id="@+id/tv_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="4dp"
+            android:hint="11:00"
+            android:inputType="time"
+            android:textColor="#000"
+            android:textSize="14sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.926"
+            card_view:layout_constraintStart_toEndOf="@+id/tv_ksh"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_service_duration"
+            card_view:layout_constraintVertical_bias="0.928" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

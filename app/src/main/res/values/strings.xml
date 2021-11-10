@@ -75,8 +75,28 @@
     <string name="lbl_out_of_stock">OUT OF STOCK</string>
     <string name="msg_item_removed_successfully">Item removed successfully.</string>
 
+
+    <string name="title_my_order_details">MY ORDER DETAILS</string>
+    <string name="order_details_lbl">Order Details</string>
+    <string name="order_details_lbl_order_id">Order ID</string>
+    <string name="order_details_lbl_order_date">Order Date</string>
+    <string name="order_details_lbl_order_status">Order Status</string>
+    <string name="order_status_pending">Pending</string>
+    <string name="order_details_lbl_shipping_address">Shipping Address</string>
+
+    <string name="order_status_in_process">In Process</string>
+    <string name="order_status_delivered">Delivered</string>
+
+    <string name="title_sold_products">Sold Products</string>
+    <string name="no_products_sold_out_yet">No products sold out yet!</string>
+
+    <string name="title_sold_product_details">SOLD PRODUCT DETAILS</string>
+
+
     <string name="msg_for_available_stock">Available stock is %1$s!. You can not add more than stock quantity.</string>
     <string name="service_charge">Service Charge</string>
     <string name="confirm_service">CONFIRM SERVICE</string>
     <string name="no_orders_placed_yet">No Orders Has Been Placed Yet</string>
+    <string name="no_bookings_placed_yet">No bookings has been placed Yet</string>
+    <string name="your_profile_image">Your profile image</string>
 </resources>

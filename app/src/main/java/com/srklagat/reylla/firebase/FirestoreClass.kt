@@ -1082,7 +1082,8 @@ class FirestoreClass {
     fun getMyOrdersList(fragment: BookingsFragment) {
 
         mFireStore.collection(Constants.ORDERS)
-            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+            .whereEqualTo("service_owner_id", getCurrentUserID())
+
             .get() // Will get the documents snapshots.
             .addOnSuccessListener { document ->
                 Log.e(fragment.javaClass.simpleName, document.documents.toString())

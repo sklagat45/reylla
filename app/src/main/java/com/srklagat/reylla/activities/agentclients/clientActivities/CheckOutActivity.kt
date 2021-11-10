@@ -2,6 +2,7 @@ package com.srklagat.reylla.activities.agentclients.clientActivities
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.srklagat.reylla.R
 import com.srklagat.reylla.activities.BaseActivity
 import com.srklagat.reylla.activities.agentclients.clientsAdapters.CartAdapter
@@ -21,6 +22,11 @@ class CheckOutActivity : BaseActivity() {
     private var cartAdapter: CartAdapter? = null
     // A global variable for the SubTotal Amount.
     private var mSubTotal: String = "0.0"
+    private var mAddress: String = "0.0"
+    private var mBookedDate: String = "0.0"
+    private var mBookedTime: String = "0.0"
+
+
 
     // A global variable for the Total Amount.
     private var mTotalAmount: String = "0.0"
@@ -43,6 +49,8 @@ class CheckOutActivity : BaseActivity() {
         }
 
 
+
+
         Util.setRecyclerView(this, rv_cart_list_items)
 
 
@@ -57,19 +65,36 @@ class CheckOutActivity : BaseActivity() {
         // Show the progress dialog.
         showProgressDialog(resources.getString(R.string.please_wait))
 
+        mBookedDate=checkout_date.text.toString()
+        mBookedTime=checkout_time.text.toString()
+        mAddress=checkout_place.text.toString()
+
+
         mOrderDetails = Order(
             FirestoreClass().getCurrentUserID(),
+            mCartItemsList[0].Service_owner_id,
             mCartItemsList,
-            "Kitengela",
+            mAddress,
             "My order ${System.currentTimeMillis()}",
             mCartItemsList[0].image,
             mSubTotal.toString(),
             "5%",
             mTotalAmount.toString(),
+            mBookedDate,
+            mBookedTime,
             System.currentTimeMillis()
         )
         FirestoreClass().placeOrder(this@CheckOutActivity, mOrderDetails)
+
+        Toast.makeText(
+            this@CheckOutActivity,
+            "booking Successful",
+            Toast.LENGTH_SHORT
+        ).show()
+
         hideProgressDialog()
+
+        finish()
     }
 
     private fun setupActionBar() {
@@ -132,5 +157,15 @@ class CheckOutActivity : BaseActivity() {
 
         }
 
+    }
+
+    override fun finish() {
+
+        Toast.makeText(
+            this@CheckOutActivity,
+            "booking Successful",
+            Toast.LENGTH_SHORT
+        ).show()
+        super.finish()
     }
 }

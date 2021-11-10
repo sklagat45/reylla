@@ -29,7 +29,7 @@ class BookingsFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_bookings, container, false)
 
 
-
+        getMyOrdersList()
 
 
         return root

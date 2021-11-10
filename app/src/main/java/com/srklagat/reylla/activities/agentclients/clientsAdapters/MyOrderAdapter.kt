@@ -5,17 +5,17 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.srklagat.reylla.R
-import com.srklagat.reylla.activities.agentclients.clientActivities.CartListActivity
+import com.srklagat.reylla.activities.agentclients.clientActivities.BookedOrderDetails
 import com.srklagat.reylla.activities.serviceproviders.ui.reminders.MyOrderDetails
-import com.srklagat.reylla.firebase.FirestoreClass
 import com.srklagat.reylla.model.Order
 import com.srklagat.reylla.utils.Constants
 import com.srklagat.reylla.utils.GlideLoader
-import kotlinx.android.synthetic.main.row_cart_items.view.*
+import kotlinx.android.synthetic.main.row_cart_items.view.iv_item_service_image
+import kotlinx.android.synthetic.main.row_cart_items.view.tv_item_cost
+import kotlinx.android.synthetic.main.row_cart_items.view.tv_item_service_name
+import kotlinx.android.synthetic.main.row_order_item_list.view.*
 
 class MyOrderAdapter(
     private val context: Context,
@@ -61,11 +61,14 @@ class MyOrderAdapter(
 
             holder.itemView.tv_item_service_name.text = model.title
             holder.itemView.tv_item_cost.text = "$${model.total_amount}"
+            holder.itemView.tv_item_date.text = model.bookedDate
+            holder.itemView.tv_item_time.text = model.bookedTime
+
 
 //            holder.itemView.ib_delete_product.visibility = View.GONE
 
             holder.itemView.setOnClickListener {
-                val intent = Intent(context, MyOrderDetails::class.java)
+                val intent = Intent(context, BookedOrderDetails::class.java)
                 intent.putExtra(Constants.EXTRA_MY_ORDER_DETAILS, model)
                 context.startActivity(intent)
             }
@@ -76,7 +79,9 @@ class MyOrderAdapter(
      * Gets the number of items in the list
      */
     override fun getItemCount(): Int {
+
         return list.size
+
     }
 
     /**

@@ -52,7 +52,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
             } else {
                 // Start the Main Activity
-                startActivity(Intent(this@SplashActivity, ClieantHomeActivity::class.java))
+                startActivity(Intent(this@SplashActivity, ServiceProvidersMainPage::class.java))
             }
             finish() // Call this when your activity is done and should be closed.
             // END

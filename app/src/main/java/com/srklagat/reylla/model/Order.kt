@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Order(
     val user_id: String = "",
+    val service_owner_id: String = "",
     val items: ArrayList<Cart> = ArrayList(),
     val address:  String = "",
     val title: String = "",
@@ -14,6 +15,8 @@ data class Order(
     val sub_total_amount: String = "",
     val service_discount: String = "",
     val total_amount: String = "",
+    val bookedDate: String = "",
+    val bookedTime: String = "",
     val order_datetime: Long = 0L,
     var id: String = ""
 ) : Parcelable
