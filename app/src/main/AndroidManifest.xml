@@ -25,10 +25,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.agentclients.clientActivities.BookedOrderDetails"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"  />
         <activity
             android:name=".activities.serviceproviders.ui.reminders.MyOrderDetails"
-            android:exported="false" />
+            android:exported="false"
+
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.agentclients.clientActivities.CheckOutActivity"
             android:exported="false"

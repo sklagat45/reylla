@@ -1,10 +1,12 @@
 package com.srklagat.reylla.activities.agentclients.clientActivities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.srklagat.reylla.R
 import com.srklagat.reylla.activities.BaseActivity
+import com.srklagat.reylla.activities.agentclients.MainActivity
 import com.srklagat.reylla.activities.agentclients.clientsAdapters.CartAdapter
 import com.srklagat.reylla.firebase.FirestoreClass
 import com.srklagat.reylla.model.Cart
@@ -20,12 +22,12 @@ class CheckOutActivity : BaseActivity() {
     private lateinit var mCartItemsList: ArrayList<Cart>
 
     private var cartAdapter: CartAdapter? = null
+
     // A global variable for the SubTotal Amount.
     private var mSubTotal: String = "0.0"
     private var mAddress: String = "0.0"
     private var mBookedDate: String = "0.0"
     private var mBookedTime: String = "0.0"
-
 
 
     // A global variable for the Total Amount.
@@ -55,6 +57,7 @@ class CheckOutActivity : BaseActivity() {
 
 
     }
+
     private fun getCartItemsList() {
 
         FirestoreClass().getCartList(this@CheckOutActivity)
@@ -65,9 +68,9 @@ class CheckOutActivity : BaseActivity() {
         // Show the progress dialog.
         showProgressDialog(resources.getString(R.string.please_wait))
 
-        mBookedDate=checkout_date.text.toString()
-        mBookedTime=checkout_time.text.toString()
-        mAddress=checkout_place.text.toString()
+        mBookedDate = checkout_date.text.toString()
+        mBookedTime = checkout_time.text.toString()
+        mAddress = checkout_place.text.toString()
 
 
         mOrderDetails = Order(
@@ -92,6 +95,8 @@ class CheckOutActivity : BaseActivity() {
             Toast.LENGTH_SHORT
         ).show()
 
+        startActivity(Intent(this@CheckOutActivity, BookedOrderDetails::class.java))
+        this.finish()
         hideProgressDialog()
 
         finish()
@@ -114,7 +119,7 @@ class CheckOutActivity : BaseActivity() {
 //        mCartItemsList =cartList
         // Hide Progress dialog.
         if (cartList.isNotEmpty()) {
-            mCartItemsList =cartList
+            mCartItemsList = cartList
 
             rv_cart_list_items.visibility = View.VISIBLE
             val adapterSalons =
@@ -141,14 +146,13 @@ class CheckOutActivity : BaseActivity() {
                 val total = subTotal * 0.95
                 tv_checkout_total_amount.text = "Ksh $total"
 
-                mSubTotal= "Ksh$subTotal"
+                mSubTotal = "Ksh$subTotal"
 
                 mTotalAmount = "Ksh $total"
 
             } else {
                 ll_checkout_place_order.visibility = View.GONE
             }
-
 
 
         } else {
